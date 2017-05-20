@@ -149,12 +149,19 @@
 %% \section{Introduction} %for journal use above \firstsection{..} instead
 % \textbf{Do we need an intro?} Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
 
+% Instructions:
+% for each paper
+%   (1) write a paragraph explaining the paper (problem statement, technique, results). Be sure to paraphrase instead of copying/pasting the abstract or other parts of the papers.
+%   (2) write a paragraph explaining how this paper may relate to your term project (a better technique, a novel application of the same technique, etc). Furthermore, list the challenges if you were to work on this paper.
+
 \section{Related Papers}
-    \subsection{Paper 01: Title}
+    \subsection{Paper 01: \textit{VisDock: A Toolkit for Cross-Cutting
+Interactions in Visualization} \cite{VisDock:2014}}
         \subsubsection{Paper Description}
-        Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
+        Prepared by Jungu Choi, Deok Gun Park, Yuet Ling Wong, Eli Fisher, and Niklas Elmqvist, Senior Member, IEEE; this paper reviews a tool the team created to provide ``a core set of cross-cutting interaction techniques for visualization'' \cite[p.~1]{VisDock:2014}. The tool, VisDock, was created as a plugin library using JavaScript to interact with visualizations based on SVGs; upon completion of the tool, the team released it as Open Source. A qualitative study with four developers and 11 end-users ``found the tool usable and efficient'' \cite[p.~2]{VisDock:2014}.
+
         \subsubsection{Project Value}
-        Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
+        In their future work section, one area of interest is the implementation of data-level interactions for ``filtering, searching, and drilling down into the data'' \cite[p.~12]{VisDock:2014}. Along these lines we could investigate ways to provide interactions allowing quick manipulations of the graph based upon data selections of the user. For example, supposing the user would like to find similar elements in the data set based upon a selection, we could look into developing a way to generate visual changes to make those elements stand out. Problems we may encounter mainly surround picking up and applying the VisDock. Although documentation and examples will be available, being open source there is no guarantee that it will be plug and play. Furthermore, the implementation of VisDock is that of a plug-in, meaning we will need to start the visualization another visualization tool such as D3 and figure out the extent of VisDock's manipulation capabilities.
 
     \subsection{Paper 02: Title}
         \subsubsection{Paper Description}
@@ -181,11 +188,10 @@
 
 
 
-%% if specified like this the section will be committed in review mode
-% \acknowledgments{
-%     The authors wish to thank A, B, C. This work was supported in part by
-%     a grant from XYZ.
-% }
+% if specified like this the section will be committed in review mode
+\acknowledgments{
+    The authors wish to thank the authors of the referenced papers for their work upon which we will attempt to expand upon.
+}
 
 \nocite{*}
 %\bibliographystyle{abbrv}
