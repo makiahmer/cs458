@@ -75,7 +75,7 @@
 \vgtcpapertype{algorithm/technique}
 
 %% Paper title.
-\title{Project 02 Proposal: WhatAreWeDoing_questionMark}
+\title{Project 02 Proposal: WhatAreWeDoingQuestionMark}
 
 %% This is how authors are specified in the journal style
 
@@ -93,7 +93,7 @@
 
 
 %other entries to be set up for journal
-\shortauthortitle{Biv \MakeLowercase{\textit{et al.}}: Don_apostrophe_tKnowWhatWe_apostrophe_reDoing}
+\shortauthortitle{Biv \MakeLowercase{\textit{et al.}}: DontKnowWhatWeAreDoing}
 %\shortauthortitle{Firstauthor \MakeLowercase{\textit{et al.}}: Paper Title}
 
 %% Abstract section.
@@ -142,12 +142,42 @@
 %% ``\begin{document}'' command. It prepares and prints the title block.
 
 %% the only exception to this rule is the \firstsection command
-\firstsection{Introduction}
+% \firstsection{Introduction}
 
 \maketitle
 
 %% \section{Introduction} %for journal use above \firstsection{..} instead
-Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
+% \textbf{Do we need an intro?} Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
+
+\section{Related Papers}
+    \subsection{Paper 01: Title}
+        \subsubsection{Paper Description}
+        Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
+        \subsubsection{Project Value}
+        Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
+
+    \subsection{Paper 02: Title}
+        \subsubsection{Paper Description}
+        Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
+        \subsubsection{Project Value}
+        Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
+
+    \subsection{Paper 03: Title}
+        \subsubsection{Paper Description}
+        Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
+        \subsubsection{Project Value}
+        Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
+
+\section{Referenced Papers}
+    \begin{enumerate}
+        \item{\textit{Vega-Lite: A Grammar of Interactive Graphics} (2016), Arvind Satyanarayan, Dominik Moritz, Kanit Wongsuphasawat, and Jeffrey Heer \cite{VegaLite:2016}}
+        \item{\textit{Embedded Data Representations:2016} (2016), Wesley Willett, Yvonne Jansen, Pierre Dragicevic \cite{EmbeddedDataRepresentations:2016}}
+        \item{\textit{The Attraction Effect in Information Visualization} (2016), Evanthia Dimara, Anastasia Bezerianos, and Pierre Dragicevic \cite{AttractionEffect:2016}}
+        \item{\textit{Title} (year), Authors \cite{key}}
+        \item{\textit{Title} (year), Authors \cite{key}}
+        \item{\textit{Title} (year), Authors \cite{key}}
+        \item{\textit{Title} (year), Authors \cite{key}}
+    \end{enumerate}
 
 
 
@@ -157,10 +187,11 @@ Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod 
 %     a grant from XYZ.
 % }
 
+\nocite{*}
 %\bibliographystyle{abbrv}
-\bibliographystyle{abbrv-doi}
+%\bibliographystyle{abbrv-doi}
 %\bibliographystyle{abbrv-doi-narrow}
-%\bibliographystyle{abbrv-doi-hyperref}
+\bibliographystyle{abbrv-doi-hyperref}
 %\bibliographystyle{abbrv-doi-hyperref-narrow}
 
 \bibliography{references}
