@@ -96,23 +96,12 @@
 %\shortauthortitle{Firstauthor \MakeLowercase{\textit{et al.}}: Paper Title}
 
 %% Abstract section.
-\abstract{Duis autem vel eum iriure dolor in hendrerit in vulputate
-velit esse molestie consequat, vel illum dolore eu feugiat nulla
-facilisis at vero eros et accumsan et iusto odio dignissim qui blandit
-praesent luptatum zzril delenit augue duis dolore te feugait nulla
-facilisi. Lorem ipsum dolor sit amet, consectetuer adipiscing elit,
-sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna
-aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper
-suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem
-vel eum iriure dolor in hendrerit in vulputate velit esse molestie
-consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et
-accumsan et iusto odio dignissim qui blandit praesent luptatum zzril
-delenit augue duis dolore te feugait nulla facilisi.%
+\abstract{PROACT (PROgnosis Assessment for Conservative Treatment) is a tool that helps patients figure out the prostate cancer health risks. We are aiming to come up with a way to visualize the adverse effects that patients may come across through various treatments. [insert results here]%
 } % end of abstract
 
 %% Keywords that describe your work. Will show as 'Index Terms' in journal
 %% please capitalize first letter and insert punctuation after last keyword
-\keywords{Lorem, ipsum}
+\keywords{PROACT, Cancer, and Visualization.}
 
 %% ACM Computing Classification System (CCS). 
 %% See <http://www.acm.org/class/1998/> for details.
@@ -156,7 +145,13 @@ delenit augue duis dolore te feugait nulla facilisi.%
 \maketitle
 
 %% \section{Introduction} %for journal use above \firstsection{..} instead
-This template is for papers of VGTC-sponsored conferences such as IEEE VIS, IEEE VR, and ISMAR which are published as special issues of TVCG. The template does not contain the respective dates of the conference/journal issue, these will be entered by IEEE as part of the publication production process.
+PROACT (PROgnosis Assessment for Conservative Treatment) is a tool created and tested by Anzu Hakone, Lane Harrison, Alvitta Ottley, Nathan Winters, Caitlin Gutheil, Paul K. J. Han, Remco Chang to communicate risk information to individuals suffering from prostate cancer.
+``PROACT utilizes two published clinical prediction models to communicate the patients’ personalized risk estimates and compare treatment options'' \cite[p.~1]{PROACT:2016}.
+With a primary goal of transmitting information across to emotionally charged individuals, the tool's design is backed by user studies of prostate cancer survivors and urologists from the Maine Medical Center.
+Through their study, they found an appropriate design required a easy to read bits of information that could likewise be easily comprehended with little effort.
+Specifically, listed in their \textit{findings} section, the team found a \textbf{temporal visualization} with \textbf{narrative sequence} worked best to communicate with varying \textbf{emotional state}s \cite[p.~8]{PROACT:2016}.
+This led the initial designs to use simple visualizations, such as pie and bar charts, minimal labeling, and present the data in a positive lens; noting ``adding interactions to either simple or complex visualizations had an adverse effect'' \cite[p.~2]{PROACT:2016}.
+We aim to improve this tool by adding visualization tools for side effects for various treatments that doctors prescribe. 
 
 \section{Related Work}
 
@@ -230,6 +225,6 @@ The authors wish to thank Eugene Zhang for the unique opportunities provided in 
 %\bibliographystyle{abbrv-doi-hyperref}
 %\bibliographystyle{abbrv-doi-hyperref-narrow}
 
-\bibliography{template}
+\bibliography{references}
 \end{document}
 
