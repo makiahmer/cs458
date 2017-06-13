@@ -176,21 +176,72 @@
                 This is why they narrowed down their focus to prostate cancer as well as focusing on simple and effective feedback to their users.
 
 \section{Implementation}
+        Unfortunately, when searching for cancer data our team was only able to find resources concerning treatment options and a database outlining molecular trends of tumors.
+        Coming across an accessible database was of particular interest as we would be able to provide accurate visualizations; however, the ones found were of no use for our scope.
+        As such our ``implementation'' is not scientifically sound and will serve as a spring board for ideas.
+        Noting the PROACT study found users didn't prefer interactive systems we desire to keep interactivity optional throughout the proposed solutions.
+        We do feel, however, that interactive information is crucial to developing a better personal understanding of the presented information; and within a medical sense, the options one is able to pursue.
 
-Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
-nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat,
-sed diam voluptua. At vero eos et accusam et justo duo dolores et ea
-rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem
-ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur
-sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et
-dolore magna aliquyam erat, sed diam
-voluptua~\cite{Kitware:2003,Max:1995:OMF}. At vero eos et accusam et
-justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea
-takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit
-amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor
-invidunt ut labore et dolore magna aliquyam erat, sed diam
-voluptua. At vero eos et accusam et justo duo dolores et ea
-rebum. Stet clita kasd gubergren, no sea takimata sanctus est.
+        \subsection{Additional or Alternative Treatments}
+                As stated in many sources, including PROACT, there are many treatment paths for prostate cancer.
+                The most prevalent of these seem to be hormonal therapy, radiation therapy, conservative management, and surgery (the latter two paths being the focus of PROACT).
+                PROACTs lack of featuring additional treatments was cited as a possible improvement upon the current tool.
+                By adding in other paths a patient might take, PROACT can better help doctors in providing all options with risk analysis.
+
+                To facilitate additional paths, we would revise PROACT's \textit{Treatment Options} page to include statistics for these various measures.
+                On the revised page users would be presented with an initial visualization comparing active and passive paths across the 1, 5, and 10 year spans currently depicted.
+                Below this chart we propose adding toggle buttons allowing the user to create their own side by side survival/mortality rate comparisons.
+                In addition to providing interactive comparisons, we propose the addition of \textit{Treatment Pathways}.
+                With these an individual would be able to walk through the expected cycle of a selected treatment.
+                During this walk, we would present information such as financing the treatment, possible side effects of the treatment, and resources for the treatment - including peer support groups and local organizations assisting in basic needs.
+
+
+        \subsection{Side Effects}
+                Our vision for giving users visualizations of side effects associated with a prostate cancer would come in two forms.
+                The addition would come in the form of an additional page titled ``Exploring Side Effects,'' appearing after PROACT's \textit{Treatment Options} page.
+                Here the default view would be a visualization of the most prevalent side effects common across multiple treatment paths, i.e. erectile dysfunction or loss of bone mass.
+                Then much like the proposed update to the \textit{Treatment Options} page, we would display buttons so users can explore the side effects of specific treatment paths.
+
+                The following sections outline side effects we found for treatment options.
+
+                \subsubsection{Hormonal Therapy}
+                        Based upon the research presented in \textit{Adverse Events Associated with Hormonal Therapy for Prostate Cancer}\cite{AdverseEvents:2005} we gathered a list of possible side effects individuals undergoing, or having undergone, hormonal therapy (a.k.a. androgen deprivation therapy) might face.
+
+                        \paragraph{Neurologic and Psychiatric Effects}
+                        \paragraph{Hot Flushes}
+                        \paragraph{Gastrointestinal Side Effects}
+                        \paragraph{Musculoskeletal Side Effects}
+                        \paragraph{Endocrine Side Effects}
+                        \paragraph{Cardiovascular Side Effects}
+                        \paragraph{Erectile Dysfunction}
+                        \paragraph{Hematologic Adverse Effects}
+                        \paragraph{Biological Adverse Effects}
+
+
+                \subsubsection{Radiation Therapy}
+                        Based upon the information provided by \textit{Radiation Therapy for Prostate Cancer}\cite{RadiationTherapy:2005} we gathered a list of possible side effects for individuals looking at radiation therapy.
+
+                        The following have been outlined as possible side effects for both \textbf{External Beam Radiation Therapy (EBRT)} and \textbf{Internal Radiation Therapy (Brachytherapy)}.
+                        \paragraph{Bowel Problems}
+                        \paragraph{Urinary Problems}
+                        \paragraph{Erection Problems and Impotence}
+
+                        The following have been outlined as possible side effects for \textbf{External Beam Radiation Therapy (EBRT)}.
+                        \paragraph{Tiredness}
+                        \paragraph{Lymphedema}
+
+                        The following have been outlined as possible side effects for \textbf{Internal Radiation Therapy (Brachytherapy)}.
+                        \paragraph{Radiation}
+
+
+        \subsection{Maintaining Utility}
+                \subsubsection{Tool Tips}
+                        The authors of PROACT did a great job of providing tool tips for possibly confusing articles of information.
+                        As we researched additional treatment options and their side effects we found an increasing amount of technical and scientific information.
+                        Because users are unlikely to know this information without looking it up and because a long scientific name could be daunting, we aim to extend the use of tool tips for any technical or scientific term.
+                        With this users would hover over a term and a small dialog box would appear next to it.
+                        In the dialog box we would present a high level definition of the term (for individuals with low literacy levels) as well as a link for more details - taking them to a resource appropriate for detailing the piece of medical information.
+                        This would aid users who are viewing the PROACT tool without their doctor present.
 
 \section{Results}
 
