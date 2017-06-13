@@ -80,15 +80,15 @@
 %% This is how authors are specified in the journal style
 
 %% indicate IEEE Member or Student Member in form indicated below
-\author{Arthur Shing, Makiak Merritt, and Emmitt Johnson}
+\author{Arthur Shing, Makiah Merritt, and Emmitt Johnson}
 \authorfooter{
 %% insert punctuation at end of each item
-\item
- Arthur Shing. E-mail: shinga@oregonstate.edu.
-\item
- Makiak Merritt. E-mail: merrittm@oregonstate.edu.
-\item
- Emmitt Johnson. E-mail: johnemmi@oregonstate.edu.
+        \item
+        Emmitt Johnson. E-mail: johnemmi@oregonstate.edu.
+        \item
+        Makiah Merritt. E-mail: merrittm@oregonstate.edu.
+        \item
+        Arthur Shing. E-mail: shinga@oregonstate.edu.
 }
 
 %other entries to be set up for journal
@@ -96,14 +96,17 @@
 %\shortauthortitle{Firstauthor \MakeLowercase{\textit{et al.}}: Paper Title}
 
 %% Abstract section.
-\abstract{PROACT (PROgnosis Assessment for Conservative Treatment) is a tool that helps patients figure out the prostate cancer health risks. We are aiming to come up with a way to visualize the adverse effects that patients may come across through various treatments. [insert results here]%
+\abstract{
+        PROACT (PROgnosis Assessment for Conservative Treatment) is a tool that helps patients figure out the prostate cancer health risks.
+        We are aiming to come up with a way to visualize the adverse effects that patients may come across through various treatments.
+        [insert results here]%
 } % end of abstract
 
 %% Keywords that describe your work. Will show as 'Index Terms' in journal
 %% please capitalize first letter and insert punctuation after last keyword
 \keywords{PROACT; Cancer; Visualization}
 
-%% ACM Computing Classification System (CCS). 
+%% ACM Computing Classification System (CCS).
 %% See <http://www.acm.org/class/1998/> for details.
 %% The ``\CCScat'' command takes four arguments.
 
@@ -145,19 +148,32 @@
 \maketitle
 
 %% \section{Introduction} %for journal use above \firstsection{..} instead
-This paper aims to make improvements on the PROACT paper. We first need to figure out where we can get the data for the visualizations. The information that needs to be gathered is data on side effects, recovery time, and quality of life. These are important things for people who are trying to figure out what treatments are best for them. After gathering this information we need to figure out the best way to display this back to the user. It is important that we keep this visualization simple yet useful. The original paper made a big deal out of that, and we are hoping we can continue the great work they did. 
-\section{Related Work}
-\subsection{PROACT}
-PROACT (PROgnosis Assessment for Conservative Treatment) is a tool created and tested by Anzu Hakone, Lane Harrison, Alvitta Ottley, Nathan Winters, Caitlin Gutheil, Paul K. J. Han, Remco Chang to communicate risk information to individuals suffering from prostate cancer.
-``PROACT utilizes two published clinical prediction models to communicate the patients’ personalized risk estimates and compare treatment options'' \cite[p.~1]{PROACT:2016}.
-With a primary goal of transmitting information across to emotionally charged individuals, the tool's design is backed by user studies of prostate cancer survivors and urologists from the Maine Medical Center.
-Through their study, they found an appropriate design required a easy to read bits of information that could likewise be easily comprehended with little effort.
-Specifically, listed in their \textit{findings} section, the team found a \textbf{temporal visualization} with \textbf{narrative sequence} worked best to communicate with varying \textbf{emotional state}s \cite[p.~8]{PROACT:2016}.
-This led the initial designs to use simple visualizations, such as pie and bar charts, minimal labeling, and present the data in a positive lens; noting ``adding interactions to either simple or complex visualizations had an adverse effect'' \cite[p.~2]{PROACT:2016}.
+        This paper aims to make improvements on the PROACT paper.
+        We first need to figure out where we can get the data for the visualizations.
+        The information that needs to be gathered is data on side effects, recovery time, and quality of life.
+        These are important things for people who are trying to figure out what treatments are best for them.
+        After gathering this information we need to figure out the best way to display this back to the user. I
+        t is important that we keep this visualization simple yet useful.
+        The original paper made a big deal out of that, and we are hoping we can continue the great work they did.
 
-\subsection{Health Care Visualizations}
-There have been many works that visualize medical data. Some of the examples listed in the PROACT paper include: "LifeLines [44], EventFlow [38], DecisionFlow [20], Outflow [52] and the
-system by Zhang et al. based on the five W’s [53]" \cite[p.~2]{PROACT:2016}. All of these works are important and bring something different to the table. LifeLines provides survival analysis which is mainly "developed to measure lifespans of individuals."\cite{LifeLines:2014} This can be extremely beneficial to health care workers and scientists alike as it can provide the expected lifespan which gives the power to see if something is changing lifespans in a drastic way. The other papers and tools mentioned all have they own special area in which they help the community, and the PROACT team wanted to be apart of this as well. This is why they narrowed down their focus to prostate cancer as well as focusing on simple and effective feedback to their users.
+
+\section{Related Work}
+        \subsection{PROACT}
+                PROACT (PROgnosis Assessment for Conservative Treatment) is a tool created and tested by Anzu Hakone, Lane Harrison, Alvitta Ottley, Nathan Winters, Caitlin Gutheil, Paul K. J. Han, Remco Chang to communicate risk information to individuals suffering from prostate cancer.
+                ``PROACT utilizes two published clinical prediction models to communicate the patients’ personalized risk estimates and compare treatment options'' \cite[p.~1]{PROACT:2016}.
+                With a primary goal of transmitting information across to emotionally charged individuals, the tool's design is backed by user studies of prostate cancer survivors and urologists from the Maine Medical Center.
+                Through their study, they found an appropriate design required a easy to read bits of information that could likewise be easily comprehended with little effort.
+                Specifically, listed in their \textit{findings} section, the team found a \textbf{temporal visualization} with \textbf{narrative sequence} worked best to communicate with varying \textbf{emotional state}s \cite[p.~8]{PROACT:2016}.
+                This led the initial designs to use simple visualizations, such as pie and bar charts, minimal labeling, and present the data in a positive lens; noting ``adding interactions to either simple or complex visualizations had an adverse effect'' \cite[p.~2]{PROACT:2016}.
+
+        \subsection{Health Care Visualizations}
+                There have been many works that visualize medical data.
+                Some of the examples listed in the PROACT paper include: "LifeLines [44], EventFlow [38], DecisionFlow [20], Outflow [52] and the system by Zhang et al. based on the five W’s [53]" \cite[p.~2]{PROACT:2016}.
+                All of these works are important and bring something different to the table.
+                LifeLines provides survival analysis which is mainly "developed to measure lifespans of individuals"\cite{LifeLines:2014}.
+                This can be extremely beneficial to health care workers and scientists alike as it can provide the expected lifespan which gives the power to see if something is changing lifespans in a drastic way.
+                The other papers and tools mentioned all have they own special area in which they help the community, and the PROACT team wanted to be apart of this as well.
+                This is why they narrowed down their focus to prostate cancer as well as focusing on simple and effective feedback to their users.
 
 \section{Implementation}
 
@@ -206,7 +222,8 @@ aliquam erat volutpat~\cite{Kindlmann:1999:SAG}.
 
 %% if specified like this the section will be committed in review mode
 \acknowledgments{
-The authors wish to thank Eugene Zhang for the unique opportunities provided in this class. We appreciate the work you are doing!}
+        The authors wish to thank Eugene Zhang for the unique opportunities provided in this class. We appreciate the work you are doing!
+}
 
 %\bibliographystyle{abbrv}
 \bibliographystyle{abbrv-doi}
