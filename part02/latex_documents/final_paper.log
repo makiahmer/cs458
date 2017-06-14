@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9) (preloaded format=pdflatex 2016.8.14)  13 JUN 2017 21:45
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9) (preloaded format=pdflatex 2016.8.14)  14 JUN 2017 13:42
 entering extended mode
 **"C:/Users/Makiah Merritt/OneDrive/GitHub/CS458/makiahmer/part02/latex_documen
 ts/final_paper.tex"
@@ -622,25 +622,25 @@ Underfull \hbox (badness 10000) in paragraph at lines 249--255
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 256--261
+Underfull \hbox (badness 10000) in paragraph at lines 256--262
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 262--267
+Underfull \hbox (badness 10000) in paragraph at lines 263--268
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 268--273
+Underfull \hbox (badness 10000) in paragraph at lines 269--274
 
  []
 
 
-LaTeX Warning: Citation `Kitware:2003' on page 2 undefined on input line 319.
+LaTeX Warning: Citation `Kitware:2003' on page 2 undefined on input line 323.
 
 
-LaTeX Warning: Citation `Max:1995:OMF' on page 2 undefined on input line 319.
+LaTeX Warning: Citation `Max:1995:OMF' on page 2 undefined on input line 323.
 
 [2] (final_paper.bbl
 Missing character: There is no Â in font ptmr7t!
@@ -649,28 +649,28 @@ Missing character: There is no â in font ptmr7t!
 Missing character: There is no € in font ptmr7t!
 Missing character: There is no “ in font ptmr7t!
 )
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 361.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 365.
  [3
 
 ]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 361.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 365.
  (final_paper.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 361.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 361.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 365.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 365.
 Package rerunfilecheck Info: File `final_paper.out' has not changed.
 (rerunfilecheck)             Checksum: 9AF82251E23843EE5B79FCBFA1C4A06D;1112.
 
 
 LaTeX Warning: There were undefined references.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 361.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 365.
  ) 
 Here is how much of TeX's memory you used:
- 8529 strings out of 493335
- 130208 string characters out of 3136651
- 252290 words of memory out of 3000000
+ 8541 strings out of 493335
+ 130313 string characters out of 3136651
+ 253290 words of memory out of 3000000
  11713 multiletter control sequences out of 15000+200000
- 47966 words of font info for 199 fonts, out of 3000000 for 9000
+ 48518 words of font info for 207 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
  33i,7n,38p,460b,377s stack positions out of 5000i,500n,10000p,200000b,50000s
 {C:/Program Files (x86)/MiKTeX 2.9/fonts/enc/dvips/fontname/8r.enc}<C:/Progra
@@ -679,9 +679,9 @@ m Files (x86)/MiKTeX 2.9/fonts/type1/urw/helvetic/uhvb8a.pfb><C:/Program Files
 KTeX 2.9/fonts/type1/urw/times/utmb8a.pfb><C:/Program Files (x86)/MiKTeX 2.9/fo
 nts/type1/urw/times/utmr8a.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/u
 rw/times/utmri8a.pfb>
-Output written on final_paper.pdf (3 pages, 102222 bytes).
+Output written on final_paper.pdf (3 pages, 103347 bytes).
 PDF statistics:
- 158 PDF objects out of 1000 (max. 8388607)
+ 162 PDF objects out of 1000 (max. 8388607)
  39 named destinations out of 1000 (max. 500000)
  47766 words of extra memory for PDF output out of 51595 (max. 10000000)
 
