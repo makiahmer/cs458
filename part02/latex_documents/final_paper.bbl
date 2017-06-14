@@ -1,21 +1,29 @@
 \begin{thebibliography}{1}
 
+\bibitem{PDQProstateCancer:2016}
+P.~A. T.~E. Board.
+\newblock Prostate cancer treatment (pdq®)–patient version, July 2016.
+
 \bibitem{LifeLines:2014}
 C.~Davidson-Pilon.
 \newblock Lifelines, 2014.
+
+\bibitem{PROACTDemo:2016}
+A.~H. L. H. A. O. N. W. C. G. P. K.~J. Han{,} and R.~Chang.
+\newblock Proact - demo, 2016.
 
 \bibitem{PROACT:2016}
 A.~H. L. H. A. O. N. W. C. G. P. K.~J. Han{,} and R.~Chang.
 \newblock Proact: Iterative design of a patient-centered visualization for
   effective prostate cancer health risk communication, 2016.
 
+\bibitem{AdverseEvents:2005}
+R.~J. K. M. A.~B. MD{,} and E.~D.~C. MD.
+\newblock Adverse events associated with hormonal therapy for prostate cancer,
+  2005.
+
 \bibitem{RadiationTherapy:2005}
 T.~A. C.~S. medical and editorial~content team.
 \newblock Radiation therapy for prostate cancer, March 2016.
-
-\bibitem{AdverseEvents:2005}
-A.~B.~M. Ravi J Kumar{,}~MD and E.~D.~C. MD.
-\newblock Adverse events associated with hormonal therapy for prostate cancer,
-  2005.
 
 \end{thebibliography}

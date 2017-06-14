@@ -3,9 +3,4 @@ The style file: abbrv-doi.bst
 Database file #1: references.bib
 Warning--I didn't find a database entry for "Kitware:2003"
 Warning--I didn't find a database entry for "Max:1995:OMF"
-Warning--I didn't find a database entry for "Kindlmann:1999:SAG"
-Name 1 in "Ravi J Kumar{,} MD, Al Barqawi{,} MD, and E. David Crawford{,} MD" has a comma at the end for entry AdverseEvents:2005
-while executing---line 1236 of file abbrv-doi.bst
-Name 1 in "Ravi J Kumar{,} MD, Al Barqawi{,} MD, and E. David Crawford{,} MD" has a comma at the end for entry AdverseEvents:2005
-while executing---line 1278 of file abbrv-doi.bst
-(There were 2 error messages)
+(There were 2 warnings)
