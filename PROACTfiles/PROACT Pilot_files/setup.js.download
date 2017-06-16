@@ -1,0 +1,72 @@
+var sections = [
+  'disclaimer',
+  'faq',
+  'input',
+  'calming',
+  'cancerRisk',
+  'treatmentOptions',
+  'table',
+  'paths',
+  'sideeffects',
+  //'curve',
+  'nextSteps',
+  'end'
+];
+
+var nav_map = {
+	'disclaimer' : 'faq-btn',
+	'faq': 'faq-btn',
+	'input': 'faq-btn',
+	'calming': 'cancerRisk-btn',
+	'cancerRisk': 'cancerRisk-btn',
+	'treatmentOptions': 'table-btn',
+	'table': 'table-btn',
+	//'curve': 'table-btn',
+    'paths':'path-btn',
+    'sideeffects':'path-btn',
+	'nextSteps': 'table-btn',
+	'end': 'end-btn'
+};
+
+var currentSection = -1;
+
+addSectionListeners();
+nextSection();
+input.init();
+input.onValidate( update );
+// since luyao has to load data, give it a callback that inits the vis
+luyao.init( update );
+
+// var pie1 = null;
+// var pie5 = null;
+// var pie10 = null;
+var pieData = [];
+var riskPies = [];
+var riskPies2 = [];
+var calmingPie;
+barType = 'regular';
+
+treatmentVal = true;
+
+
+var curve = survivalcurve().type('curve')
+  , icon = iconarray().type('curve icon')
+  , bar = bar()
+  , stackedbar = stackedbar()
+  , clusteredbar = clusteredbar()
+  , legend = legend()
+  , dispatch = d3.dispatch('move');
+
+var debug = false;
+
+var surv = true;
+d3.select('#tserve').style('text-decoration', 'underline');
+
+var prostate1, prostate5, prostate10
+    , other1, other5, other10
+    , rp1, rp5, rp10
+    , cx1, cx5, cx10
+    , alive1, alive5, alive10;
+
+var xbisect, pcnt,
+    ld1, ld5, ld10;

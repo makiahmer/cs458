@@ -1,0 +1,795 @@
+/* document */
+body {
+  margin: 1em auto 1em auto !important;
+  /*width: 960px;*/
+  color: #333;
+  font-family: Arial;
+  font-size: 16px;
+  /*background-color: #FFFAD5;*/
+}
+
+#content {
+  width: 52%;
+  /*width: 90%;*/
+  float: left;
+  /*background-color: steelblue;*/
+}
+
+#leftButton {
+  float: left;
+  width: 5%;
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+  margin: 0 1% 0 18%;
+}
+
+#rightButton {
+  float: left;
+  width: 5%;
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+  margin: 0 18% 0 1%;
+}
+
+h3, h4 {
+  padding-top: 16px;
+}
+
+.alivePieColor {
+  color: #66c2a5;
+}
+
+.prostatePieColor {
+  color: #8da0cb;
+}
+
+.otherPieColor {
+  color: #fc8d62;
+}
+
+.allColor {
+  color: rgb(209, 234, 118);
+}
+
+.consColor {
+  color: #4eb3d3;
+}
+
+.surgColor {
+  color: #08589e;
+}
+
+.container {
+    width: 100%;
+}
+
+.step-btn {
+  border-bottom: solid;
+  border-color: rgb(226, 226, 226);
+  border-width: 1px;
+}
+
+.btn-default {
+  /*background-color: rgb(234, 234, 234);*/
+  background-color: transparent;
+  border-color: transparent;
+/*  border-top: transparent;
+  border-right: transparent;
+  border-left: transparent;
+  border-bottom: blue;
+*/
+
+}
+
+#basic-info .row {
+  /*height: 25px;*/
+  margin-bottom: 10px;
+  text-align: left;
+}
+
+.input-label {
+  text-align: right;
+}
+
+.input-field {
+  width: 50%;
+  float: right;
+  text-align: left;
+}
+
+.more-info {
+  background-color: white;
+  z-index: 1;
+  border: solid;
+  border-width: 1px;
+  border-color: rgb(204, 204, 204);
+  border-radius: 8px;
+  text-align: left;
+  width: 400px;
+  padding: 20px;
+}
+
+.container label {
+    width: 100%;
+    padding-bottom: 3px;
+    font-weight: 400;
+}
+
+#disclaimer {
+    text-align: left;
+}
+
+#agree-button label {
+    font-weight: 700;
+}
+.active {
+  display: block;
+}
+
+.inactive{
+  display: none;
+}
+
+.title {
+	text-align: left;
+}
+
+.section {
+  position: relative;
+  /*text-align: center;*/
+}
+
+.explanation {
+  width: 90%;
+  text-align: left;
+}
+
+#input {
+  /* background-color: #FFD34E; */
+}
+
+#patientInput {
+  width: 30%;
+  margin: 0 auto;
+}
+#proact-descrip {
+  margin-top: 20px;
+}
+
+#terms {
+  border: solid;
+  border-color: rgb(194, 194, 194);
+  border-width: 1px;
+  border-radius: 10px;
+  overflow:auto;
+  height: 150px;
+}
+
+#terms p{
+  padding-top: 15px;
+  padding-left: 50px;
+  padding-right: 50px;
+}
+
+#term-agree label{
+    font-weight: bolder;
+    font-size: larger;
+    width: 100%;
+    margin-top: 10px;
+}
+#agreebox {
+  margin-top: 20px;
+}
+/*#intro {
+  margin-top: 10%;
+  margin-right: 10%;
+  margin-left: 10%;
+  text-align: left;
+}
+
+#intro label {
+  margin-top: 20px;
+  width: 100%;
+}*/
+
+hr {
+  margin: 0;
+}
+
+label {
+  width: 100px;
+  padding-right: 16px;
+  padding-bottom: 15px;
+  display: inline-block;
+  text-align: left;
+}
+
+#summary {
+  /* background-color: green; */
+}
+
+#prostate10yr, #other10yr {
+  text-align: center;
+  width: 50%;
+  float: left;
+}
+
+#prostateBig, #otherBig {
+  font-size: 4em;
+  line-height: 0.01;
+}
+
+table {
+  /* padding: 32 0 32 0; */
+  width: 100%;
+  font-size: small;
+}
+
+table td {
+  /* padding-left: 128px; */
+}
+
+table .caption {
+  padding-left: 0px;
+  font-size: .9em;
+}
+
+table td, tr, th {
+  font-size: 16px;
+}
+
+
+table tr th {
+  text-align: left;
+}
+
+.treatment {
+  text-align: center;
+  width: 33%;
+  position: absolute;
+}
+
+#treatmentList {
+  width: 100%;
+  height: 150px;
+  margin-top: 10%;
+}
+
+#treatmentOptions > .section-text {
+	margin: 32px auto;
+}
+
+.section-text{
+	width: 80%;
+	font-size: 1.2em;
+}
+
+.treatmentItem {
+  text-align: left;
+  width: 33%;
+  height: 150px;
+  float: left;
+  padding: 0 0 64 64;
+  /* border-style: dotted; */
+  /* border-width: 1px; */
+}
+
+.calming {
+  text-align: center;
+  width: 100%;
+}
+
+#treatment1yr, #treatment1yr2 {
+  float: left;
+}
+
+#treatment5yr, #treatment5yr2 {
+  margin-left: 33.5%;
+  margin-right: 33.5%;
+}
+
+#treatment10yr, #treatment10yr2 {
+  margin-left: 67%;
+}
+
+#risk1yr {
+  float: left;
+}
+
+#risk5yr {
+  margin-left: 33.5%;
+  margin-right: 33.5%
+}
+
+#risk10yr {
+  margin-left: 67%;
+}
+
+#risk1yr2 {
+  float: left;
+  width: 33%;
+}
+
+#risk5yr2 {
+  margin-left: 33%;
+  width: 34%;
+  margin-right: 33%
+}
+
+#risk10yr2 {
+  margin-left: 67%;
+  width: 33%;
+}
+.white {
+  color: white;
+}
+
+.black {
+  color: black;
+}
+
+#risk2wrapper {
+  width: 100%;
+  height: 250px;
+  text-align: center;
+  position: relative;
+}
+
+.risk2 {
+  position: absolute;
+}
+
+#treatmentText {
+  position: relative;
+  margin-top: -50px;
+}
+
+
+/* STYLE FOR OVERLAYED BAR CHARTS */
+/*#treatmentBlank {
+  z-index: 3;
+  color: white;
+  height: 223px;
+  width: 960px;
+}*/
+
+/*#treatment10year {
+  clear: both;
+  visibility: hidden;
+}
+
+#treatment1year {
+  z-index: 5;
+}
+
+#treatment5year {
+  z-index: -1;
+  visibility: hidden;
+}
+
+#treatmentLegend {
+  margin-top: 223px;
+  text-align: center;
+  margin-left: 10px;
+}
+
+#treatmentSlider {
+  position: relative;
+}*/
+
+
+
+#curve {
+  /* background-color: #BD4932; */
+}
+
+#detail {
+  /* background-color: #105B63; */
+}
+
+#detail .explanation {
+  width: 50%;
+  float: left;
+}
+
+#detail img {
+  width: 50%;
+  float: left;
+}
+
+h1, h2, footer {
+  font-family: "Oswald", serif;
+  color: #333;
+  text-rendering: optimizeLegibility;
+}
+
+footer {
+  clear: both;
+}
+
+body > p {
+  width: 720px;
+}
+
+/* legend */
+#legend {
+  clear: both;
+  height: 80;
+  margin-left: 26px;
+}
+
+/* focus */
+
+.focus circle {
+  fill: none;
+  stroke: black;
+}
+
+.focus line {
+  fill: none;
+  stroke: black;
+}
+
+/* info */
+
+#modelinfo {
+  width: 100%;
+}
+
+
+#info {
+  float: left;
+}
+
+#infoRight {
+  width: 350px;
+  float: right;
+}
+
+#end {
+  text-align: left;
+}
+
+/* vis */
+
+#vis {
+  width: 50%;
+  float: left;
+}
+
+
+.hoverPath {
+  fill: steelblue;
+}
+
+.overlay {
+  fill: none;
+  pointer-events: all;
+}
+
+/* grid */
+.grid path {
+  stroke-width: 0;
+}
+
+.grid line {
+  stroke-dasharray: 5, 5;
+  stroke-opacity: 0.25;
+}
+
+.grid .tick {
+  stroke: black;
+}
+
+/* axes */
+.axis path,
+.axis line {
+  fill: none;
+  stroke: black;
+  shape-rendering: crispEdges;
+}
+
+.axis text {
+  font-family: sans-serif;
+  font-size: 11px;
+}
+
+/* icon array */
+
+#icon {
+  width: 50%;
+  float: left;
+}
+
+.iconarray {
+  padding-left: 5%;
+}
+
+.icon {
+  margin-left: 0.5em;
+}
+
+/* util */
+
+.hidden {
+  visibility: hidden;
+}
+
+
+#riskTitle {
+  height: 70px;
+  width: 960px;
+}
+
+
+.pInfo {
+  border-top: 2px solid;
+  border-width: 80%;
+}
+
+#pBtn {
+  text-align: center;
+}
+
+
+
+.pTitle {
+  font-weight: bold;
+  font-size: 20px;
+  margin-left: 5px;
+}
+
+.pData {
+  text-align: right;
+  margin-right: 5px;
+  font-size: 18px;
+}
+
+#pChar {
+  color: red;
+  font-size: 24px;
+  font-weight: bold;
+  text-align: center;
+}
+
+
+#sectionButton {
+  float: right;
+}
+
+.btnEdit {
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+#sliderWrapper {
+  position: absolute !important;
+  bottom: 0;
+  height: 50px;
+  width: 460px;
+  margin-left: 250px;
+  margin-right: 250px;
+  font-size: 18px;
+  text-align: center;
+}
+
+.range1 {
+  margin-left: 0px;
+  width: 18px;
+  float: left;
+}
+
+.range5 {
+  margin-left: 195px;
+  width: 18px;
+  float: left;
+}
+
+.range10 {
+  margin-left: 190px;
+  width: 18px;
+  float: left;
+}
+
+.risk {
+  height: 400px;
+}
+
+#treatmentWrapper {
+  height: 320px;
+  width: 100%;
+}
+
+#treatmentWrapper2 > .treatment {
+  padding-left: 64px;
+}
+
+#toggleWrapper {
+  text-align: center;
+}
+
+#toggle {
+  margin: 0 auto;
+  width: 26%;
+  background-color: rgb(208, 208, 208);
+}
+
+input[type=range] {
+    /*removes default webkit styles*/
+    -webkit-appearance: none;
+
+    /*fix for FF unable to apply focus style bug */
+    border: 1px solid white;
+
+    /*required for proper track sizing in FF*/
+    width: 460px;
+}
+input[type=range]::-webkit-slider-runnable-track {
+    width: 460px;
+    height: 16px;
+    background: #ddd;
+    border: none;
+    border-radius: 3px;
+}
+input[type=range]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    border: none;
+    height: 24px;
+    width: 24px;
+    border-radius: 50%;
+    background: goldenrod;
+    margin-top: -4px;
+}
+input[type=range]:focus {
+    outline: none;
+}
+input[type=range]:focus::-webkit-slider-runnable-track {
+    background: #ccc;
+}
+
+input[type=range]::-moz-range-track {
+    width: 460px;
+    height: 16px;
+    background: #ddd;
+    border: none;
+    border-radius: 3px;
+}
+input[type=range]::-moz-range-thumb {
+    border: none;
+    height: 24px;
+    width: 24px;
+    border-radius: 50%;
+    background: goldenrod;
+}
+
+/*hide the outline behind the border*/
+input[type=range]:-moz-focusring{
+    outline: 1px solid white;
+    outline-offset: -1px;
+}
+
+input[type=range]::-ms-track {
+    width: 460px;
+    height: 16px;
+
+    /*remove bg colour from the track, we'll use ms-fill-lower and ms-fill-upper instead */
+    background: transparent;
+
+    /*leave room for the larger thumb to overflow with a transparent border */
+    border-color: transparent;
+    border-width: 6px 0;
+
+    /*remove default tick marks*/
+    color: transparent;
+}
+input[type=range]::-ms-fill-lower {
+    background: #777;
+    border-radius: 10px;
+}
+input[type=range]::-ms-fill-upper {
+    background: #ddd;
+    border-radius: 10px;
+}
+input[type=range]::-ms-thumb {
+    border: none;
+    height: 24px;
+    width: 24px;
+    border-radius: 50%;
+    background: goldenrod;
+}
+input[type=range]:focus::-ms-fill-lower {
+    background: #888;
+}
+input[type=range]:focus::-ms-fill-upper {
+    background: #ccc;
+}
+
+input, button, select, textarea {
+  border: solid;
+  border-radius: 5px;
+  border-width: 1px;
+  border-color: rgb(208, 208, 208);
+}
+
+#btn-treatment-wrapper {
+  width: 100%;
+  margin-top: 10%;
+}
+
+#btnTreatmentFalse {
+  float: left;
+  width: 35%;
+  padding-top: 50px;
+  padding-bottom: 50px;
+  margin-left: 8%;
+  margin-top: 6%;
+}
+
+#btnTreatmentTrue {
+  float: right;
+  width: 35%;
+  padding-top: 50px;
+  padding-bottom: 50px;
+  margin-right: 8%;
+  margin-top: 6%;
+}
+
+.larger {
+  font-size: 20px;
+}
+
+
+
+.modalDialog {
+    position: fixed;
+    font-family: Arial, Helvetica, sans-serif;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 0.8);
+    z-index: 99999;
+    opacity:0;
+    -webkit-transition: opacity 400ms ease-in;
+    -moz-transition: opacity 400ms ease-in;
+    transition: opacity 400ms ease-in;
+    pointer-events: none;
+}
+.modalDialog:target {
+    opacity:1;
+    pointer-events: auto;
+}
+.modalDialog > div {
+    width: 400px;
+    position: relative;
+    margin: 10% auto;
+    padding: 5px 20px 13px 20px;
+    border-radius: 10px;
+    background: #fff;
+    background: -moz-linear-gradient(#fff, #999);
+    background: -webkit-linear-gradient(#fff, #999);
+    background: -o-linear-gradient(#fff, #999);
+}
+.close {
+    background: #606061;
+    color: #FFFFFF;
+    line-height: 25px;
+    position: absolute;
+    right: -12px;
+    text-align: center;
+    top: -10px;
+    width: 24px;
+    text-decoration: none;
+    font-weight: bold;
+    -webkit-border-radius: 12px;
+    -moz-border-radius: 12px;
+    border-radius: 12px;
+    -moz-box-shadow: 1px 1px 3px #000;
+    -webkit-box-shadow: 1px 1px 3px #000;
+    box-shadow: 1px 1px 3px #000;
+}
+.close:hover {
+    background: #4daa4b;
+}

@@ -1,0 +1,95 @@
+function legend(selection) {
+
+  var margin = {top: 16, right: 16, bottom: 16, left: 16}
+    , w = 200 - margin.left - margin.right
+    , h = 0
+    , type;
+    // h used to be 50 - margin.top - margin.bottom
+  
+  function chart(selection) {
+    selection.each(function(d, i) {
+
+      // Chart Container
+      var svg = d3.select(this).selectAll('svg')
+        .data([d]);
+
+      // New Chart: 
+      // svg: container for the chart
+      // g: container for specifying margins
+      svg.enter()
+        .append('svg')
+          .classed('legend', true)
+        .append('g')
+
+      // Update Chart
+      svg.attr('width', w + margin.left + margin.right)
+        .attr('height', h + margin.top + margin.bottom);
+
+      var gEnter = svg.select('g')
+        .attr(
+          'transform', 
+          'translate(' + margin.left + ',' + margin.top + ')'
+        ); 
+
+        /*
+      // Rects next to label
+      var sel = gEnter.selectAll('rect')
+        .data(d.data);
+
+      sel.exit().remove();
+      
+      // New rects
+      var ps = sel.enter().append('rect');
+      
+      // Update Bars
+      sel.attr('height', 30)
+        .attr('width', 30)
+        .attr('y', 0)
+        .attr('x', function(d, i) { return i*100; })
+        .style('fill', function(d, i) { 
+          return c3[ d.value ]; 
+        });
+*/
+      // Labels
+      var ls = gEnter.selectAll('text')
+        .data(d.data);
+
+      ls.exit().remove();
+      
+      // New
+      var nls = ls.enter().append('text');
+      console.log('i = ' + i);
+      // Update
+      ls.text(function(d) { return d.value; })
+        .attr('y', function(d) { return h; } )
+        .attr('x', function(d, i) { return i*75; })
+        .attr('text-anchor', 'start');
+   });
+  }
+
+  chart.width = function(value) {
+    if (!arguments.length) return w;
+    w = value - margin.left - margin.right;
+    return chart;
+  };
+
+  chart.height = function(value) {
+    if (!arguments.length) return h;
+    h = value - margin.top - margin.bottom;
+    return chart;
+  };
+  
+  chart.margin = function(value) {
+    if (!arguments.length) return margin;
+    margin = value;
+    return chart;
+  };
+
+  chart.type = function(value) {
+    if (!arguments.length) return type;
+    type = value;
+    return chart;
+  };
+  
+  return chart;
+}

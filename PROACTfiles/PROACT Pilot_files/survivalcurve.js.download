@@ -1,0 +1,358 @@
+function survivalcurve(selection) {
+
+  var margin = {top: 8, right: 100, bottom: 80, left: 44}
+    , w = 960 - margin.left - margin.right
+    , h = 500 - margin.top - margin.bottom
+    , xlabel = "Years Following Diagnosis"
+    , ylabel = "Alive, %"
+    , xscale = d3.scale.linear()
+    , yscale = d3.scale.linear()
+    , type;
+
+  function chart(selection) {
+    selection.each(function(d, i) {
+
+      // Scales
+      xscale = d3.scale.linear()
+        .domain([0, 10])
+        .range([0, w]);
+  
+      yscale = d3.scale.linear()
+        .domain([0, 1])
+        .range([h, 0]);
+
+      var area = d3.svg.area()
+        .x(function(d) { return xscale(d.x); })
+        .y1(function(d) { return yscale(d.y); });
+  
+      var stack = d3.layout.stack()
+        .values(function(d) { return d.values; });
+
+      // Chart Container
+      var svg = d3.select(this).selectAll('svg')
+        .data([d]);
+
+      // Mouse interaction
+      var xbisect = d3.bisector(function(d) { return d.x; }).left;
+      var year = 10;
+      var ldata = [];
+      d.layers.forEach(function(l, i) {
+        var _d = 
+          d.layers[i].values[ xbisect(d.layers[i].values, year) - 1 ] || 0.0;
+
+        ldata.push({
+          'name': d.layers[i].name,
+          'year': year,
+          'y': _d.y || 1.0
+        })
+      })
+      // New Chart: 
+      // svg: container for the chart
+      // g: container for specifying margins
+      // rect: for chart background ('alive %')
+      svg.enter()
+        .append('svg')
+          .classed('curveVis', true)
+        .append('g')
+        .append('rect')
+          .classed('alive', true);
+
+      // Update Chart
+      svg.attr('width', w + margin.left + margin.right)
+        .attr('height', h + margin.top + margin.bottom);
+
+      var gEnter = svg.select('g')
+        .attr(
+          'transform', 
+          'translate(' + margin.left + ',' + margin.top + ')'
+        ); 
+
+      // Chart Background Update
+      gEnter.select('rect')
+        .style('fill', c3['alive'])
+        .attr('width', w)
+        .attr('height', h);
+
+      // Area Paths
+      var sel = gEnter.selectAll('path')
+        .data(stack(d.layers));
+
+      sel.exit().remove();
+      
+      // New Paths
+      var ps = sel.enter().append('path');
+      
+      ps.append('title');
+
+      // Update Paths
+      sel.attr('d', function(d) { return area(d.values); })
+        .style('fill', function(d) { return c3[d.name]; })
+        .attr('class', function(d) { return d.name; })
+
+      sel.selectAll('title')
+        .text(function(d) { return d.name; });
+
+      // Labels for Paths
+      var ls = gEnter.selectAll('text')
+        .data(d.labels);
+
+      ls.enter().append('text');
+
+
+      var other = 100 * (1.0 - ldata[0].y);
+      var cx = 100 * (1.0 - ldata[1].y);
+      var prostate = 100 * (1.0 - ldata[2].y);
+      var alive = 100 - other - cx - prostate;
+      if (other < 0)
+        other = 0;
+      if (cx < 0)
+        cx = 0;
+      if (prostate < 0)
+        prostate = 0;
+      if (alive < 0)
+        alive = 0;
+
+      var ratio = h / 100;
+      var fontBuffer = 6;
+
+      var fontProstate = ratio * (prostate / 2);
+      var fontCx = ratio * (prostate + cx / 2);
+      var fontOther = h - (ratio) * (alive + other / 2);
+      var fontAlive = h - (ratio * alive);
+
+      if (fontProstate < fontBuffer) 
+        fontProstate = fontBuffer;
+      if (fontCx - (fontBuffer * 2) <= fontProstate)
+        fontCx = fontProstate + fontBuffer * 2;
+      if (fontOther - (fontBuffer * 2) <= fontCx)
+        fontOther = fontCx + fontBuffer * 2;
+      if (fontAlive - (fontBuffer * 2) <= fontOther)
+        fontAlive = fontOther + fontBuffer * 2;
+
+      ls.attr("x", w + 2)
+        .style("fill", "black")
+        .style("font-size", 'small')
+        .attr("text-anchor", 'start')
+        .attr("y", function(o, i) { 
+          // TODO base on actual values
+          // (will need top/bottom y values for label positioning)
+          // TODO see xbisect in categories()
+          if(i === 0)
+            return fontProstate;
+          if(i === 1)
+            return fontCx;
+          if(i == 2)
+            return fontOther;
+          else
+            return fontAlive;
+        })
+        .text(function(d) { return d; });
+
+      // Axes
+      var xAxis = d3.svg.axis()
+        .scale(xscale)
+        .orient('bottom');
+  
+      var yAxis = d3.svg.axis()
+        .scale(yscale)
+        .tickFormat(function(d) { return d*100; })
+        .orient('left');
+  
+      var xax = gEnter.selectAll('.xaxis')
+          .data([{}]);
+
+      xax.enter().append('g')
+        .attr('class', 'axis xaxis')
+
+      xax.attr('transform', 'translate(0,'+h+')')
+        .call(xAxis);
+
+      var xgrid = gEnter.selectAll('.xgrid')
+          .data([{}]);
+
+      xgrid.enter().append('g')
+        .attr('class', 'grid xgrid')
+
+      xgrid.attr('transform', 'translate(0,'+h+')')
+        .call( xAxis.tickSize(-w, 0, 0).tickFormat("") );
+  
+      var yax = gEnter.selectAll('.yaxis')
+          .data([{}]);
+
+      yax.enter().append('g')
+        .attr('class', 'axis yaxis')
+
+      yax.attr('transform', 'translate(0,0)')
+        .call(yAxis);
+  
+      var ygrid = gEnter.selectAll('.ygrid')
+          .data([{}]);
+
+      ygrid.enter().append('g')
+        .attr('class', 'grid ygrid')
+
+      ygrid.attr('transform', 'translate(0,0)')
+        .call( yAxis.tickSize(-w, 0, 0).tickFormat("") );
+
+     // X axis label
+     var xlab = gEnter.selectAll('.xlabel')
+       .data([{}]);
+
+     xlab.enter().append("text")
+       .classed('xlabel', true);
+
+     xlab.attr("text-anchor", "middle")
+       .attr("x", w/2)
+       .attr("y", h + 32)
+       .text(xlabel);
+
+     // Y axis label
+     var ylab = gEnter.selectAll('.ylabel')
+       .data([{}]);
+
+     ylab.enter().append("text")
+       .classed('ylabel', true);
+
+     ylab.attr("text-anchor", "middle")
+       .attr("y", 0)
+       .attr("x", -h/2)
+       .attr("dy", "-2em")
+       .attr("transform", "rotate(-90)")
+       .text(ylabel);
+  
+     // Focus
+     var focus = gEnter.selectAll('.focus')
+       .data([{}]);
+
+     var fenter = focus.enter().append('g')
+       .classed('focus', true);
+
+     fenter.append('line')
+       .classed('line', true);
+
+     focus.selectAll('line')
+       .attr("y1", 0)
+       .attr("y2", h);
+
+    d.layers.forEach(function(l, i) {
+     fenter.append('circle')
+       .classed(l.name, true)
+       .attr("r", 4.5);
+    });
+
+
+    var pcnt = d3.format(".0%");
+
+    var overlay = gEnter.selectAll('.overlay')
+      .data([{}]);
+
+    overlay.enter().append('rect')
+      .classed('overlay', true);
+
+    function moveFocus(year) {
+      // organize layer data for event
+      var ldata = [];
+      d.layers.forEach(function(l, i) {
+        var _d = 
+          d.layers[i].values[ xbisect(d.layers[i].values, year) - 1 ] || 0.0;
+
+        ldata.push({
+          'name': d.layers[i].name,
+          'year': year,
+          'y': _d.y || 1.0
+        })
+      })
+
+      ldata.forEach(function(l, i) {
+        focus.select('.'+l.name)
+          .attr('cx', xscale(l.year))
+          .attr('cy', yscale(l.y || 1.0));
+      })
+
+      focus.select('.line')
+        .attr('x1', xscale(year))
+        .attr('x2', xscale(year));
+
+      // TODO BAD BAD BAD LANE -- These should be their own views
+      d3.select('#vyear').text( Math.round(100*year)/100 );
+
+      var cx = Math.round( 100 * (1.0 - ldata[1].y) )
+        , prostate = Math.round( 100 * (1.0 - ldata[2].y) ),
+        other = Math.round( 100 * (1.0 - ldata[0].y) ) - cx - prostate;
+
+      d3.select('#valive').text( (100 - other - cx - prostate) + '%' );
+      d3.select('#vother').text( other + '%' );
+      d3.select('#vcx').text( cx + '%');
+      d3.select('#vprostate').text( prostate + '%');
+
+      d3.select('#ialive').text( (100 - other - cx - prostate) );
+      d3.select('#iother').text( other );
+      d3.select('#icx').text( cx );
+      d3.select('#iprostate').text( prostate );
+    }
+  
+    d.dispatch.on(
+      'move.'+type, 
+      function(e) { moveFocus(e.year); }
+    );
+
+    overlay
+      .attr('width', w)
+      .attr('height', h)
+      .on('mousemove', function() {
+        var year = xscale.invert(d3.mouse(this)[0]);
+
+        // organize layer data for event
+        var ldata = [];
+        d.layers.forEach(function(l, i) {
+          var _d = 
+            d.layers[i].values[ xbisect(d.layers[i].values, year) - 1 ] || 0.0;
+
+          ldata.push({
+            'name': d.layers[i].name,
+            'year': year,
+            'y': _d.y || 1.0
+          })
+        })
+
+        d.dispatch.move({
+          'year': year, 
+          'type': type
+        });
+
+      })
+      .on("mouseover", function() { 
+        focus.style("display", null); 
+      })
+      .on("mouseout", function() { 
+      });
+
+    });
+  }
+
+  chart.width = function(value) {
+    if (!arguments.length) return w;
+    w = value - margin.left - margin.right;
+    return chart;
+  };
+
+  chart.height = function(value) {
+    if (!arguments.length) return h;
+    h = value - margin.top - margin.bottom;
+    return chart;
+  };
+  
+  chart.margin = function(value) {
+    if (!arguments.length) return margin;
+    margin = value;
+    return chart;
+  };
+
+  chart.type = function(value) {
+    if (!arguments.length) return type;
+    type = value;
+    return chart;
+  };
+  
+  return chart;
+}

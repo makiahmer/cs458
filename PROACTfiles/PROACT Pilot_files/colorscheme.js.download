@@ -1,0 +1,12 @@
+var c3 = {
+  "alive":         "#66c2a5",
+  "all":           "#8da0cb",
+  "conservative":  "#bcbddc",
+  "surgery":       "#807dba",
+  "other":         "#fc8d62"
+}
+
+// "alive":         "#a8ddb5",
+//   "all":           "#4eb3d3",
+//   "conservative":  "#2b8cbe",
+//   "surgery":       "#08589e"

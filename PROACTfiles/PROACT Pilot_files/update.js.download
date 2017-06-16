@@ -1,0 +1,167 @@
+function update() {
+  var probs = []
+    , layers = [];
+
+  kattan.patient( input.data )
+  luyao.patient( input.data )
+
+  // Data
+  var ld = luyao.get( luyao.convert(input.data) );
+  probs = ld.map(function(d) { 
+    d.survRP = (
+      '' + (1 - kattan.risk( kattan.kattanFull(input.data), d.survTimes ))
+    )
+    return d;
+  });
+  
+  layers =  layer(probs, 'survTimes', [
+    {'name': 'all', 'prop': 'survAll'},
+    {'name': 'conservative', 'prop': 'survCX'},
+    {'name': 'surgery', 'prop': 'survRP'}
+  ]);
+
+  // Charts
+  d3.select("#vis")
+    .datum({
+      'layers': layers,
+      'labels': [
+        'Surgery',
+        'Conservative',
+        'Other Causes', 
+        'Alive'
+      ],
+      'dispatch': dispatch
+    })
+    .call(curve);
+
+  var pbs = [
+    (kattan.year(10).surgery100Surv), 
+    (luyao.year(10).conservative100Surv), 
+    (luyao.year(10).all100Surv), 
+    (100 - kattan.year(10).surgery100Surv
+      - luyao.year(10).conservative100Surv
+      - luyao.year(10).all100Surv)
+  ];
+
+//  d3.select("#icon")
+//    .datum({
+//        pbs: pbs,
+//        levels: ['surgery', 'conservative', 'all', 'alive'],
+//        'dispatch': dispatch
+//    })
+//    .call(icon);
+
+  // TODO move bar here after querying is improved
+
+  // Bisect ld at 1, 5, 10 to get conservative
+  xbisect = d3.bisector(function(d) { return d.survTimes; }).left;
+  pcnt = d3.format(".0%");
+  ld1 = ld[ xbisect(ld, 1.0) ];
+
+  cx1 =  1.0 - ld1.survCX ;
+  other1 = 1.0 - ld1.survAll ;
+  rp1 = 1.0 - (1 - kattan.risk( kattan.kattanFull(input.data), 1.0 ));
+  prostate1 = cx1 + rp1;
+  other1 = (1.0 - ld1.survAll) - cx1 - rp1;
+  alive1 = 1.0 - prostate1 - other1;
+
+  ld5 = ld[ xbisect(ld, 5.0) ];
+  cx5 =  1.0 - ld5.survCX ;
+  other5 = 1.0 - ld5.survAll ;
+  rp5 = 1.0 - (1 - kattan.risk( kattan.kattanFull(input.data), 5.0 ));
+  prostate5 = cx5 + rp5;
+  other5 = (1.0 - ld5.survAll) - cx5 - rp5;
+  alive5 = 1.0 - prostate5 - other5;
+
+  ld10 = ld[ xbisect(ld, 10.0) ];
+  cx10 =  1.0 - ld10.survCX ;
+  other10 = 1.0 - ld10.survAll ;
+  rp10 = 1.0 - (1 - kattan.risk( kattan.kattanFull(input.data), 10.0 ));
+  prostate10 = cx10 + rp10;
+  other10 = (1.0 - ld10.survAll) - cx10 - rp10;
+  alive10 = 1.0 - prostate10 - other10;
+
+  // Update summary
+  d3.select('#prostateBig').text( pcnt(prostate10) );
+  d3.select('#otherBig').text( pcnt(other10) );
+
+  // Update table
+  d3.select('#pcRisk1yr').text( pcnt(prostate1) );
+  d3.select('#pcRisk10yr').text( pcnt(prostate10) );
+
+  d3.select('#allRisk1yr').text( pcnt(other1) );
+  d3.select('#allRisk10yr').text( pcnt(other10) );
+
+  d3.select('#radRisk10yr').text( pcnt(rp10) );
+  d3.select('#consRisk10yr').text( pcnt(cx10) );
+
+  d3.selectAll('.treatment').selectAll('svg').remove();
+
+  if(barType == 'clustered')
+    updateClusteredBar();
+  else if(barType == 'stacked')
+    updateStackedBar();
+  else if(barType == 'regular')
+    updateBar();
+
+  // TODO update all here
+  if(barType == 'clustered')
+    updateClusteredBar2();
+  else if(barType == 'stacked')
+    updateStackedBar2();
+  else if(barType == 'regular')
+    updateBar2();
+
+  d3.select('#toggle').on('click', function() {
+    var ms = d3.select('#toggleSwitch');
+    surv = !surv;
+    if (surv) {
+      ms.text("Mortality");
+      d3.select('#tserve').style('text-decoration', 'underline');
+      d3.select('#mserve').style('text-decoration', 'none');
+    }
+    else {
+      ms.text("Survival");
+      d3.select('#tserve').style('text-decoration', 'none');
+      d3.select('#mserve').style('text-decoration', 'underline');
+    }
+    updateBar();
+  });
+
+  // Treatment Legend
+  d3.select('#treatmentLegend')
+    .datum({
+      'data': [ 
+        {'value': 'surgery'}, 
+        {'value': 'conservative'}
+      ]
+    })
+    .call(legend);
+
+  // d3.select("#treatment1yr").style("opacity", 0);
+  // d3.select("#treatment5yr").style("opacity", 0);
+
+  if (riskPies[0] != null) {
+    changePies();
+  }
+  else {
+    createPies();
+  }
+
+}
+
+
+  // Morph cancer model data into area "layers" format (name, values)
+function layer(d, x, Y) {
+  var L = [];
+  Y.forEach(function(y) {
+    L.push({
+      'name': y.name,
+      'values': d.map(function(o) { 
+        return { 'x': o[x], 'y': o[y.prop] }
+      })
+    })
+  });
+  return L;
+}
+

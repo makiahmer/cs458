@@ -1,0 +1,347 @@
+function stackedbar(selection) {
+
+  var margin = {top: 0, right: 0, bottom: 0, left: 0}
+    , w = 320 - margin.left - margin.right
+    , h = 270 - margin.top - margin.bottom
+    , yscale = d3.scale.linear()
+    , type;
+
+  function chart(selection) {
+    selection.each(function(d, i) {
+
+    // Scales
+      yscale = d3.scale.linear()
+        .domain([0, 100])
+        .range([3, h - 60]); // Leave space for title
+
+    // Chart Container
+      var svg = d3.select(this).selectAll('svg')
+        .data([d]);
+      
+    // New Chart: 
+      // svg: container for the chart
+      // g: container for specifying margins
+      svg.enter()
+        .append('svg')
+          .classed('stackedbarchart', true)
+        .append('g')
+
+      svg.attr('width', w + margin.left + margin.right)
+        .attr('height', h + margin.top + margin.bottom);
+
+      var gEnter = svg.select('g')
+        .attr(
+          'transform', 
+          'translate(' + margin.left + ',' + margin.top + ')'
+        );
+
+    // Other-Cause Bar 1
+      var otherBar1 = gEnter.selectAll('.otherBar1')
+        .data([d]);
+
+      otherBar1.exit().remove();
+
+      if( debug ) console.log('Other Bar 1', otherBar1);
+      
+      // Enter
+      otherBar1.enter().append('rect')
+        .classed('otherBar1', true);
+      
+      // Update
+      otherBar1.transition()
+        .attr('height', function(d) { return yscale(d.other); })
+        .attr('width', 48)
+        .attr('y', function(d) { return h - yscale(d.other); } )
+        .attr('x', function(d, i) { return w / 2 - 48 - 8; })
+        .style('fill', function(d, i) { 
+          return c3[ 'other' ]; 
+        });
+
+    // Other-Cause Bar 2
+      var otherBar2 = gEnter.selectAll('.otherBar2')
+        .data([d]);
+
+      otherBar2.exit().remove();
+      
+      // Enter
+      otherBar2.enter().append('rect')
+        .classed('otherBar2', true);
+      
+      // Update
+      otherBar2.transition()
+        .attr('height', function(d) { return yscale(d.other); })
+        .attr('width', 48)
+        .attr('y', function(d) { return h - yscale(d.other); } )
+        .attr('x', function(d, i) { return w / 2 + 8; })
+        .style('fill', function(d, i) { 
+          return c3[ 'other' ]; 
+        });
+
+    // Surgery Bar
+      var surgeryBar = gEnter.selectAll('.surgeryBar')
+        .data([d]);
+
+      surgeryBar.exit().remove();
+      
+      // Enter
+      surgeryBar.enter().append('rect')
+        .classed('surgeryBar', true);
+      
+      // Update
+      surgeryBar.transition()
+        .attr('height', function(d) { return yscale(d.surgery); })
+        .attr('width', 48)
+        .attr('y', function(d) { return h - yscale(d.other) - yscale(d.surgery); } )
+        .attr('x', function(d, i) { return w / 2 - 48 - 8; })
+        .style('fill', function(d, i) { 
+          return c3[ 'surgery' ]; 
+        });
+
+    // Conservative Bar
+      var conservativeBar = gEnter.selectAll('.conservativeBar')
+        .data([d]);
+
+      conservativeBar.exit().remove();
+      
+      // Enter
+      conservativeBar.enter().append('rect')
+        .classed('conservativeBar', true);
+      
+      // Update
+      conservativeBar.transition()
+        .attr('height', function(d) { return yscale(d.conservative); })
+        .attr('width', 48)
+        .attr('y', function(d) { return h - yscale(d.other) - yscale(d.conservative); } )
+        .attr('x', function(d, i) { return w / 2 + 8; })
+        .style('fill', function(d, i) { 
+          return c3[ 'conservative' ]; 
+        });
+
+    // Title Label
+      var title = gEnter.selectAll('.bartitle')
+        .data([{}]);
+
+      title.exit().remove();
+
+      // Enter
+      title.enter()
+        .append('text')
+        .classed('bartitle', true);
+
+      // Determine text
+      var titleText = "Mortality from Prostate Cancer"; 
+      if( debug ) console.log( 'Title Text', titleText );
+
+      // Update
+      title.transition()
+        .attr("x", (w/2))
+        .attr("y", 20)
+        .attr("text-anchor", "middle")
+        .style("font-size", "14px")
+        .style("color", "black")
+        .text(titleText);
+
+    // Sub Title Label
+      var subTitle = gEnter.selectAll('.barSubTitle')
+        .data([{}]);
+
+      subTitle.exit().remove();
+
+      // Update
+      subTitle.enter()
+        .append('text')
+        .classed('barSubTitle', true);
+
+      // Determine text
+      var subTitleText = "after " + d.year + " years (" + ( parseInt(input.data.age) + d.year ) + " years old)";
+      if( debug ) console.log( 'Sub Title Text', subTitleText );
+      
+      // Update
+      subTitle.transition()
+        .attr("x", (w/2))
+        .attr("y", 40)
+        .attr("text-anchor", "middle")
+        .style("font-size", "14px")
+        .style("color", "black")
+        .text(subTitleText);
+
+    // Other 1 Label
+      var other1Label = gEnter.selectAll('.other1Label')
+        .data([d]);
+
+      other1Label.exit().remove();
+
+      // Enter
+      other1Label.enter()
+        .append('text')
+        .classed('other1Label', true);
+      
+      // Update
+      other1Label.transition()
+        .text(function(d) { return 'Other ' + d.other + '%'; })
+        .attr('y', function(d) { return h - yscale(d.other)/2; } ) 
+        .attr('x', function(d, i) { return w / 2 - 48 - 8 - 8; })
+        .attr('text-anchor', 'end')
+        .style('fill', 'black')
+        .style("font-weight", "normal")
+        .style("font-size", "10px");
+
+    // Other 2 Label
+      var other2Label = gEnter.selectAll('.other2Label')
+        .data([d]);
+
+      other2Label.exit().remove();
+
+      // Enter
+      other2Label.enter()
+        .append('text')
+        .classed('other2Label', true);
+      
+      // Update
+      other2Label.transition()
+        .text(function(d) { return 'Other ' + d.other + '%'; })
+        .attr('y', function(d) { return h - yscale(d.other)/2; } ) 
+        .attr('x', function(d, i) { return w / 2 + 48 + 8 + 8; })
+        .attr('text-anchor', 'start')
+        .style('fill', 'black')
+        .style("font-weight", "normal")
+        .style("font-size", "10px");
+
+    // Surgery Label
+      var surgeryLabel = gEnter.selectAll('.surgeryLabel')
+        .data([d]);
+
+      surgeryLabel.exit().remove();
+
+      // Enter
+      surgeryLabel.enter()
+        .append('text')
+        .classed('surgeryLabel', true);
+      
+      // Update
+      surgeryLabel.transition()
+        .text(function(d) { return 'Surgery ' + d.surgery + '%'; })
+        .attr('y', function(d) { return h - yscale(d.other) - yscale(d.surgery)/2 - 8; } ) 
+        .attr('x', function(d, i) { return w / 2 - 48 - 8 - 8; })
+        .attr('text-anchor', 'end')
+        .style('fill', 'black')
+        .style("font-weight", "normal")
+        .style("font-size", "10px");
+
+    // Conservative Label
+      var conservativeLabel = gEnter.selectAll('.conservativeLabel')
+        .data([d]);
+
+      conservativeLabel.exit().remove();
+
+      // Enter
+      conservativeLabel.enter()
+        .append('text')
+        .classed('conservativeLabel', true);
+      
+      // Update
+      conservativeLabel.transition()
+        .text(function(d) { return 'Conservative ' + d.conservative + '%'; })
+        .attr('y', function(d) { return h - yscale(d.other) - yscale(d.conservative)/2 - 8; } ) 
+        .attr('x', function(d, i) { return w / 2 + 48 + 8 + 8; })
+        .attr('text-anchor', 'start')
+        .style('fill', 'black')
+        .style("font-weight", "normal")
+        .style("font-size", "10px");
+
+      // Axes
+      // Mouse interaction
+   });
+  }
+
+  chart.width = function(value) {
+    if (!arguments.length) return w;
+    w = value - margin.left - margin.right;
+    return chart;
+  };
+
+  chart.height = function(value) {
+    if (!arguments.length) return h;
+    h = value - margin.top - margin.bottom;
+    return chart;
+  };
+  
+  chart.margin = function(value) {
+    if (!arguments.length) return margin;
+    margin = value;
+    return chart;
+  };
+
+  chart.type = function(value) {
+    if (!arguments.length) return type;
+    type = value;
+    return chart;
+  };
+  
+  return chart;
+}
+
+function updateStackedBar() {
+
+  d3.select('#toggleWrapper')
+    .style('display', 'none');
+
+  d3.select("#treatment1yr")
+    .datum({
+      'surgery': Math.round(100*rp1), 
+      'conservative': Math.round(100*cx1),
+      'other': Math.round(100*other1),
+      'year': 1
+    })
+    .call(stackedbar);
+
+  d3.select("#treatment5yr")
+    .datum({
+      'surgery': Math.round(100*rp5), 
+      'conservative': Math.round(100*cx5),
+      'other': Math.round(100*other5),
+      'year': 5
+    })
+    .call(stackedbar);
+
+  d3.select("#treatment10yr")
+    .datum({
+      'surgery': Math.round(100*rp10), 
+      'conservative': Math.round(100*cx10),
+      'other': Math.round(100*other10),
+      'year': 10
+    })
+    .call(stackedbar);
+
+}
+
+function updateStackedBar2() {
+
+  d3.select("#treatment1yr2")
+    .datum({
+      'surgery': Math.round(100*rp1), 
+      'conservative': Math.round(100*cx1),
+      'other': Math.round(100*other1),
+      'year': 1
+    })
+    .call(stackedbar);
+
+  d3.select("#treatment5yr2")
+    .datum({
+      'surgery': Math.round(100*rp5), 
+      'conservative': Math.round(100*cx5),
+      'other': Math.round(100*other5),
+      'year': 5
+    })
+    .call(stackedbar);
+
+  d3.select("#treatment10yr2")
+    .datum({
+      'surgery': Math.round(100*rp10), 
+      'conservative': Math.round(100*cx10),
+      'other': Math.round(100*other10),
+      'year': 10
+    })
+    .call(stackedbar);
+
+}

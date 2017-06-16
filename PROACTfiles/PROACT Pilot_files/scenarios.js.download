@@ -1,0 +1,96 @@
+
+var map = {18: false, 49: false, 50: false, 51: false, 52: false, 53: false, 54: false, 55: false, 56: false, 57: false};
+function createScenarios(val) {
+
+	var actualVal = - (48 - val);
+	if (actualVal == 7 || actualVal == 8 || actualVal == 9) {
+		updateBarType(actualVal);
+	}
+	else {
+		if (actualVal == 1) {
+			input.data = {"age":69, "psa": 60, "stage": 'T2c', "gleason1": 5.0, "gleason2": 5.0, "differentiation": 'poor'};
+		}
+		if (actualVal == 2) {
+			input.data = {"age":69, "psa": 25, "stage": 'T1b', "gleason1": 2.0, "gleason2": 3.0, "differentiation": 'poor'};
+		}
+		if (actualVal == 3) {
+			input.data = {"age":80, "psa": 20, "stage": 'T2c', "gleason1": 4.0, "gleason2": 4.0, "differentiation": 'moderate'};
+		}
+		if (actualVal == 4) {
+			input.data = {"age":70, "psa": 5, "stage": 'T1a', "gleason1": 2.0, "gleason2": 2.0, "differentiation": 'moderate'};
+		}
+		if (actualVal == 5) {
+			input.data = {"age":87, "psa": 40, "stage": 'T2b', "gleason1": 3.0, "gleason2": 4.0, "differentiation": 'moderate'};
+		}
+		if (actualVal == 6) {
+			input.data = {"age":85, "psa": 60, "stage": 'T2c', "gleason1": 5.0, "gleason2": 5.0, "differentiation": 'moderate'};
+		}
+		updateInputPage();
+		update();
+	}
+}
+
+function updateBarType(actualVal) {
+	if (actualVal == 7) {
+		barType = 'regular';
+	}
+	else if (actualVal == 8) {
+		barType = 'clustered';
+	}
+	else if (actualVal == 9) {
+		barType = 'stacked';
+	}
+	update();
+}
+
+document.addEventListener("keydown", function (e) {
+	if (e.keyCode in map) {
+		map[e.keyCode] = true;
+		if (map[18] && (map[49] || map[50] || map[51] || map[52] || map[53] || map[54] || map[55] || map[56] || map[57])) {
+			for (var i = 0; i <= 57; i++) {
+				if (map[i] && i > 48) {
+					createScenarios(i);
+				}
+			}
+		}
+	}
+});
+
+
+document.addEventListener("keyup", function (e) {
+	if (e.keyCode in map) {
+		map[e.keyCode] = false;
+	}
+});
+
+function updateInputPage() {
+  var age = document.getElementById("inAge");
+  var psa = document.getElementById("inpsa");
+  var stage = document.getElementById("inStage");
+  var g1 = document.getElementById("inGleason1");
+  var g2 = document.getElementById("inGleason2");
+  var diff = document.getElementById("inDifferentiation");
+
+  age.value = input.data.age;
+  psa.value = input.data.psa;
+  stage.value = input.data.stage;
+  g1.value = input.data.gleason1;
+  g2.value = input.data.gleason2;
+  diff.value = input.data.differentiation;
+}
+
+function updatePatient() {
+  var age = document.getElementById("inAge");
+  var psa = document.getElementById("inpsa");
+  var stage = document.getElementById("inStage");
+  var g1 = document.getElementById("inGleason1");
+  var g2 = document.getElementById("inGleason2");
+  var diff = document.getElementById("inDifferentiation");
+
+  input.data.age = age.value;
+  input.data.psa = psa.value;
+  input.data.stage = stage.value;
+  input.data.gleason1 = g1.value;
+  input.data.gleason2 = g2.value;
+  input.data.differentiation = diff.value;
+}

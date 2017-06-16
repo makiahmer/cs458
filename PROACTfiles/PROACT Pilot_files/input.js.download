@@ -1,0 +1,205 @@
+var input = (function() {
+    var cb,
+        patient = {
+        age             : 66,
+        psa             : 0.5,
+        stage           : 'T1a',
+        gleason1        : 2.0,
+        gleason2        : 2.0,
+        differentiation : 'moderate'
+    };
+
+    function init() {
+        age();
+        psa();
+        stage();
+        gleason1();
+        gleason2();
+        differentiation();
+    }
+
+    function age() {
+        var div = d3.select("#inAge"), 
+            val = d3.range(66, 89, 1);
+
+        options(div, val);
+        change(div, 'age');
+    }
+
+    function psa() {
+        var div = d3.select("#inpsa");
+        val = d3.range(0, 60, 1);
+
+        options(div, val);
+        change(div, 'inpsa');
+    }
+
+    function stage() {
+        var div = d3.select("#inStage"), 
+            val = ['T1a', 'T1b', 'T1c', 
+                'T2a', 'T2b', 'T2c'];
+        //        'T3a', 'T3b', 'T4'];
+
+        options(div, val);
+        change(div, 'stage');
+    }
+
+    function gleason1() {
+        var div = d3.select("#inGleason1"), 
+            val = d3.range(1, 5, 1);
+
+        options(div, val);
+        change(div, 'gleason1');
+    }
+
+    function gleason2() {
+        var div = d3.select("#inGleason2"), 
+            val = d3.range(1, 5, 1);
+
+        options(div, val);
+        change(div, 'gleason2');
+    }
+
+    function differentiation() {
+        var div = d3.select("#inDifferentiation"), 
+            val = ['moderate', 'poor'];
+
+        options(div, val);
+        change(div, 'differentiation');
+    }
+
+    function options(div, val) {
+        div.selectAll('option')
+            .data(val)
+            .enter().append('option')
+            .text(function(d) { return d; });
+    }
+
+    function change(div, prop) {
+        div.on('change', function() {
+            var val = d3.select(this).property('value');
+            patient[prop] = parseFloat(val) ? parseFloat(val) : val;
+            validate();
+        });
+    }
+
+    function validate() {
+        if(cb) cb();
+    }
+
+    function onValidate(c) {
+        cb = c;
+    }
+
+    return {
+        init: init,
+        validate: validate,
+        onValidate: onValidate,
+        data: patient
+    }
+})();
+
+var yr1_age;
+var yr5_age;
+var yr10_age;
+
+
+// function ShowPopup(hoveritem)
+// {
+//   hp = document.getElementById("hoverpopup");
+
+//   // Set position of hover-over popup
+//   hp.style.top = hoveritem.offsetTop + 18;
+//   hp.style.left = hoveritem.offsetLeft + 20;
+
+//   // Set popup to visible
+//   hp.style.visibility = "Visible";
+// }
+
+// Displays explanation when hovered over the '?'
+function show_tooltip() {
+  d3.select('#' + this.id + '-info')
+    .style('visibility', 'visible');
+
+  console.log(this.id);
+}
+function hide_tooltip() {
+    d3.select('#' + this.id + '-info').style('visibility', 'hidden');
+}
+
+// checks to see if the input is in the valid form
+// I aplogize for such an ugly code
+function valid_fields() {
+    var age = d3.select("#inAge").property('value');
+    var psa = d3.select("#inpsa").property('value');
+    var g1 = d3.select("#inGleason1").property('value');
+    var g2 = d3.select("#inGleason2").property('value');
+    var prevIndex = sections.indexOf('input') - 1;
+
+    if (!age) {
+        d3.select("#age-star").html("* Please input an age");
+        currentSection = prevIndex;
+    }
+    else if (age < 66 || age > 89) {
+        d3.select("#age-star").html("* Age must be between 66 and 89");
+        currentSection = prevIndex;
+    }
+    else {
+        d3.select("#age-star").html("");
+    }
+    if (!psa) {
+        d3.select("#psa-star").html("* Please input a psa value");
+        currentSection = prevIndex;
+    }
+    else if (psa < .5 || psa > 60) {
+        d3.select("#psa-star").html("* PSA must be between .5 and 60");
+        currentSection = prevIndex;
+    }
+    else {
+        d3.select("#psa-star").html("");
+    }
+
+    if (!g1) {
+        d3.select("#g1-star").html("* Please input a Gleason 1 value");
+        currentSection = prevIndex;
+    }
+    else if (g1 < 1 || g1 > 5) {
+        d3.select("#g1-star").html("* Gleason scores must be between 1 and 5");
+        currentSection = prevIndex;
+    }
+    else {
+        d3.select("#g1-star").html("");
+    }
+    if (!g2) {
+        d3.select("#g2-star").html("* Please input a Gleason 2 value");
+        currentSection = prevIndex;
+    }
+    else if (g2 < 1 || g2 > 5) {
+        d3.select("#g2-star").html("* Gleason scores must be between 1 and 5");
+        currentSection = prevIndex;
+    }
+    else {
+        d3.select("#g2-star").html("");
+    }
+}
+
+// unchecks "No coexisting illnesses" when clicked on another illness
+// unchecks all illnesses when clicked on "No coexisting illnesses"
+function checkbox_click() {
+    var diseases = d3.selectAll('.disease input');
+
+    for (var i = 0; i < diseases[0].length; i++) {
+        if (diseases[0][i].checked) {
+            d3.select("#no-coex").property('checked', false);
+            break;
+        }
+    }
+    d3.select("#no-coex").on('click', function(){
+        d3.selectAll("#coex-illness input").property('checked', false);
+        d3.select("#no-coex").property('checked', true);
+    });
+// d3.select('#btnEdit')
+//   .on('click', inputSection);
+
+}
+

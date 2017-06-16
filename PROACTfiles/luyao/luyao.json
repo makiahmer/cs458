@@ -1,0 +1,123 @@
+/*
+
+ * age: "70 to 74"
+ * col: "1"
+ * differentiation: "poor"
+ * row: "1"
+ * survAll: "0.991999535266948"
+ * survProstate: "0.9976681078008"
+ * survTimes: "0"
+ * tumor: "Stage T1c"
+ */
+
+var luyao = (function() {
+
+var data, p;
+
+var xbisect = d3.bisector(function(d) { return d.survTimes; }).left;
+
+// init loads the luyao data with optional callback
+var init = function init(cb) {
+  d3.json('/proact/luyao/luyao.json', function(err, d) {
+    if(err) return console.log(err);
+    data = structure(d);
+    if(cb) cb();
+  });
+}
+
+var year = function(y) {
+  var p = this.get( this.convert(this.patient()), y)
+
+  var p1 = p[ xbisect(p, y) ];
+
+  return {
+    conservative: Math.round(1000*p1.survCX)/1000,
+    conservativeSurv: (1.0 - Math.round(1000*p1.survCX)/1000),
+    conservative100: Math.round(100*p1.survCX),
+    conservative100Surv: (100 - Math.round(100*p1.survCX)),
+    all: Math.round(1000*p1.survAll)/1000,
+    allSurv: (1.0 - Math.round(1000*p1.survAll)/1000),
+    all100: Math.round(100*p1.survAll),
+    all100Surv: (100 - Math.round(100*p1.survAll))
+  }
+}
+
+var patient = function(value) {
+  if (!arguments.length) return p;
+  p = value;
+  return this;
+}
+
+var convert = function convert(params) {
+  if(!params || !params.differentiation || !params.stage || !params.age)
+    return console.error('complex queries not yet supported ;(');
+
+  var obj = {};
+
+  // age
+  var age = params.age;
+  if(age > 65 && age <= 69)
+    obj.age = "66 to 69";
+  if(age > 69 && age <= 74)
+    obj.age = "70 to 74";
+  if(age > 74 && age <= 79)
+    obj.age = "75 to 79";
+  if(age >= 80)
+    obj.age = ">=80";
+
+  // stage
+  var stg = params.stage.toLowerCase();
+  if(stg === "t1a" || stg === "t1b")
+    obj.tumor = "Stage T1a or b";
+  if(stg === "t1c")
+    obj.tumor = "Stage T1c";
+  if(stg === "t2a" || stg === "t2b" || stg === "t2c")
+    obj.tumor = "Stage T2";
+
+  // differentiation
+  obj.differentiation = params.differentiation;
+    
+  return obj;
+}
+
+// get a specific set of the data
+var get = function get(params) {
+  if(!params || !params.differentiation || !params.tumor || !params.age)
+    return console.error('complex queries not yet supported ;(');
+
+  var _d = data;
+
+  _d = _d.filter(function(d) { return d.key === params.differentiation; });
+  _d = _d[0].values;
+
+  _d = _d.filter(function(d) { return d.key === params.tumor; });
+  _d = _d[0].values;
+
+  _d = _d.filter(function(d) { return d.key === params.age; });
+  _d = _d[0].values;
+
+  return _d;
+}
+
+function structure(d) {
+  data = d3.nest()
+    .key(function(d) { return d.differentiation; })
+    .sortKeys(d3.ascending)
+    .key(function(d) { return d.tumor; })
+    .key(function(d) { return d.age; })
+    .entries(d);
+
+  return data;
+}
+
+return {
+  init: init,
+  get: get,
+  year: year,
+  patient: patient,
+  convert: convert,
+  data: function() { return data; }
+}
+
+})();
+

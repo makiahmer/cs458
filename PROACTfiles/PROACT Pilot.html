@@ -1,0 +1,978 @@
+
+<!-- saved from url=(0046)http://tuftsvalt.github.io/proact/demo/pilot2/ -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><title>PROACT Pilot</title>
+
+<style>
+  @import url(http://fonts.googleapis.com/css?family=Istok+Web);
+  @import url(http://fonts.googleapis.com/css?family=Oswald);
+  @import url(http://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css);
+  @import url(bootstrap/css/bootstrap.min.css);
+  @import url(style.css);
+  @import url(slider.css);
+  @import url(css/input-style.css);
+  @import url(css/intro-style.css);
+</style>
+
+<link href="./PROACT Pilot_files/font-awesome.min.css" rel="stylesheet">
+
+</head><body><div id="leftButton">
+  <button id="prevButton" class="btn btn-primary btn-lg" name="prevButton" style="visibility: visible;">&lt;</button>
+</div>
+
+<div id="content">
+
+<h1 style="margin-bottom: -32px; text-align:right; font-family: &#39;Oswald&#39;, serif"> PROACT </h1>
+
+<!-- Navigation buttons -->
+<div class="step-btn">
+  <button type="button" class="btn btn-default nav-btn" id="faq-btn" value="input" style="visibility: visible; background-color: transparent; border: none;">Introduction</button>
+
+  <button type="button" class="btn btn-default nav-btn" id="cancerRisk-btn" value="cancerRisk" onclick="changePies();" style="visibility: visible; background-color: transparent; border-width: initial; border-style: solid; border-color: transparent transparent rgb(77, 170, 75); border-image: initial;">Prostate Cancer Threat</button>
+
+  <button type="button" class="btn btn-default nav-btn" id="table-btn" value="table" style="visibility: visible; background-color: transparent; border: none;">Treatment Options</button>
+
+  <button type="button" class="btn btn-default nav-btn" id="path-btn" value="paths" style="visibility: visible; background-color: transparent; border: none;">Treatment Pathways</button>
+
+  <button type="button" class="btn btn-default nav-btn" id="end-btn" value="end" style="visibility: visible; background-color: transparent; border: none;">More Information</button>
+</div>
+
+
+<!-- *********************************** -->
+<!-- *** PAGE 1 : WELCOME ************** -->
+<!-- *********************************** -->
+<div class="section inactive" id="disclaimer">
+
+  <h2 class="title">Welcome</h2>
+  <br>
+  <p>
+    Welcome to the Prognosis Assessment for Active and Conservative Treatment (PROACT) Tool. This tool uses the best available scientific evidence to help prostate cancer patients and physicians understand the benefits of different treatments, and to decide
+    which treatment is best for an individual patient.
+  </p>
+  <p>
+    The PROACT calculates the expected benefits of surgical vs. non-surgical (conservative) treatment for individual patients with prostate cancer, based on each patient's own unique features -- such as his age, medical history, and the stage of his cancer.
+    To learn more about how the PROACT works, click here.
+  </p>
+
+  <h3>Terms of Use</h3>
+  <!-- taken from http://www.mskcc.org/nomograms/disclaimer?destination=nomograms%2Fprostate -->
+  <div id="terms">
+    <p>
+      The prediction tools, also known as prognostic nomograms, located on the NCI Web site are for general health information only. The prediction tools are not to be used as a substitute for medical advice, diagnosis, or treatment of any health condition
+      or problem.
+    </p>
+    <p>
+      Users of the prediction tools should not rely on information provided by the prediction tools for their own health problems. Questions should be addressed to your own physician or other healthcare provider.
+    </p>
+    <p>
+      NCI makes no warranties, nor express or implied representations whatsoever, regarding the accuracy, completeness, timeliness, comparative or controversial nature, or usefulness of any information contained or referenced in the prediction tools. NCI does
+      not assume any risk whatsoever for your use of the prediction tools or the information contained herein. Health related information changes frequently and therefore information contained in the prediction tools may be outdated, incomplete or incorrect.
+    </p>
+    <p>
+      Use of the prediction tools does not create an express or implied physician-patient relationship. NCI does not endorse or claim validity for the prediction tools found on the NCI Web site. The activities and products of NCI and its developers and agents
+      (collectively NCI) are not endorsed by our past, present, or future employers. NCI does not record specific prediction tool user information and does not contact users of the prediction tools.
+    </p>
+    <p>
+      You are hereby advised to consult with a physician or other professional healthcare provider prior to making any decisions, or undertaking any actions or not undertaking any actions related to any healthcare problem or issue you might have at any time,
+      now or in the future. In using the prediction tools, you agree that neither NCI nor any other party is or will be liable or otherwise responsible for any decision made or any action taken or any action not taken due to your use of any information
+      presented in the prediction tools.
+    </p>
+  </div>
+
+  <div id="term-agree">
+    <label>
+      <input type="checkbox" value="agree" id="agreebox">
+        &nbsp; I accept all of the above terms or by any further use of this service.
+
+    </label>
+  </div>
+
+</div>
+
+
+<!-- *********************************** -->
+<!-- *** PAGE 2 : FAQ ****************** -->
+<!-- *********************************** -->
+<div class="section inactive" id="faq">
+
+  <h2 class="title">Prostate Cancer Treatment Shared Decision Making: FAQ</h2>
+  <br>
+
+  <div class="section-text">
+
+    <h3>How big of a threat is my prostate cancer? </h3>
+
+    <ul>
+      <li>What are my chances of surviving?</li>
+      <li>How much time do I have to decide?</li>
+    </ul>
+
+    <h3>Is treatment an option? </h3>
+
+    <ul>
+      <li>If not, what can I do?</li>
+    </ul>
+
+    <h3>What are the possible treatments for me?</h3>
+
+    <ul>
+      <li>
+        <strong> Surgery </strong> - This treatment approach involves removing the prostate gland, and surrounding tissues that may contain cancer, through an operation.</li>
+      <li>
+        <strong> Conservative management </strong> - This treatment approach includes two approaches, "watchful waiting" and "active surveillance," aimed at monitoring for problems or signs that the cancer is spreading, and giving treatment
+        only if necessary</li>
+      <li>
+        <strong> Radiation therapy ** </strong> - This treatment approach involves using high-energy X-rays or other types of radiation to kill the cancer cells.</li>
+    </ul>
+
+    <h3>What are the side effects of different treatment options? ** </h3>
+
+    <h3>What do I do next?</h3>
+
+  </div>
+
+</div>
+
+<!-- *********************************** -->
+<!-- *** PAGE 3 : INPUT **************** -->
+<!-- *********************************** -->
+<div class="section inactive" id="input">
+
+  <h2 class="title">Input</h2>
+
+  <div class="explanation">
+    <p>
+      To use the PROACT, you first need to tell us about yourself and your prostate cancer. Please do this by entering the information below.
+    </p>
+  </div>
+
+  <div id="basic-info">
+    <div class="container">
+
+      <div class="row">
+
+        <div class="col-md-3 col-md-offset-2" style="text-align:right">
+          <span class="glyphicon glyphicon-question-sign" aria-hidden="true" id="age-sign"></span>
+          Age:
+          <div class="more-info" id="age-sign-info" style="visibility:hidden; position:absolute;">
+            This tool does not include models for patients under 66 years old because of the relatively low mortality rates from comorbidities.
+          </div>
+        </div>
+
+        <div class="col-md-7">
+          <!-- defaults to 66 -->
+          <input type="text" placeholder="66 - 89" id="inAge" onchange="updatePatient()"><option>66</option><option>67</option><option>68</option><option>69</option><option>70</option><option>71</option><option>72</option><option>73</option><option>74</option><option>75</option><option>76</option><option>77</option><option>78</option><option>79</option><option>80</option><option>81</option><option>82</option><option>83</option><option>84</option><option>85</option><option>86</option><option>87</option><option>88</option></input>
+          <span class="error-message" id="age-star" style="color:red"></span>
+        </div>
+
+      </div>
+
+      <div class="row">
+
+        <div class="col-md-3 col-md-offset-2" style="text-align:right">
+          <span class="glyphicon glyphicon-question-sign" aria-hidden="true" id="psa-sign"></span>
+          PSA:
+          <div class="more-info" id="psa-sign-info" style="visibility:hidden; position:absolute;">
+            <!-- taken from http://www.cancer.gov/cancertopics/types/prostate/psa-fact-sheet -->
+            The PSA test measures the blood level of PSA, a protein that is produced by the prostate gland. The higher a man's PSA level, the more likely it is that he has prostate cancer.
+            <br> However, there are additional reasons for having an elevated PSA level, and some men who have prostate cancer do not have elevated PSA.
+          </div>
+        </div>
+
+        <div class="col-md-7">
+          <!-- should be in ng/ml -->
+          <!-- defaults to .5 -->
+          <input type="text" placeholder="0.5 - 60" id="inpsa" onchange="updatePatient()"><option>0</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option><option>9</option><option>10</option><option>11</option><option>12</option><option>13</option><option>14</option><option>15</option><option>16</option><option>17</option><option>18</option><option>19</option><option>20</option><option>21</option><option>22</option><option>23</option><option>24</option><option>25</option><option>26</option><option>27</option><option>28</option><option>29</option><option>30</option><option>31</option><option>32</option><option>33</option><option>34</option><option>35</option><option>36</option><option>37</option><option>38</option><option>39</option><option>40</option><option>41</option><option>42</option><option>43</option><option>44</option><option>45</option><option>46</option><option>47</option><option>48</option><option>49</option><option>50</option><option>51</option><option>52</option><option>53</option><option>54</option><option>55</option><option>56</option><option>57</option><option>58</option><option>59</option></input>
+          <span class="error-message" id="psa-star" style="color:red"></span>
+        </div>
+
+      </div>
+
+      <div class="row">
+
+        <div class="col-md-3 col-md-offset-2" style="text-align:right">
+
+          <span class="glyphicon glyphicon-question-sign" id="stage-sign" aria-hidden="true"></span>
+          Stage:
+          <div class="more-info" id="stage-sign-info" style="visibility:hidden; position:absolute;">
+            <!-- taken from http://www.cancer.org/cancer/prostatecancer/detailedguide/prostate-cancer-staging -->
+            <strong>T1a</strong>: Cancer is found incidentally (by accident) during a transurethral resection of the prostate (TURP) that was done for benign prostatic hyperplasia (BPH). Cancer is in no more than 5% of the tissue removed.
+            <br>
+            <strong>T1b</strong>: Cancer is found during a TURP but is in more than 5% of the tissue removed.
+            <br>
+            <strong>T1c</strong>: Cancer is found by needle biopsy that was done because of an increased PSA.
+            <br>
+            <strong>T2a</strong>: The cancer is in one half or less of only one side (left or right) of your prostate.
+            <br>
+            <strong>T2b</strong>: The cancer is in more than half of only one side (left or right) of your prostate.
+            <br>
+            <strong>T2c</strong>: The cancer is in both sides of your prostate.
+          </div>
+
+        </div>
+
+        <div class="col-md-7">
+          <select id="inStage" onchange="updatePatient()">
+            <!-- defaults to T1a -->
+            <option value="T1a"> T1a </option>
+            <option value="T1b"> T1b </option>
+            <option value="T1c"> T1c </option>
+            <option value="T2a"> T2a </option>
+            <option value="T2b"> T2b </option>
+            <option value="T2c"> T2c </option>
+          </select>
+          <span class="error-message" id="stage-star" style="color:red"></span>
+        </div>
+
+      </div>
+
+      <div class="row">
+
+        <div class="col-md-3 col-md-offset-2" style="text-align:right">
+          <span class="glyphicon glyphicon-question-sign" id="g1-sign" aria-hidden="true"></span>
+          Gleason 1:
+          <div class="more-info" id="g1-sign-info" style="visibility:hidden; position:absolute;">
+            Gleason score is a system of grading prostate cancer tissue based on how it looks under a microscope. Scores range from 2 to 9 and indicate
+            <strong> how likely it is that a tumor will spread </strong>. A low Gleason score means the cancer tissue is similar to normal prostate tissue and the tumor is less likely to spread; a high Gleason score means the cancer tissue is very different from
+            normal and the tumor is more likely to spread.
+          </div>
+        </div>
+
+        <div class="col-md-7">
+          <!-- defaults to 2 -->
+          <input type="text" placeholder="1 - 5" id="inGleason1" onchange="updatePatient()"><option>1</option><option>2</option><option>3</option><option>4</option></input>
+          <span class="error-message" id="g1-star" style="color:red"></span>
+        </div>
+
+      </div>
+
+      <div class="row">
+
+        <div class="col-md-3 col-md-offset-2" style="text-align:right">
+          <span class="glyphicon glyphicon-question-sign" id="g2-sign" aria-hidden="true"></span>
+          Gleason 2:
+          <div class="more-info" id="g2-sign-info" style="visibility:hidden; position:absolute;">
+            Gleason score is a system of grading prostate cancer tissue based on how it looks under a microscope. Scores range from 2 to 9 and indicate
+            <strong> how likely it is that a tumor will spread </strong>. A low Gleason score means the cancer tissue is similar to normal prostate tissue and the tumor is less likely to spread; a high Gleason score means the cancer tissue is very different from
+            normal and the tumor is more likely to spread.
+          </div>
+        </div>
+
+        <div class="col-md-7">
+          <!-- defaults to 2 -->
+          <input type="text" placeholder="1 - 5" id="inGleason2" onchange="updatePatient()"><option>1</option><option>2</option><option>3</option><option>4</option></input>
+          <span class="error-message" id="g2-star" style="color:red"></span>
+        </div>
+
+      </div>
+
+      <div class="row">
+
+        <div class="col-md-3 col-md-offset-2" style="text-align:right">
+          <span class="glyphicon glyphicon-question-sign" id="diff-sign" aria-hidden="true"></span>
+          Differentiation:
+          <div class="more-info" id="diff-sign-info" style="visibility:hidden; position:absolute;">
+            Differentiation describes
+            <strong> how much or how little tumor tissue looks like the normal tissue </strong>it came from. Well-differentiated cancer cells look more like normal cells and tend to grow and spread more slowly than poorly differentiated or undifferentiated cancer
+            cells.
+          </div>
+        </div>
+
+        <div class="col-md-7">
+          <select id="inDifferentiation" onchange="updatePatient()">
+            <!-- defaults to moderate -->
+            <option value="moderate"> Moderate </option>
+            <option value="poor"> Poor </option>
+          </select>
+          <span class="error-message" id="diff-star" style="color:red"></span>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <hr>
+
+  <h4 style="margin-bottom: 10px"> Please indicate whether you have any of the medical conditions below, by checking the appropriate box(es). Please check all that apply.</h4>
+
+  <div class="container" id="coex-illness">
+
+    <!-- start row   -->
+    <div class="row">
+      <div class="col-md-5 col-md-offset-2 disease">
+        <label>
+          <input type="checkbox" value="AIDS"> &nbsp; AIDS</label>
+      </div>
+      <div class="col-md-5 disease">
+        <label>
+          <input type="checkbox" value="Rheumatologic Disease"> &nbsp; Rheumatologic Disease</label>
+      </div>
+    </div>
+    <!-- end row   -->
+
+    <!-- start row   -->
+    <div class="row">
+      <div class="col-md-5 col-md-offset-2 disease">
+        <label>
+          <input type="checkbox" value="Acute Myocardio Infarction"> &nbsp; Acute Myocardio Infarction</label>
+      </div>
+      <div class="col-md-5 disease">
+        <label>
+          <input type="checkbox" value="Ulcer Disease"> &nbsp; Ulcer Disease</label>
+      </div>
+    </div>
+    <!-- end row   -->
+
+    <!-- start row   -->
+    <div class="row">
+      <div class="col-md-5 col-md-offset-2 disease">
+        <label>
+          <input type="checkbox" value="Old Myocardio Infarction"> &nbsp; Old Myocardio Infarction</label>
+      </div>
+      <div class="col-md-5 disease">
+        <label>
+          <input type="checkbox" value="Mild Liver Disease"> &nbsp; Mild Liver Disease</label>
+      </div>
+    </div>
+    <!-- end row   -->
+
+    <!-- start row   -->
+    <div class="row">
+      <div class="col-md-5 col-md-offset-2 disease">
+        <label>
+          <input type="checkbox" value=" Congestive Heart Failure"> &nbsp; Congestive Heart Failure</label>
+      </div>
+      <div class="col-md-5 disease">
+        <label>
+          <input type="checkbox" value="Moderate-severe Liver Disease"> &nbsp; Moderate-severe Liver Disease</label>
+      </div>
+    </div>
+    <!-- end row   -->
+
+    <!-- start row   -->
+    <div class="row">
+      <div class="col-md-5 col-md-offset-2 disease">
+        <label>
+          <input type="checkbox" value="Cerebrovascular Disease"> &nbsp; Cerebrovascular Disease</label>
+      </div>
+      <div class="col-md-5 disease">
+        <label>
+          <input type="checkbox" value="Diabetes"> &nbsp; Diabetes</label>
+      </div>
+    </div>
+    <!-- end row   -->
+
+    <!-- start row   -->
+    <div class="row">
+      <div class="col-md-5 col-md-offset-2 disease">
+        <label>
+          <input type="checkbox" value="Peripheral Vascular Disease"> &nbsp; Peripheral Vascular Disease</label>
+      </div>
+      <div class="col-md-5 disease">
+        <label>
+          <input type="checkbox" value="Dementia"> &nbsp; Dementia</label>
+      </div>
+    </div>
+    <!-- end row   -->
+
+    <!-- start row   -->
+    <div class="row">
+      <div class="col-md-5 col-md-offset-2 disease">
+        <label>
+          <input type="checkbox" value="Chronic Obstructive Pulmonary Disease"> &nbsp; Chronic Obstructive Pulmonary Disease</label>
+      </div>
+      <div class="col-md-5 disease">
+        <label>
+          <input type="checkbox" value="Paralysis"> &nbsp; Paralysis</label>
+      </div>
+    </div>
+    <!-- end row   -->
+
+    <!-- start row   -->
+    <div class="row">
+      <div class="col-md-5 col-md-offset-2 disease">
+        <label>
+          <input type="checkbox" value="Renal Disease"> &nbsp; Renal Disease</label>
+      </div>
+      <div class="col-md-5">
+        <label>
+          <input type="checkbox" value="No Coexisting Illnesses" id="no-coex"> &nbsp; No Coexisting Illnesses</label>
+      </div>
+    </div>
+    <!-- end row   -->
+  </div>
+
+</div>
+
+<!-- *********************************** -->
+<!-- *** PAGE 4 : CALMING ************** -->
+<!-- *********************************** -->
+<div class="section inactive" id="calming">
+
+  <h2 class="title">How big of a threat is my prostate cancer?</h2>
+  <br>
+
+  <div class="section-text" id="calmingText-part1">
+    <p>
+      In most cases, prostate cancer
+      <strong>progresses slowly</strong>, and is
+      <strong>not lethal</strong>.</p>
+    <p>
+      In all cases,
+      <strong>you have time to think carefully</strong> about what to do about your prostate cancer, before you decide.
+    </p>
+    <p>
+      For example, based on the data you provided
+      <strong>your risk of dying from prostate cancer after 1 year is
+        <span class="larger" id="calmingText">0%</span>
+      </strong>, illustrated in the following chart:
+    </p>
+  </div>
+
+  <div class="calming risk" id="calmingChart"><svg width="864" height="400"><g class="p6_lineGroups" style="opacity: 1;"><g class="p6_lineGroup"><path d="M444.8762152273907,331.8607478388167L445.2590724654447,332.3582891766583C445.6419297034988,332.85583051449987,446.4076441796069,333.85091319018306,446.9390731318232,335.84107854154945C447.4705020840395,337.83124389291584,447.76764551236386,340.8164919199655,447.9162172265261,342.30911593349026L448.0647889406883,343.8017399470151" stroke="#66c2a5" stroke-width="1" fill="none" style="opacity: 1;"></path></g><g class="p6_lineGroup"><path d="M418.67688549695936,73.18451515793296L418.2731572526934,71.69241340975526C417.8694290084276,70.20031166157757,417.0619725198959,67.21610816522218,416.52366819420814,65.22663916765191C415.9853638685203,63.237170170081654,415.7162117056764,62.24243567129652,415.5816356242545,61.74506842190395L415.44705954283256,61.2477011725114" stroke="#fc8d62" stroke-width="1" fill="none" style="opacity: 1;"></path></g><g class="p6_lineGroup"><path d="M431.55081507234854,72.50077602962097L431.2956321693372,71.0007849838089C431.0404492663258,69.50079393799683,430.53008346030305,66.5008118463727,430.1898395896212,64.50082378528994C429.8495957189394,62.500835724207185,429.6794737835985,61.500841693665805,429.594412815928,61.00084467839512L429.5093518482576,60.50084766312443" stroke="#8da0cb" stroke-width="1" fill="none" style="opacity: 1;"></path></g></g><g transform="translate(432,202.5)" class="p6_pieChart"><g class="p6_arc" transform="rotate(0)"><path id="p6_segment0" fill="#66c2a5" d="M7.960204194457796e-15,-130A130,130 0 1,1 -25.625797402289468,-127.4492781756602L0,0Z" data-index="0" style="stroke: rgb(255, 255, 255); stroke-width: 1;"></path></g><g class="p6_arc" transform="rotate(348.6313164807141)"><path id="p6_segment1" fill="#fc8d62" d="M7.960204194457796e-15,-130A130,130 0 0,1 24.744447776255427,-127.62332194488657L0,0Z" data-index="1" style="stroke: rgb(255, 255, 255); stroke-width: 1;"></path></g><g class="p6_arc" transform="rotate(359.6040545879041)"><path id="p6_segment2" fill="#8da0cb" d="M7.960204194457796e-15,-130A130,130 0 0,1 0.898364492521222,-129.99689589078108L0,0Z" data-index="2" style="stroke: rgb(255, 255, 255); stroke-width: 1;"></path></g></g><text id="p6_title" class="p6_title" x="434.5" y="5" text-anchor="middle" fill="#333333" style="font-size: 18px; font-family: arial;">1 Year</text><text x="432" y="395" id="p6_footer" class="p6_footer" text-anchor="left" fill="#666666" style="font-size: 14px; font-family: arial;"></text><g class="p6_labels-inner"><g id="p6_labelGroup0-inner" data-index="0" class="p6_labelGroup-inner" transform="translate(439.1534529041059,274.36708213267593)" style="opacity: 1;"><text id="p6_segmentPercentage0-inner" class="p6_segmentPercentage-inner" style="font-size: 16px; font-family: arial; fill: rgb(255, 255, 255);">97%</text></g><g id="p6_labelGroup1-inner" data-index="1" class="p6_labelGroup-inner" transform="translate(424.598269720533,130.65806397662942)" style="opacity: 0;"><text id="p6_segmentPercentage1-inner" class="p6_segmentPercentage-inner" style="font-size: 16px; font-family: arial; fill: rgb(255, 255, 255);">3%</text></g><g id="p6_labelGroup2-inner" data-index="2" class="p6_labelGroup-inner" transform="translate(431.7504528179714,130.27820890534497)" style="opacity: 0;"><text id="p6_segmentPercentage2-inner" class="p6_segmentPercentage-inner" style="font-size: 16px; font-family: arial; fill: rgb(255, 255, 255);">0%</text></g></g><g class="p6_labels-outer"><g id="p6_labelGroup0-outer" data-index="0" class="p6_labelGroup-outer" transform="translate(454.0647889406883,343.8017399470151)" style="opacity: 1;"><text id="p6_segmentMainLabel0-outer" class="p6_segmentMainLabel-outer" style="font-size: 14px; font-family: arial; fill: rgb(51, 51, 51);">Alive</text></g><g id="p6_labelGroup1-outer" data-index="1" class="p6_labelGroup-outer" transform="translate(409.44705954283256,61.2477011725114)" style="opacity: 1;"><text id="p6_segmentMainLabel1-outer" class="p6_segmentMainLabel-outer" style="font-size: 14px; font-family: arial; fill: rgb(51, 51, 51);">Other cause mortality</text></g><g id="p6_labelGroup2-outer" data-index="2" class="p6_labelGroup-outer" transform="translate(423.5093518482576,60.50084766312443)" style="opacity: 1;"><text id="p6_segmentMainLabel2-outer" class="p6_segmentMainLabel-outer" style="font-size: 14px; font-family: arial; fill: rgb(51, 51, 51);">Prostate Cancer mortality</text></g></g></svg></div>
+
+  <ul>
+    <li>Your chances of being
+      <strong>alive</strong>
+      <span class="alivePieColor">
+        <strong>(in GREEN)</strong>
+      </span>
+    </li>
+    <li>Your chances of dying from your
+      <strong>prostate cancer</strong>
+      <span class="prostatePieColor">
+        <strong>(in PURPLE)</strong>
+      </span>
+    </li>
+    <li>Your chances of dying from
+      <strong>other causes</strong>
+      <span class="otherPieColor">
+        <strong>(in ORANGE)</strong>
+      </span>
+    </li>
+  </ul>
+
+  <div class="section-text" id="calmingText-part2">
+    <p>
+      Before thinking about the benefits of specific treatments, it is helpful to first think about
+      <strong>how big of a threat</strong> your prostate cancer is to your future survival.
+    </p>
+  </div>
+
+</div>
+
+<!-- *********************************** -->
+<!-- *** PAGE 5 : PC THREAT ************ -->
+<!-- *********************************** -->
+<div class="section active" id="cancerRisk">
+
+  <h2 class="title">How big of a threat is my prostate cancer?</h2>
+  <br>
+
+  <div class="section-text">
+
+    <p>
+      Before thinking about the benefits of specific treatments, it's helpful to first think about how big of threat your prostate cancer is to your future survival. The pie chart below shows the following:
+    </p>
+    <ul>
+      <li>Your chances of being
+        <strong>alive</strong>
+        <span class="alivePieColor">
+          <strong>(in GREEN)</strong>
+        </span>
+      </li>
+      <li>Your chances of dying from your
+        <strong>prostate cancer</strong>
+        <span class="prostatePieColor">
+          <strong>(in PURPLE)</strong>
+        </span>
+      </li>
+      <li>Your chances of dying from
+        <strong>other causes</strong>
+        <span class="otherPieColor">
+          <strong>(in ORANGE)</strong>
+        </span>
+      </li>
+    </ul>
+
+  </div>
+
+  <div class="treatment risk" id="risk1yr"><svg width="288" height="400"><g class="p0_lineGroups" style="opacity: 1;"><g class="p0_lineGroup"><path d="M150.28953589953312,275.68774990588355L150.67239313758716,276.18529124372515C151.05525037564126,276.68283258156674,151.82096485174938,277.67791525724994,152.35239380396564,279.2014139419497C152.88382275618193,280.7249126266494,153.18096618450633,282.77682732036567,153.32953789866855,283.8027846672238L153.47810961283074,284.82874201408197" stroke="#66c2a5" stroke-width="1" fill="none" style="opacity: 1;"></path></g><g class="p0_lineGroup"><path d="M137.49217099274554,149.33435932714417L133.40977926144362,149.6676207480169C129.3273875301417,150.00088216888963,121.16260406753786,150.6674050106351,115.71941509246864,150.64508690513205C110.2762261173994,150.62276879962903,107.5546316298648,149.9116097468775,106.19383438609749,149.55603022050175L104.8330371423302,149.200450694126" stroke="#fc8d62" stroke-width="1" fill="none" style="opacity: 1;"></path></g><g class="p0_lineGroup"><path d="M143.78059043918563,149.00037906062255L143.52540753617424,147.50038801481048C143.27022463316288,146.00039696899842,142.75985882714016,143.00041487737428,142.41961495645836,140.53376014962484C142.07937108577653,138.06710542187543,141.9092491504356,136.1337780580007,141.82418818276517,135.16711437606335L141.73912721509473,134.200450694126" stroke="#8da0cb" stroke-width="1" fill="none" style="opacity: 1;"></path></g></g><g transform="translate(144,212.5)" class="p0_pieChart"><g class="p0_arc" transform="rotate(0)"><path id="p0_segment0" fill="#66c2a5" style="stroke: rgb(255, 255, 255); stroke-width: 1; fill: rgb(102, 194, 165);" d="M3.8882535872928465e-15,-63.5A63.5,63.5 0 1,1 -12.517216423426008,-62.254070493495554L0,0Z" data-index="0"></path></g><g class="p0_arc" transform="rotate(348.6313164807141)"><path id="p0_segment1" fill="#fc8d62" style="stroke: rgb(255, 255, 255); stroke-width: 1; fill: rgb(252, 141, 98);" d="M3.8882535872928465e-15,-63.5A63.5,63.5 0 0,1 12.086711029170921,-62.339084180771515L0,0Z" data-index="1"></path></g><g class="p0_arc" transform="rotate(359.6040545879041)"><path id="p0_segment2" fill="#8da0cb" style="stroke: rgb(255, 255, 255); stroke-width: 1;" d="M3.8882535872928465e-15,-63.5A63.5,63.5 0 0,1 0.4388165021161353,-63.49848376203538L0,0Z" data-index="2"></path></g></g><text id="p0_title" class="p0_title" x="146.5" y="25" text-anchor="middle" fill="#333333" style="font-size: 18px; font-family: arial;">1 Year (71 years old)</text><text x="144" y="395" id="p0_footer" class="p0_footer" text-anchor="left" fill="#666666" style="font-size: 14px; font-family: arial;"></text><g class="p0_labels-inner"><g id="p0_labelGroup0-inner" data-index="0" class="p0_labelGroup-inner" transform="translate(134.99418661085173,251.10430550326865)" style="opacity: 1;"><text id="p0_segmentPercentage0-inner" class="p0_segmentPercentage-inner" style="font-size: 12px; font-family: arial; fill: rgb(255, 255, 255);">97%</text></g><g id="p0_labelGroup1-inner" data-index="1" class="p0_labelGroup-inner" transform="translate(131.3845394404142,180.90797740396897)" style="opacity: 0;"><text id="p0_segmentPercentage1-inner" class="p0_segmentPercentage-inner" style="font-size: 12px; font-family: arial; fill: rgb(255, 255, 255);">3%</text></g><g id="p0_labelGroup2-inner" data-index="2" class="p0_labelGroup-inner" transform="translate(134.87810579954757,180.72243281145697)" style="opacity: 0;"><text id="p0_segmentPercentage2-inner" class="p0_segmentPercentage-inner" style="font-size: 12px; font-family: arial; fill: rgb(255, 255, 255);">0%</text></g></g><g class="p0_labels-outer"><g id="p0_labelGroup0-outer" data-index="0" class="p0_labelGroup-outer" transform="translate(159.47810961283074,287.628742014082)" style="opacity: 1;"><text id="p0_segmentMainLabel0-outer" class="p0_segmentMainLabel-outer" style="font-size: 12px; font-family: arial; fill: rgb(51, 51, 51);">Alive</text></g><g id="p0_labelGroup1-outer" data-index="1" class="p0_labelGroup-outer" transform="translate(17.8330371423302,152.00045069412602)" style="opacity: 1;"><text id="p0_segmentMainLabel1-outer" class="p0_segmentMainLabel-outer" style="font-size: 12px; font-family: arial; fill: rgb(51, 51, 51);">Mortality-Other</text></g><g id="p0_labelGroup2-outer" data-index="2" class="p0_labelGroup-outer" transform="translate(40.739127215094726,137.00045069412602)" style="opacity: 1;"><text id="p0_segmentMainLabel2-outer" class="p0_segmentMainLabel-outer" style="font-size: 12px; font-family: arial; fill: rgb(51, 51, 51);">Mortality-Prostate</text></g></g></svg></div>
+  <div class="treatment risk" id="risk5yr"><svg width="288" height="400"><g class="p1_lineGroups" style="opacity: 1;"><g class="p1_lineGroup"><path d="M184.1690182453541,261.6802803286481L184.81864306093428,262.06752663044847C185.46826787651452,262.45477293224883,186.76751750767494,263.2292655358496,188.3660167699958,264.31158407638446C189.96451603231668,265.39390261691926,191.86226492579797,266.7840470943882,192.8111393725386,267.47911933312264L193.7600138192793,268.17419157185714" stroke="#66c2a5" stroke-width="1" fill="none" style="opacity: 1;"></path></g><g class="p1_lineGroup"><path d="M98.7050406485233,167.99588044519842L97.38508097880337,166.94460203051807C96.06512130908344,165.89332361583772,93.42520196964361,163.790766786477,91.66525574335037,161.92239556690322C89.90530951705715,160.0540243473294,89.02533640391053,158.41983873754248,88.58534984733723,157.60274593264904L88.14536329076392,156.78565312775558" stroke="#fc8d62" stroke-width="1" fill="none" style="opacity: 1;"></path></g><g class="p1_lineGroup"><path d="M137.0719368820457,149.3790689118606L136.65828184776328,147.88802329560534C136.24462681348092,146.39697767935007,135.41731674491615,143.41488644683955,134.8657766992063,140.96015895849922C134.31423665349644,138.50543147015887,134.03846663064152,136.5780677259887,133.90058161921408,135.6143858539036L133.7626966077866,134.6507039818185" stroke="#8da0cb" stroke-width="1" fill="none" style="opacity: 1;"></path></g></g><g transform="translate(144,212.5)" class="p1_pieChart"><g class="p1_arc" transform="rotate(0)"><path id="p1_segment0" fill="#66c2a5" style="stroke: rgb(255, 255, 255); stroke-width: 1; fill: rgb(102, 194, 165);" d="M3.8882535872928465e-15,-63.5A63.5,63.5 0 1,1 -62.22121504986122,-12.679526715099572L0,0Z" data-index="0" transform="translate(0,0)" class=""></path></g><g class="p1_arc" transform="rotate(281.5181057820762)"><path id="p1_segment1" fill="#fc8d62" style="stroke: rgb(255, 255, 255); stroke-width: 1; fill: rgb(252, 141, 98);" d="M3.8882535872928465e-15,-63.5A63.5,63.5 0 0,1 57.98966788394991,-25.87370129512181L0,0Z" data-index="1" transform="translate(0,0)" class=""></path></g><g class="p1_arc" transform="rotate(347.47273885066494)"><path id="p1_segment2" fill="#8da0cb" style="stroke: rgb(255, 255, 255); stroke-width: 1; fill: rgb(141, 160, 203);" d="M3.8882535872928465e-15,-63.5A63.5,63.5 0 0,1 13.773410854887432,-61.988250123894204L0,0Z" data-index="2" transform="translate(0,0)" class=""></path></g></g><text id="p1_title" class="p1_title" x="146.5" y="25" text-anchor="middle" fill="#333333" style="font-size: 18px; font-family: arial;">5 years (75 years old)</text><text x="144" y="395" id="p1_footer" class="p1_footer" text-anchor="left" fill="#666666" style="font-size: 14px; font-family: arial;"></text><g class="p1_labels-inner"><g id="p1_labelGroup0-inner" data-index="0" class="p1_labelGroup-inner" transform="translate(153.81612124741895,243.32237796036006)" style="opacity: 1;"><text id="p1_segmentPercentage0-inner" class="p1_segmentPercentage-inner" style="font-size: 12px; font-family: arial; fill: rgb(255, 255, 255);">78%</text></g><g id="p1_labelGroup1-inner" data-index="1" class="p1_labelGroup-inner" transform="translate(106.33613369362405,191.27548913622135)" style="opacity: 1;"><text id="p1_segmentPercentage1-inner" class="p1_segmentPercentage-inner" style="font-size: 12px; font-family: arial; fill: rgb(255, 255, 255);">18%</text></g><g id="p1_labelGroup2-inner" data-index="2" class="p1_labelGroup-inner" transform="translate(131.15107604558094,180.93281606214478)" style="opacity: 0;"><text id="p1_segmentPercentage2-inner" class="p1_segmentPercentage-inner" style="font-size: 12px; font-family: arial; fill: rgb(255, 255, 255);">3%</text></g></g><g class="p1_labels-outer"><g id="p1_labelGroup0-outer" data-index="0" class="p1_labelGroup-outer" transform="translate(199.7600138192793,270.97419157185715)" style="opacity: 1;"><text id="p1_segmentMainLabel0-outer" class="p1_segmentMainLabel-outer" style="font-size: 12px; font-family: arial; fill: rgb(51, 51, 51);">Alive</text></g><g id="p1_labelGroup1-outer" data-index="1" class="p1_labelGroup-outer" transform="translate(1.1453632907639246,159.5856531277556)" style="opacity: 1;"><text id="p1_segmentMainLabel1-outer" class="p1_segmentMainLabel-outer" style="font-size: 12px; font-family: arial; fill: rgb(51, 51, 51);">Mortality-Other</text></g><g id="p1_labelGroup2-outer" data-index="2" class="p1_labelGroup-outer" transform="translate(32.76269660778661,137.45070398181852)" style="opacity: 1;"><text id="p1_segmentMainLabel2-outer" class="p1_segmentMainLabel-outer" style="font-size: 12px; font-family: arial; fill: rgb(51, 51, 51);">Mortality-Prostate</text></g></g></svg></div>
+  <div class="treatment risk" id="risk10yr"><svg width="288" height="400"><g class="p2_lineGroups" style="opacity: 1;"><g class="p2_lineGroup"><path d="M207.47353259635153,210.66678977203907L208.63978245351188,210.6234855934258C209.8060323106723,210.58018141481256,212.13853202499308,210.49357305758605,214.47103173931387,209.9691674861017C216.80353145363466,209.44476191461737,219.13603116795545,208.4825591288752,220.30228102511586,208.0014577360041L221.46853088227624,207.52035634313305" stroke="#66c2a5" stroke-width="1" fill="none" style="opacity: 1;"></path></g><g class="p2_lineGroup"><path d="M84.00114860428985,233.2939373663453L83.44538337020289,233.45766915663148C82.88961813611593,233.62140094691765,81.77808766794202,233.94886452749,79.5550267315942,234.13712502196807C77.33196579524636,234.32538551644612,73.99737439072463,234.37444292482988,72.33007868846377,234.3989716290218L70.6627829862029,234.42350033321367" stroke="#fc8d62" stroke-width="1" fill="none" style="opacity: 1;"></path></g><g class="p2_lineGroup"><path d="M124.94686372937505,151.9258471107272L124.24678964424217,150.4949616094058C123.5467155591093,149.06407610808438,122.14656738884355,146.20230510544155,121.21313527533306,143.8277911036797C120.27970316182255,141.45327710191782,119.81298710506731,139.56602010103688,119.57962907668968,138.62239160059642L119.34627104831206,137.67876310015595" stroke="#8da0cb" stroke-width="1" fill="none" style="opacity: 1;"></path></g></g><g transform="translate(144,212.5)" class="p2_pieChart"><g class="p2_arc" transform="rotate(0)"><path id="p2_segment0" fill="#66c2a5" style="stroke: rgb(255, 255, 255); stroke-width: 1; fill: rgb(102, 194, 165);" d="M3.8882535872928465e-15,-63.5A63.5,63.5 0 0,1 3.664892257021817,63.394152449136996L0,0Z" data-index="0"></path></g><g class="p2_arc" transform="rotate(176.691344734476)"><path id="p2_segment1" fill="#fc8d62" style="stroke: rgb(255, 255, 255); stroke-width: 1; fill: rgb(252, 141, 98);" d="M3.8882535872928465e-15,-63.5A63.5,63.5 0 0,1 33.2848885732293,54.077409263644554L0,0Z" data-index="1"></path></g><g class="p2_arc" transform="rotate(325.07886073992495)"><path id="p2_segment2" fill="#8da0cb" style="stroke: rgb(255, 255, 255); stroke-width: 1; fill: rgb(141, 160, 203);" d="M3.8882535872928465e-15,-63.5A63.5,63.5 0 0,1 36.350475259117594,-52.066236165448714L0,0Z" data-index="2"></path></g></g><text id="p2_title" class="p2_title" x="146.5" y="25" text-anchor="middle" fill="#333333" style="font-size: 18px; font-family: arial;">10 Years (80 years old)</text><text x="144" y="395" id="p2_footer" class="p2_footer" text-anchor="left" fill="#666666" style="font-size: 14px; font-family: arial;"></text><g class="p2_labels-inner"><g id="p2_labelGroup0-inner" data-index="0" class="p2_labelGroup-inner" transform="translate(166.76307366463973,214.98154987335505)" style="opacity: 1;"><text id="p2_segmentPercentage0-inner" class="p2_segmentPercentage-inner" style="font-size: 12px; font-family: arial; fill: rgb(255, 255, 255);">49%</text></g><g id="p2_labelGroup1-inner" data-index="1" class="p2_labelGroup-inner" transform="translate(98.16730478016103,227.55218742574738)" style="opacity: 1;"><text id="p2_segmentPercentage1-inner" class="p2_segmentPercentage-inner" style="font-size: 12px; font-family: arial; fill: rgb(255, 255, 255);">41%</text></g><g id="p2_labelGroup2-inner" data-index="2" class="p2_labelGroup-inner" transform="translate(120.91492429409726,182.3476928392929)" style="opacity: 1;"><text id="p2_segmentPercentage2-inner" class="p2_segmentPercentage-inner" style="font-size: 12px; font-family: arial; fill: rgb(255, 255, 255);">10%</text></g></g><g class="p2_labels-outer"><g id="p2_labelGroup0-outer" data-index="0" class="p2_labelGroup-outer" transform="translate(227.46853088227624,210.32035634313306)" style="opacity: 1;"><text id="p2_segmentMainLabel0-outer" class="p2_segmentMainLabel-outer" style="font-size: 12px; font-family: arial; fill: rgb(51, 51, 51);">Alive</text></g><g id="p2_labelGroup1-outer" data-index="1" class="p2_labelGroup-outer" transform="translate(-16.3372170137971,237.22350033321368)" style="opacity: 1;"><text id="p2_segmentMainLabel1-outer" class="p2_segmentMainLabel-outer" style="font-size: 12px; font-family: arial; fill: rgb(51, 51, 51);">Mortality-Other</text></g><g id="p2_labelGroup2-outer" data-index="2" class="p2_labelGroup-outer" transform="translate(18.34627104831206,140.47876310015596)" style="opacity: 1;"><text id="p2_segmentMainLabel2-outer" class="p2_segmentMainLabel-outer" style="font-size: 12px; font-family: arial; fill: rgb(51, 51, 51);">Mortality-Prostate</text></g></g></svg></div>
+
+</div>
+
+<!-- *********************************** -->
+<!-- *** PAGE 7 : TREATMENT OPTIONS **** -->
+<!-- *********************************** -->
+<div class="section inactive" id="treatmentOptions">
+
+  <h2 class="title">What are my treatment options?</h2>
+  <br>
+
+  <div id="treatmentList">
+    <div class="treatmentItem">
+      <h2> Surgery </h2>
+      <!-- This treatment approach involves removing the prostate gland, and surrounding tissues that may contain cancer, through an operation. -->
+    </div>
+    <div class="treatmentItem">
+      <h2> Conservative management</h2>
+      <!-- This treatment approach includes two approaches, &quot;watchful waiting&quot; and &quot;active surveillance,&quot; aimed at monitoring for problems or signs that the cancer is spreading, and giving treatment only if necessary -->
+    </div>
+    <div class="treatmentItem">
+      <h2> Radiation therapy **</h2>
+      <!-- This treatment approach involves using high-energy X-rays or other types of radiation to kill the cancer cells. -->
+    </div>
+
+    <div class="treatmentItem">
+      <h2> Hormone therapy **</h2>
+      <!-- This treatment approach involves using high-energy X-rays or other types of radiation to kill the cancer cells. -->
+    </div>
+
+    <div class="treatmentItem">
+      <h2> Chemotherapy **</h2>
+      <!-- This treatment approach involves using high-energy X-rays or other types of radiation to kill the cancer cells. -->
+    </div>
+
+    <div class="treatmentItem">
+      <h2> Biphosphate therapy **</h2>
+      <!-- This treatment approach involves using high-energy X-rays or other types of radiation to kill the cancer cells. -->
+    </div>
+
+  </div>
+
+  <br>
+  <br>
+
+  <div class="section-text" style="margin: auto;">
+    <p>
+      You can view your expected
+      <strong>benefits</strong> from <u>surgery</u> and <u>conservative management</u> on the
+      <em>next page</em>. The possible
+      <strong>harms</strong> of these treatments are not included in the PROACT tool but can be found at the <a href="http://www.cancer.gov/cancertopics/types/prostate"> NCI website</a>.
+    </p>
+  </div>
+
+</div>
+
+<!-- *********************************** -->
+<!-- *** PAGE 8 : SURGERY V. CONSERV *** -->
+<!-- *********************************** -->
+<div class="section inactive" id="table">
+
+  <h2>How effective are different treatments for my prostate cancer?</h2>
+  <br>
+
+  <div class="section-text">
+    <p>
+      The expected benefits from
+      <strong>surgery </strong> and
+      <strong> conservative management </strong> are listed below.
+    </p>
+    <p>
+      These results show your estimated chances of either surviving or dying
+      <strong>from your prostate cancer</strong> at 1, 5, and 10 years, depending on whether you choose either <span style="color: #807dba">surgery
+
+        <strong>(DARK PURPLE BAR)</strong>
+      </span> or       <span style="color: #bcbddc">
+conservative treatment
+        <strong>(LIGHT PURPLE BAR)</strong>
+      </span>.
+    </p>
+    <p>
+      You can view these risks in terms of either
+      <span id="tserve" style="text-decoration: underline;">survival</span> or
+      <span id="mserve">mortality</span>.
+    </p>
+    <br>
+    <br>
+  </div>
+
+  <div id="treatmentWrapper">
+    <div class="treatment" id="treatment1yr"><svg class="barchart" width="200" height="250"><g transform="translate(16,44)"><rect x="0" y="25" width="70" height="161" style="fill: rgb(128, 125, 186);"></rect><rect x="80" y="25" width="70" height="161" style="fill: rgb(188, 189, 220);"></rect><text class="bartitle" text-anchor="middle" y="-20" x="84" style="color: rgb(0, 0, 0); font-size: 14px;">Surviving your Prostate Cancer</text><text class="barSubTitle" text-anchor="middle" y="0" x="84" style="color: rgb(0, 0, 0); font-size: 14px;">after 1 year (71 years old)</text><text class="barpercent" text-anchor="middle" x="40" y="21" style="font-size: 14px; fill: rgb(0, 0, 0);">100%</text><text class="barpercent" text-anchor="middle" x="120" y="21" style="font-size: 14px; fill: rgb(0, 0, 0);">100%</text><text class="barlabel" text-anchor="middle" x="35" y="201" style="font-size: 12px; fill: rgb(0, 0, 0);">surgery</text><text class="barlabel" text-anchor="middle" x="115" y="201" style="font-size: 12px; fill: rgb(0, 0, 0);">conservative</text></g></svg></div>
+    <div class="treatment" id="treatment5yr"><svg class="barchart" width="200" height="250"><g transform="translate(16,44)"><rect x="0" y="25" width="70" height="161" style="fill: rgb(128, 125, 186);"></rect><rect x="80" y="29.53" width="70" height="156.47" style="fill: rgb(188, 189, 220);"></rect><text class="bartitle" text-anchor="middle" y="-20" x="84" style="color: rgb(0, 0, 0); font-size: 14px;">Surviving your Prostate Cancer</text><text class="barSubTitle" text-anchor="middle" y="0" x="84" style="color: rgb(0, 0, 0); font-size: 14px;">after 5 year (75 years old)</text><text class="barpercent" text-anchor="middle" x="40" y="21" style="font-size: 14px; fill: rgb(0, 0, 0);">100%</text><text class="barpercent" text-anchor="middle" x="120" y="25.53" style="font-size: 14px; fill: rgb(0, 0, 0);">97%</text><text class="barlabel" text-anchor="middle" x="35" y="201" style="font-size: 12px; fill: rgb(0, 0, 0);">surgery</text><text class="barlabel" text-anchor="middle" x="115" y="201" style="font-size: 12px; fill: rgb(0, 0, 0);">conservative</text></g></svg></div>
+    <div class="treatment" id="treatment10yr"><svg class="barchart" width="200" height="250"><g transform="translate(16,44)"><rect x="0" y="26.51000000000002" width="70" height="159.48999999999998" style="fill: rgb(128, 125, 186);"></rect><rect x="80" y="38.59" width="70" height="147.41" style="fill: rgb(188, 189, 220);"></rect><text class="bartitle" text-anchor="middle" y="-20" x="84" style="color: rgb(0, 0, 0); font-size: 14px;">Surviving your Prostate Cancer</text><text class="barSubTitle" text-anchor="middle" y="0" x="84" style="color: rgb(0, 0, 0); font-size: 14px;">after 10 year (80 years old)</text><text class="barpercent" text-anchor="middle" x="40" y="22.51000000000002" style="font-size: 14px; fill: rgb(0, 0, 0);">99%</text><text class="barpercent" text-anchor="middle" x="120" y="34.59" style="font-size: 14px; fill: rgb(0, 0, 0);">91%</text><text class="barlabel" text-anchor="middle" x="35" y="201" style="font-size: 12px; fill: rgb(0, 0, 0);">surgery</text><text class="barlabel" text-anchor="middle" x="115" y="201" style="font-size: 12px; fill: rgb(0, 0, 0);">conservative</text></g></svg></div>
+  </div>
+
+  <div id="toggleWrapper" style="display: inline;">
+    <button id="toggle" name="toggle">
+      Show in terms of
+      <span id="toggleSwitch">Mortality</span>
+    </button>
+  </div>
+
+</div>
+
+<!-- *********************************** -->
+<!-- *** PAGE - : TREATMENT PATHWAYS *** -->
+<!-- *********************************** -->
+<div class="section inactive" id="paths">
+
+
+    <h2 class="title">Choosing Radiation Therapy</h2>
+    <br>
+
+    <div class="section-text">
+
+      <p>
+          Currently, we do not have <strong>personalized</strong> statistics for radiation therapy.
+          However, we can offer some <strong>summary</strong> statistics.
+
+      </p>
+      <p>
+          There are two types of Radiation Therapy: <span class="prostatePieColor"><strong>External Beam Radiation</strong></span> and <span class="alivePieColor"><strong> Internal Radiation Therapy (Brachytherapy)</strong></span>.
+      </p>
+      <p>
+          In <span class="prostatePieColor"><strong>External Beam Radiation</strong></span>, radiation is delivered externally from a machine.
+      </p>
+      <p>
+          In <span class="alivePieColor"><strong>Brachytherapy</strong></span>, radiation sources are placed into the prostate gland through specialized needles.
+      </p>
+      <p>
+
+          If you are have a high risk of cancer recurrence, <span class="prostatePieColor"><strong>External Beam Radiation</strong></span> is often paired with two to three years of <span class="otherPieColor"><strong>Hormonal Treatment</strong></span>.
+      </p>
+      <h3>How do the costs of Radiation Therapy compare with other forms treatment?</h3>
+      <p>
+          Radiation Therapy tends to be more expensive than other forms of treatment.
+          However, costs differ greatly from hospital to hospital, and also varies widely. Talk to your doctor about treatment costs to find what's best for you.
+      </p>
+  </div>
+</div>
+
+<!-- *********************************** -->
+<!-- *** PAGE - 8b: SIDE EFFECTS ******** -->
+<!-- *********************************** -->
+<div class="section inactive" id="sideeffects">
+
+  <h2>Possible Side Effects</h2>
+  <br>
+  <div class="explanation">
+      <p>
+          Possible side effects for both <span class="prostatePieColor"><strong>External Beam Radiation</strong></span> and <span class="alivePieColor"><strong> Internal Beam Radiation (Brachytherapy)</strong></span> are:
+          <ul>
+              <li><strong>Bowel Problems</strong>
+                  <ul>
+                      <li>Frequency:  <span style="color: #cc975f">Infrequent to Common</span></li>
+                      <li>Involved Factors: Diet during therapy.</li>
+                  </ul>
+              </li>
+
+              <li><strong>Urinary Problems</strong>
+                  <ul>
+                      <li>Frequency:  <span style="color: #cc975f">Infrequent to Common</span></li>
+                      <li>Involved Factors: Duration of treatment.</li>
+                  </ul>
+              </li>
+
+              <li><strong>Impotence</strong>
+                  <ul>
+                      <li>Frequency:  <span style="color: #cc6961">Common</span></li>
+                      <li>Involved Factors: Duration and Frequency of treatments.</li>
+                  </ul>
+              </li>
+
+              <li><strong>Tiredness</strong>
+                  <ul>
+                      <li>Frequency:  <span style="color: #cc6961">Common</span></li>
+                      <li>Involved Factors: Duration and Frequency of treatments.</li>
+                  </ul>
+              </li>
+
+              <li><strong>Lymphedema</strong>
+                  <ul>
+                      <li>Frequency:  <span style="color: #a6ce61">Uncommon</span></li>
+                      <li>Involved Factors: N/A (Radiation may affect nearby lymph nodes)</li>
+                  </ul>
+              </li>
+
+          </ul>
+      </p>
+  </div>
+
+
+</div>
+<!-- *********************************** -->
+<!-- *** PAGE - : EXPLORE ************** -->
+<!-- *********************************** -->
+<div class="section inactive" id="curve">
+
+  <h2>Exploring your information further</h2>
+  <br>
+
+  <div class="explanation">
+    <p>
+      These interactive graphs give you a different way of seeing and thinking about the benefits of different treatments. Feel free to explore these graphs using your mouse.
+    </p>
+  </div>
+
+  <div id="vis">
+    After
+    <span id="vyear"></span> years:
+    <ul>
+      <li>
+        <span id="valive"></span>
+        of people will be alive,
+      </li>
+      <li>
+        <span id="vother"></span>
+        will die of something other than prostate cancer,
+      </li>
+      <li>
+        <span id="vcx"></span>
+        who followed conservative treatment will die of prostate cancer, and
+      </li>
+      <li>
+        <span id="vprostate"></span>
+        who had surgery will die of prostate cancer.
+      </li>
+    </ul>
+  <svg class="curveVis" width="960" height="500"><g transform="translate(44,8)"><rect class="alive" width="816" height="412" style="fill: rgb(102, 194, 165);"></rect><path d="M0,0.8410266549702037L6.799999999999997,1.70978029731046L13.600000000000025,2.602705165516444L20.400000000000002,3.5198891033981434L27.19999999999997,4.460266248989518L34.00000000000003,5.424191894417663L40.800000000000004,6.414594141275076L47.59999999999998,7.433836629957926L54.40000000000002,8.483905641932498L61.199999999999996,9.565888493709691L67.99999999999997,10.680763326904728L74.80000000000003,11.829007696125538L81.60000000000001,13.010826694293915L88.39999999999972,14.226188746129585L95.20000000000027,15.47485623997213L102,16.756146481669436L108.79999999999973,18.068981116170406L115.60000000000026,19.411900997565564L122.39999999999999,20.78367670182076L129.19999999999973,22.182708284019746L136.00000000000028,23.607688217071267L142.79999999999998,25.056784466088242L149.5999999999997,26.528441996132926L156.4000000000003,28.021741219834357L163.20000000000002,29.536145155815465L169.99999999999972,31.068906755467296L176.80000000000027,32.6177037252527L183.6,34.18214622280023L190.39999999999972,35.76205700980893L197.20000000000027,37.35621762631398L204,38.9637279844236L210.7999999999997,40.584305961551905L217.60000000000028,42.21819810159755L224.4,43.864776361013185L231.19999999999973,45.519179132528336L238.00000000000028,47.178041282839175L244.79999999999998,48.842500134570976L251.59999999999974,50.50746168164098L258.40000000000026,52.1743984255871L265.2,53.84373445266252L271.9999999999997,55.51554010464404L278.8000000000003,57.18937392362851L285.59999999999997,58.86884762364079L292.39999999999975,60.552879750400564L299.2000000000003,62.24115685530202L306,63.933546629130646L312.7999999999997,65.63020806822047L319.60000000000025,67.3300955617337L326.40000000000003,69.03407710966849L333.19999999999976,70.74114102934332L340.0000000000002,72.44911560266151L346.8,74.16059807886187L353.59999999999974,75.8779829173835L360.40000000000026,77.60172452865731L367.2,79.33062486718987L373.9999999999998,81.06393422686688L380.80000000000024,82.80281609896484L387.59999999999997,84.54797176178997L394.39999999999975,86.29972953505307L401.2000000000003,88.05691646580773L408,89.81816782717944L414.7999999999998,91.58190576034185L421.60000000000025,93.34896996084449L428.40000000000003,95.11862192296596L435.1999999999997,96.89115477933831L442.0000000000002,98.66482427446705L448.8,100.44033810538268L455.59999999999974,102.22181645044034L462.40000000000026,104.00792901261444L469.2,105.79821946274507L475.9999999999998,107.59176497689067L482.8000000000003,109.38778205622464L489.59999999999997,111.18689518489613L496.39999999999975,112.99023968290014L503.2000000000002,114.79841864416616L510,116.6109752959385L516.7999999999998,118.42795278607574L523.6000000000003,120.24878127366198L530.4,122.07287444138647L537.1999999999997,123.90026251628629L544.0000000000002,125.72890515871224L550.8000000000001,127.5602495790512L557.5999999999998,129.39483381017752L564.4000000000002,131.2321954743199L571.1999999999999,133.07261134281256L577.9999999999998,134.91813667965164L584.8000000000003,136.76925499199257L591.6,138.6259925920679L598.3999999999997,140.48831535759055L605.2000000000002,142.3571327817615L612,144.23388627282495L618.7999999999998,146.1175111150933L625.6000000000003,148.00813673207074L632.4,149.90737458848344L639.1999999999997,151.8157161756148L646.0000000000002,153.73632443320474L652.8000000000001,155.66874511118607L659.5999999999998,157.6121903013821L666.4000000000002,159.568267580272L673.1999999999999,161.53694012548337L679.9999999999998,163.51928282915017L686.8000000000003,165.51613824077722L693.6,167.52808926090214L700.3999999999997,169.55983875987263L707.2000000000002,171.61210392904508L714,173.68088884655896L720.7999999999998,175.76853725364236L727.6000000000003,177.8768847100734L734.4,180.01088600609586L741.1999999999997,182.1740883270092L748.0000000000002,184.37009766583313L754.8000000000001,186.60667072248253L761.5999999999998,188.8904898687689L768.4000000000002,191.2276567635922L775.1999999999999,193.62547313795733L781.9999999999998,196.09224444570106L788.8000000000003,198.63715298556502L795.6,201.2713714890168L802.3999999999997,204.00624068418443L809.2000000000002,206.84359296084034L816,209.7865721372108L816,0L809.2000000000002,0L802.3999999999997,0L795.6,0L788.8000000000003,0L781.9999999999998,0L775.1999999999999,0L768.4000000000002,0L761.5999999999998,0L754.8000000000001,0L748.0000000000002,0L741.1999999999997,0L734.4,0L727.6000000000003,0L720.7999999999998,0L714,0L707.2000000000002,0L700.3999999999997,0L693.6,0L686.8000000000003,0L679.9999999999998,0L673.1999999999999,0L666.4000000000002,0L659.5999999999998,0L652.8000000000001,0L646.0000000000002,0L639.1999999999997,0L632.4,0L625.6000000000003,0L618.7999999999998,0L612,0L605.2000000000002,0L598.3999999999997,0L591.6,0L584.8000000000003,0L577.9999999999998,0L571.1999999999999,0L564.4000000000002,0L557.5999999999998,0L550.8000000000001,0L544.0000000000002,0L537.1999999999997,0L530.4,0L523.6000000000003,0L516.7999999999998,0L510,0L503.2000000000002,0L496.39999999999975,0L489.59999999999997,0L482.8000000000003,0L475.9999999999998,0L469.2,0L462.40000000000026,0L455.59999999999974,0L448.8,0L442.0000000000002,0L435.1999999999997,0L428.40000000000003,0L421.60000000000025,0L414.7999999999998,0L408,0L401.2000000000003,0L394.39999999999975,0L387.59999999999997,0L380.80000000000024,0L373.9999999999998,0L367.2,0L360.40000000000026,0L353.59999999999974,0L346.8,0L340.0000000000002,0L333.19999999999976,0L326.40000000000003,0L319.60000000000025,0L312.7999999999997,0L306,0L299.2000000000003,0L292.39999999999975,0L285.59999999999997,0L278.8000000000003,0L271.9999999999997,0L265.2,0L258.40000000000026,0L251.59999999999974,0L244.79999999999998,0L238.00000000000028,0L231.19999999999973,0L224.4,0L217.60000000000028,0L210.7999999999997,0L204,0L197.20000000000027,0L190.39999999999972,0L183.6,0L176.80000000000027,0L169.99999999999972,0L163.20000000000002,0L156.4000000000003,0L149.5999999999997,0L142.79999999999998,0L136.00000000000028,0L129.19999999999973,0L122.39999999999999,0L115.60000000000026,0L108.79999999999973,0L102,0L95.20000000000027,0L88.39999999999972,0L81.60000000000001,0L74.80000000000003,0L67.99999999999997,0L61.199999999999996,0L54.40000000000002,0L47.59999999999998,0L40.800000000000004,0L34.00000000000003,0L27.19999999999997,0L20.400000000000002,0L13.600000000000025,0L6.799999999999997,0L0,0Z" class="all" style="fill: rgb(141, 160, 203);"><title>all</title></path><path d="M0,0L6.799999999999997,0L13.600000000000025,0L20.400000000000002,0L27.19999999999997,0.004299075895165316L34.00000000000003,0.02012156481294225L40.800000000000004,0.04750656975080414L47.59999999999998,0.08643739547332219L54.40000000000002,0.13691092168653762L61.199999999999996,0.19891333369763808L67.99999999999997,0.27238176930255564L74.80000000000003,0.3571823425995384L81.60000000000001,0.4531375271763953L88.39999999999972,0.5600200264507245L95.20000000000027,0.6774953976332236L102,0.8052771890908317L108.79999999999973,0.9431898967335046L115.60000000000026,1.0911838176537696L122.39999999999999,1.2491103245441488L129.19999999999973,1.4168618762783827L136.00000000000028,1.5942451548390228L142.79999999999998,1.7808726922362546L149.5999999999997,1.9765132319228549L156.4000000000003,2.180832796073781L163.20000000000002,2.3931667343760497L169.99999999999972,2.613456654835156L176.80000000000027,2.841261894491208L183.6,3.076209849206534L190.39999999999972,3.317495991505146L197.20000000000027,3.563987346325897L204,3.815129704960335L210.7999999999997,4.070827538904878L217.60000000000028,4.3330829194343075L224.4,4.602277743586475L231.19999999999973,4.878032263881196L238.00000000000028,5.159241798791561L244.79999999999998,5.446439266415522L251.59999999999974,5.738961868670984L258.40000000000026,6.0361008092401836L265.2,6.336685020149971L271.9999999999997,6.6406004494373905L278.8000000000003,6.946374847380117L285.59999999999997,7.2541293932754325L292.39999999999975,7.563459096296046L299.2000000000003,7.873621095604093L306,8.184187408005643L312.7999999999997,8.494999803955995L319.60000000000025,8.807677949773918L326.40000000000003,9.122447261915209L333.19999999999976,9.43883553552034L340.0000000000002,9.756583070463904L346.8,10.075709899384465L353.59999999999974,10.397075875910835L360.40000000000026,10.721487149800696L367.2,11.049400706988735L373.9999999999998,11.381702883687616L380.80000000000024,11.717920498797579L387.59999999999997,12.0575528422469L394.39999999999975,12.400062272254676L401.2000000000003,12.744918089534474L408,13.091528448240235L414.7999999999998,13.439346258464818L421.60000000000025,13.787913588272072L428.40000000000003,14.136700793002472L435.1999999999997,14.485433995403508L442.0000000000002,14.833546885368866L448.8,15.180776367105423L455.59999999999974,15.526842059748702L462.40000000000026,15.875353483690972L469.2,16.23510527523239L475.9999999999998,16.60559421570908L482.8000000000003,16.9854032483134L489.59999999999997,17.373798479124993L496.39999999999975,17.769853571151685L503.2000000000002,18.17267502461475L510,18.58145329029442L516.7999999999998,18.99528327648755L523.6000000000003,19.413224812312233L530.4,19.834689426821193L537.1999999999997,20.259168662648595L544.0000000000002,20.686237264070922L550.8000000000001,21.115476825252973L557.5999999999998,21.546468947659154L564.4000000000002,21.97882841237176L571.1999999999999,22.412306038328467L577.9999999999998,22.846638759775804L584.8000000000003,23.28178624875309L591.6,23.71769667444403L598.3999999999997,24.072201252009233L605.2000000000002,24.426527432661864L612,24.780576270127572L618.7999999999998,25.134250184422903L625.6000000000003,25.4874521469474L632.4,25.840086065800612L639.1999999999997,26.192059637128736L646.0000000000002,26.54328290777368L652.8000000000001,26.893674712295983L659.5999999999998,27.24316458425042L666.4000000000002,27.59166018313553L673.1999999999999,27.939076184536077L679.9999999999998,28.285328879399124L686.8000000000003,28.630369016397665L693.6,28.974171776018338L700.3999999999997,29.316731260523692L707.2000000000002,29.657992224349606L714,29.99788800893574L720.7999999999998,30.33643507184342L727.6000000000003,30.673668018610478L734.4,31.009592842036117L741.1999999999997,31.3442115529646L748.0000000000002,31.67783589984582L754.8000000000001,32.01030002039262L761.5999999999998,32.34138386182717L768.4000000000002,32.67207186852092L775.1999999999999,33.003914014130444L781.9999999999998,33.33645778135377L788.8000000000003,33.671087638688036L795.6,34.0115245191663L802.3999999999997,34.35894096680737L809.2000000000002,34.71813433116287L816,35.101955246680625L816,0L809.2000000000002,0L802.3999999999997,0L795.6,0L788.8000000000003,0L781.9999999999998,0L775.1999999999999,0L768.4000000000002,0L761.5999999999998,0L754.8000000000001,0L748.0000000000002,0L741.1999999999997,0L734.4,0L727.6000000000003,0L720.7999999999998,0L714,0L707.2000000000002,0L700.3999999999997,0L693.6,0L686.8000000000003,0L679.9999999999998,0L673.1999999999999,0L666.4000000000002,0L659.5999999999998,0L652.8000000000001,0L646.0000000000002,0L639.1999999999997,0L632.4,0L625.6000000000003,0L618.7999999999998,0L612,0L605.2000000000002,0L598.3999999999997,0L591.6,0L584.8000000000003,0L577.9999999999998,0L571.1999999999999,0L564.4000000000002,0L557.5999999999998,0L550.8000000000001,0L544.0000000000002,0L537.1999999999997,0L530.4,0L523.6000000000003,0L516.7999999999998,0L510,0L503.2000000000002,0L496.39999999999975,0L489.59999999999997,0L482.8000000000003,0L475.9999999999998,0L469.2,0L462.40000000000026,0L455.59999999999974,0L448.8,0L442.0000000000002,0L435.1999999999997,0L428.40000000000003,0L421.60000000000025,0L414.7999999999998,0L408,0L401.2000000000003,0L394.39999999999975,0L387.59999999999997,0L380.80000000000024,0L373.9999999999998,0L367.2,0L360.40000000000026,0L353.59999999999974,0L346.8,0L340.0000000000002,0L333.19999999999976,0L326.40000000000003,0L319.60000000000025,0L312.7999999999997,0L306,0L299.2000000000003,0L292.39999999999975,0L285.59999999999997,0L278.8000000000003,0L271.9999999999997,0L265.2,0L258.40000000000026,0L251.59999999999974,0L244.79999999999998,0L238.00000000000028,0L231.19999999999973,0L224.4,0L217.60000000000028,0L210.7999999999997,0L204,0L197.20000000000027,0L190.39999999999972,0L183.6,0L176.80000000000027,0L169.99999999999972,0L163.20000000000002,0L156.4000000000003,0L149.5999999999997,0L142.79999999999998,0L136.00000000000028,0L129.19999999999973,0L122.39999999999999,0L115.60000000000026,0L108.79999999999973,0L102,0L95.20000000000027,0L88.39999999999972,0L81.60000000000001,0L74.80000000000003,0L67.99999999999997,0L61.199999999999996,0L54.40000000000002,0L47.59999999999998,0L40.800000000000004,0L34.00000000000003,0L27.19999999999997,0L20.400000000000002,0L13.600000000000025,0L6.799999999999997,0L0,0Z" class="conservative" style="fill: rgb(188, 189, 220);"><title>conservative</title></path><path d="M0,0L6.799999999999997,0L13.600000000000025,0L20.400000000000002,0L27.19999999999997,0L34.00000000000003,0L40.800000000000004,0L47.59999999999998,0L54.40000000000002,0L61.199999999999996,0L67.99999999999997,0L74.80000000000003,0L81.60000000000001,0L88.39999999999972,0L95.20000000000027,0L102,0L108.79999999999973,0L115.60000000000026,0L122.39999999999999,0L129.19999999999973,0L136.00000000000028,0L142.79999999999998,0L149.5999999999997,0L156.4000000000003,0L163.20000000000002,0L169.99999999999972,0.16762771952668487L176.80000000000027,0.16762771952668487L183.6,0.16762771952668487L190.39999999999972,0.16762771952668487L197.20000000000027,0.16762771952668487L204,0.16762771952668487L210.7999999999997,0.16762771952668487L217.60000000000028,0.16762771952668487L224.4,0.16762771952668487L231.19999999999973,0.16762771952668487L238.00000000000028,0.16762771952668487L244.79999999999998,0.335255439053324L251.59999999999974,0.5677293912517261L258.40000000000026,0.5677293912517261L265.2,0.5677293912517261L271.9999999999997,0.5677293912517261L278.8000000000003,0.5677293912517261L285.59999999999997,0.5677293912517261L292.39999999999975,0.5677293912517261L299.2000000000003,0.5677293912517261L306,0.5677293912517261L312.7999999999997,0.5677293912517261L319.60000000000025,0.5677293912517261L326.40000000000003,0.8002033434500824L333.19999999999976,1.0227146608355357L340.0000000000002,1.0227146608355357L346.8,1.0227146608355357L353.59999999999974,1.0227146608355357L360.40000000000026,1.0227146608355357L367.2,1.0227146608355357L373.9999999999998,1.0227146608355357L380.80000000000024,1.0227146608355357L387.59999999999997,1.0227146608355357L394.39999999999975,1.0227146608355357L401.2000000000003,1.0227146608355357L408,1.2452259782209891L414.7999999999998,1.5211736973613532L421.60000000000025,1.5211736973613532L428.40000000000003,1.5211736973613532L435.1999999999997,1.5211736973613532L442.0000000000002,1.5211736973613532L448.8,1.5211736973613532L455.59999999999974,1.5211736973613532L462.40000000000026,1.5211736973613532L469.2,1.5211736973613532L475.9999999999998,1.5211736973613532L482.8000000000003,1.5211736973613532L489.59999999999997,1.7971214165017173L496.39999999999975,2.1352765291801794L503.2000000000002,2.1352765291801794L510,2.1352765291801794L516.7999999999998,2.1352765291801794L523.6000000000003,2.1352765291801794L530.4,2.1352765291801794L537.1999999999997,2.1352765291801794L544.0000000000002,2.1352765291801794L550.8000000000001,2.1352765291801794L557.5999999999998,2.1352765291801794L564.4000000000002,2.1352765291801794L571.1999999999999,2.4734316418586415L577.9999999999998,2.8981900355368424L584.8000000000003,2.8981900355368424L591.6,2.8981900355368424L598.3999999999997,2.8981900355368424L605.2000000000002,2.8981900355368424L612,2.8981900355368424L618.7999999999998,2.8981900355368424L625.6000000000003,2.8981900355368424L632.4,2.8981900355368424L639.1999999999997,2.8981900355368424L646.0000000000002,2.8981900355368424L652.8000000000001,3.3229484292149976L659.5999999999998,3.679034981134098L666.4000000000002,3.679034981134098L673.1999999999999,3.679034981134098L679.9999999999998,3.679034981134098L686.8000000000003,3.679034981134098L693.6,3.679034981134098L700.3999999999997,3.679034981134098L707.2000000000002,3.679034981134098L714,3.679034981134098L720.7999999999998,3.679034981134098L727.6000000000003,3.679034981134098L734.4,4.035121533053198L741.1999999999997,4.449235053118085L748.0000000000002,4.449235053118085L754.8000000000001,4.449235053118085L761.5999999999998,4.449235053118085L768.4000000000002,4.449235053118085L775.1999999999999,4.449235053118085L781.9999999999998,4.449235053118085L788.8000000000003,4.449235053118085L795.6,4.449235053118085L802.3999999999997,4.449235053118085L809.2000000000002,4.449235053118085L816,4.863348573183017L816,0L809.2000000000002,0L802.3999999999997,0L795.6,0L788.8000000000003,0L781.9999999999998,0L775.1999999999999,0L768.4000000000002,0L761.5999999999998,0L754.8000000000001,0L748.0000000000002,0L741.1999999999997,0L734.4,0L727.6000000000003,0L720.7999999999998,0L714,0L707.2000000000002,0L700.3999999999997,0L693.6,0L686.8000000000003,0L679.9999999999998,0L673.1999999999999,0L666.4000000000002,0L659.5999999999998,0L652.8000000000001,0L646.0000000000002,0L639.1999999999997,0L632.4,0L625.6000000000003,0L618.7999999999998,0L612,0L605.2000000000002,0L598.3999999999997,0L591.6,0L584.8000000000003,0L577.9999999999998,0L571.1999999999999,0L564.4000000000002,0L557.5999999999998,0L550.8000000000001,0L544.0000000000002,0L537.1999999999997,0L530.4,0L523.6000000000003,0L516.7999999999998,0L510,0L503.2000000000002,0L496.39999999999975,0L489.59999999999997,0L482.8000000000003,0L475.9999999999998,0L469.2,0L462.40000000000026,0L455.59999999999974,0L448.8,0L442.0000000000002,0L435.1999999999997,0L428.40000000000003,0L421.60000000000025,0L414.7999999999998,0L408,0L401.2000000000003,0L394.39999999999975,0L387.59999999999997,0L380.80000000000024,0L373.9999999999998,0L367.2,0L360.40000000000026,0L353.59999999999974,0L346.8,0L340.0000000000002,0L333.19999999999976,0L326.40000000000003,0L319.60000000000025,0L312.7999999999997,0L306,0L299.2000000000003,0L292.39999999999975,0L285.59999999999997,0L278.8000000000003,0L271.9999999999997,0L265.2,0L258.40000000000026,0L251.59999999999974,0L244.79999999999998,0L238.00000000000028,0L231.19999999999973,0L224.4,0L217.60000000000028,0L210.7999999999997,0L204,0L197.20000000000027,0L190.39999999999972,0L183.6,0L176.80000000000027,0L169.99999999999972,0L163.20000000000002,0L156.4000000000003,0L149.5999999999997,0L142.79999999999998,0L136.00000000000028,0L129.19999999999973,0L122.39999999999999,0L115.60000000000026,0L108.79999999999973,0L102,0L95.20000000000027,0L88.39999999999972,0L81.60000000000001,0L74.80000000000003,0L67.99999999999997,0L61.199999999999996,0L54.40000000000002,0L47.59999999999998,0L40.800000000000004,0L34.00000000000003,0L27.19999999999997,0L20.400000000000002,0L13.600000000000025,0L6.799999999999997,0L0,0Z" class="surgery" style="fill: rgb(128, 125, 186);"><title>surgery</title></path><text x="818" text-anchor="start" y="6" style="fill: black; font-size: small;">Surgery</text><text x="818" text-anchor="start" y="21.80830221869952" style="fill: black; font-size: small;">Conservative</text><text x="818" text-anchor="start" y="142.5891658647011" style="fill: black; font-size: small;">Other Causes</text><text x="818" text-anchor="start" y="246.01096234512127" style="fill: black; font-size: small;">Alive</text><g class="axis xaxis" transform="translate(0,412)"><g class="tick" transform="translate(0,0)" style="opacity: 1;"><line y2="6" x2="0"></line><text dy=".71em" y="9" x="0" style="text-anchor: middle;">0</text></g><g class="tick" transform="translate(81.60000000000001,0)" style="opacity: 1;"><line y2="6" x2="0"></line><text dy=".71em" y="9" x="0" style="text-anchor: middle;">1</text></g><g class="tick" transform="translate(163.20000000000002,0)" style="opacity: 1;"><line y2="6" x2="0"></line><text dy=".71em" y="9" x="0" style="text-anchor: middle;">2</text></g><g class="tick" transform="translate(244.79999999999998,0)" style="opacity: 1;"><line y2="6" x2="0"></line><text dy=".71em" y="9" x="0" style="text-anchor: middle;">3</text></g><g class="tick" transform="translate(326.40000000000003,0)" style="opacity: 1;"><line y2="6" x2="0"></line><text dy=".71em" y="9" x="0" style="text-anchor: middle;">4</text></g><g class="tick" transform="translate(408,0)" style="opacity: 1;"><line y2="6" x2="0"></line><text dy=".71em" y="9" x="0" style="text-anchor: middle;">5</text></g><g class="tick" transform="translate(489.59999999999997,0)" style="opacity: 1;"><line y2="6" x2="0"></line><text dy=".71em" y="9" x="0" style="text-anchor: middle;">6</text></g><g class="tick" transform="translate(571.1999999999999,0)" style="opacity: 1;"><line y2="6" x2="0"></line><text dy=".71em" y="9" x="0" style="text-anchor: middle;">7</text></g><g class="tick" transform="translate(652.8000000000001,0)" style="opacity: 1;"><line y2="6" x2="0"></line><text dy=".71em" y="9" x="0" style="text-anchor: middle;">8</text></g><g class="tick" transform="translate(734.4,0)" style="opacity: 1;"><line y2="6" x2="0"></line><text dy=".71em" y="9" x="0" style="text-anchor: middle;">9</text></g><g class="tick" transform="translate(816,0)" style="opacity: 1;"><line y2="6" x2="0"></line><text dy=".71em" y="9" x="0" style="text-anchor: middle;">10</text></g><path class="domain" d="M0,6V0H816V6"></path></g><g class="grid xgrid" transform="translate(0,412)"><g class="tick" transform="translate(0,0)" style="opacity: 1;"><line y2="-816" x2="0"></line><text dy=".71em" y="3" x="0" style="text-anchor: middle;"></text></g><g class="tick" transform="translate(81.60000000000001,0)" style="opacity: 1;"><line y2="-816" x2="0"></line><text dy=".71em" y="3" x="0" style="text-anchor: middle;"></text></g><g class="tick" transform="translate(163.20000000000002,0)" style="opacity: 1;"><line y2="-816" x2="0"></line><text dy=".71em" y="3" x="0" style="text-anchor: middle;"></text></g><g class="tick" transform="translate(244.79999999999998,0)" style="opacity: 1;"><line y2="-816" x2="0"></line><text dy=".71em" y="3" x="0" style="text-anchor: middle;"></text></g><g class="tick" transform="translate(326.40000000000003,0)" style="opacity: 1;"><line y2="-816" x2="0"></line><text dy=".71em" y="3" x="0" style="text-anchor: middle;"></text></g><g class="tick" transform="translate(408,0)" style="opacity: 1;"><line y2="-816" x2="0"></line><text dy=".71em" y="3" x="0" style="text-anchor: middle;"></text></g><g class="tick" transform="translate(489.59999999999997,0)" style="opacity: 1;"><line y2="-816" x2="0"></line><text dy=".71em" y="3" x="0" style="text-anchor: middle;"></text></g><g class="tick" transform="translate(571.1999999999999,0)" style="opacity: 1;"><line y2="-816" x2="0"></line><text dy=".71em" y="3" x="0" style="text-anchor: middle;"></text></g><g class="tick" transform="translate(652.8000000000001,0)" style="opacity: 1;"><line y2="-816" x2="0"></line><text dy=".71em" y="3" x="0" style="text-anchor: middle;"></text></g><g class="tick" transform="translate(734.4,0)" style="opacity: 1;"><line y2="-816" x2="0"></line><text dy=".71em" y="3" x="0" style="text-anchor: middle;"></text></g><g class="tick" transform="translate(816,0)" style="opacity: 1;"><line y2="-816" x2="0"></line><text dy=".71em" y="3" x="0" style="text-anchor: middle;"></text></g><path class="domain" d="M0,0V0H816V0"></path></g><g class="axis yaxis" transform="translate(0,0)"><g class="tick" transform="translate(0,412)" style="opacity: 1;"><line x2="-6" y2="0"></line><text dy=".32em" x="-9" y="0" style="text-anchor: end;">0</text></g><g class="tick" transform="translate(0,370.8)" style="opacity: 1;"><line x2="-6" y2="0"></line><text dy=".32em" x="-9" y="0" style="text-anchor: end;">10</text></g><g class="tick" transform="translate(0,329.6)" style="opacity: 1;"><line x2="-6" y2="0"></line><text dy=".32em" x="-9" y="0" style="text-anchor: end;">20</text></g><g class="tick" transform="translate(0,288.4)" style="opacity: 1;"><line x2="-6" y2="0"></line><text dy=".32em" x="-9" y="0" style="text-anchor: end;">30</text></g><g class="tick" transform="translate(0,247.2)" style="opacity: 1;"><line x2="-6" y2="0"></line><text dy=".32em" x="-9" y="0" style="text-anchor: end;">40</text></g><g class="tick" transform="translate(0,206)" style="opacity: 1;"><line x2="-6" y2="0"></line><text dy=".32em" x="-9" y="0" style="text-anchor: end;">50</text></g><g class="tick" transform="translate(0,164.8)" style="opacity: 1;"><line x2="-6" y2="0"></line><text dy=".32em" x="-9" y="0" style="text-anchor: end;">60</text></g><g class="tick" transform="translate(0,123.60000000000002)" style="opacity: 1;"><line x2="-6" y2="0"></line><text dy=".32em" x="-9" y="0" style="text-anchor: end;">70</text></g><g class="tick" transform="translate(0,82.39999999999998)" style="opacity: 1;"><line x2="-6" y2="0"></line><text dy=".32em" x="-9" y="0" style="text-anchor: end;">80</text></g><g class="tick" transform="translate(0,41.19999999999999)" style="opacity: 1;"><line x2="-6" y2="0"></line><text dy=".32em" x="-9" y="0" style="text-anchor: end;">90</text></g><g class="tick" transform="translate(0,0)" style="opacity: 1;"><line x2="-6" y2="0"></line><text dy=".32em" x="-9" y="0" style="text-anchor: end;">100</text></g><path class="domain" d="M-6,0H0V412H-6"></path></g><g class="grid ygrid" transform="translate(0,0)"><g class="tick" transform="translate(0,412)" style="opacity: 1;"><line x2="816" y2="0"></line><text dy=".32em" x="-3" y="0" style="text-anchor: end;"></text></g><g class="tick" transform="translate(0,370.8)" style="opacity: 1;"><line x2="816" y2="0"></line><text dy=".32em" x="-3" y="0" style="text-anchor: end;"></text></g><g class="tick" transform="translate(0,329.6)" style="opacity: 1;"><line x2="816" y2="0"></line><text dy=".32em" x="-3" y="0" style="text-anchor: end;"></text></g><g class="tick" transform="translate(0,288.4)" style="opacity: 1;"><line x2="816" y2="0"></line><text dy=".32em" x="-3" y="0" style="text-anchor: end;"></text></g><g class="tick" transform="translate(0,247.2)" style="opacity: 1;"><line x2="816" y2="0"></line><text dy=".32em" x="-3" y="0" style="text-anchor: end;"></text></g><g class="tick" transform="translate(0,206)" style="opacity: 1;"><line x2="816" y2="0"></line><text dy=".32em" x="-3" y="0" style="text-anchor: end;"></text></g><g class="tick" transform="translate(0,164.8)" style="opacity: 1;"><line x2="816" y2="0"></line><text dy=".32em" x="-3" y="0" style="text-anchor: end;"></text></g><g class="tick" transform="translate(0,123.60000000000002)" style="opacity: 1;"><line x2="816" y2="0"></line><text dy=".32em" x="-3" y="0" style="text-anchor: end;"></text></g><g class="tick" transform="translate(0,82.39999999999998)" style="opacity: 1;"><line x2="816" y2="0"></line><text dy=".32em" x="-3" y="0" style="text-anchor: end;"></text></g><g class="tick" transform="translate(0,41.19999999999999)" style="opacity: 1;"><line x2="816" y2="0"></line><text dy=".32em" x="-3" y="0" style="text-anchor: end;"></text></g><g class="tick" transform="translate(0,0)" style="opacity: 1;"><line x2="816" y2="0"></line><text dy=".32em" x="-3" y="0" style="text-anchor: end;"></text></g><path class="domain" d="M0,0H0V412H0"></path></g><text class="xlabel" text-anchor="middle" x="408" y="444">Years Following Diagnosis</text><text class="ylabel" text-anchor="middle" y="0" x="-206" dy="-2em" transform="rotate(-90)">Alive, %</text><g class="focus"><line class="line" y1="0" y2="412"></line><circle class="all" r="4.5"></circle><circle class="conservative" r="4.5"></circle><circle class="surgery" r="4.5"></circle></g><rect class="overlay" width="816" height="412"></rect></g></svg></div>
+
+  <div id="icon">
+    In other words:
+    <ul>
+      <li>
+        <span id="ialive"></span>
+        out of 100 people will be alive,
+      </li>
+      <li>
+        <span id="iother"></span>
+        out of 100 will die of something other than prostate cancer,
+      </li>
+      <li>
+        <span id="icx"></span>
+        out of 100 who followed conservative treatment will die of prostate cancer, and
+      </li>
+      <li>
+        <span id="iprostate"></span>
+        out of 100 who had surgery will die of prostate cancer.
+      </li>
+    </ul>
+  </div>
+
+</div>
+
+<!-- *********************************** -->
+<!-- *** PAGE 9 : NEXT STEPS *********** -->
+<!-- *********************************** -->
+<div class="section inactive" id="nextSteps">
+
+  <h2 class="title">What do I do next?</h2>
+  <br>
+
+  <h3 style="margin-top:0">What threats am I facing? </h3>
+  <table>
+    <colgroup><col width="55%">
+      <col width="44%">
+        </colgroup><tbody><tr>
+          <td>
+            <ul>
+              <li>Your risk of dying from prostate cancer:</li>
+            </ul>
+          </td>
+          <td>
+            <span id="pcRisk1yr">0%</span> in the next year, and
+            <span id="pcRisk10yr">10%</span> in the next 10 years. </td>
+        </tr>
+        </tbody><colgroup><col width="55%">
+          <col width="44%">
+            </colgroup><tbody><tr>
+              <td>
+                <ul>
+                  <li>Your risk of dying from other causes:</li>
+                </ul>
+              </td>
+              <td>
+                <span id="allRisk1yr">3%</span> in the next year, and
+                <span id="allRisk10yr">41%</span> in the next 10 years. </td>
+            </tr>
+  </tbody></table>
+
+  <div id="risk2wrapper">
+    <div class="risk2" id="risk1yr2"><svg width="288" height="250"><g class="p3_lineGroups" style="opacity: 1;"><g class="p3_lineGroup"><path d="M149.3485817098392,181.23446448689307L149.73143894789325,181.73200582473467C150.11429618594735,182.22954716257627,150.88001066205547,183.2246298382595,151.41143961427173,185.21479518962587C151.94286856648802,187.2049605409923,152.2400119948124,190.1902085680419,152.38858370897458,191.6828325815667L152.5371554231368,193.17545659509153" stroke="#66c2a5" stroke-width="1" fill="none" style="opacity: 1;"></path></g><g class="p3_lineGroup"><path d="M138.46578320642928,73.78433706560293L138.06205496216342,72.29223531742522C137.65832671789758,70.80013356924754,136.85087022936585,67.81593007289214,136.31256590367806,65.82646107532187C135.77426157799025,63.83699207775162,135.50510941514636,62.84225757896648,135.3705333337244,62.344890329573914L135.23595725230246,61.84752308018136" stroke="#fc8d62" stroke-width="1" fill="none" style="opacity: 1;"></path></g><g class="p3_lineGroup"><path d="M143.81341549159092,73.50032235076563L143.55823258857953,72.00033130495356C143.30304968556817,70.5003402591415,142.79268387954545,67.50035816751736,142.45244000886365,65.50037010643462C142.11219613818182,63.50038204535186,141.9420742028409,62.50038801481048,141.85701323517046,62.00039099953979L141.7719522675,61.50039398426911" stroke="#8da0cb" stroke-width="1" fill="none" style="opacity: 1;"></path></g></g><g transform="translate(144,127.5)" class="p3_pieChart"><g class="p3_arc" transform="rotate(0)"><path id="p3_segment0" fill="#66c2a5" d="M3.3065463576978537e-15,-54A54,54 0 1,1 -10.644561997874087,-52.94046939604346L0,0Z" data-index="0" style="stroke: rgb(255, 255, 255); stroke-width: 1;"></path></g><g class="p3_arc" transform="rotate(348.6313164807141)"><path id="p3_segment1" fill="#fc8d62" d="M3.3065463576978537e-15,-54A54,54 0 0,1 10.278462922444563,-53.01276450018365L0,0Z" data-index="1" style="stroke: rgb(255, 255, 255); stroke-width: 1;"></path></g><g class="p3_arc" transform="rotate(359.6040545879041)"><path id="p3_segment2" fill="#8da0cb" d="M3.3065463576978537e-15,-54A54,54 0 0,1 0.37316678920112295,-53.99871060078599L0,0Z" data-index="2" style="stroke: rgb(255, 255, 255); stroke-width: 1;"></path></g></g><text id="p3_title" class="p3_title" x="146.5" y="5" text-anchor="middle" fill="#333333" style="font-size: 18px; font-family: arial;">1 Year (71 years old)</text><text x="144" y="245" id="p3_footer" class="p3_footer" text-anchor="left" fill="#666666" style="font-size: 14px; font-family: arial;"></text><g class="p3_labels-inner"><g id="p3_labelGroup0-inner" data-index="0" class="p3_labelGroup-inner" transform="translate(146.971434283244,157.35248027049616)" style="opacity: 1;"><text id="p3_segmentPercentage0-inner" class="p3_segmentPercentage-inner" style="font-size: 12px; font-family: arial; fill: rgb(255, 255, 255);">97%</text></g><g id="p3_labelGroup1-inner" data-index="1" class="p3_labelGroup-inner" transform="translate(140.92543511468293,97.65796503644607)" style="opacity: 0;"><text id="p3_segmentPercentage1-inner" class="p3_segmentPercentage-inner" style="font-size: 12px; font-family: arial; fill: rgb(255, 255, 255);">3%</text></g><g id="p3_labelGroup2-inner" data-index="2" class="p3_labelGroup-inner" transform="translate(143.89634193977273,97.50017908375868)" style="opacity: 0;"><text id="p3_segmentPercentage2-inner" class="p3_segmentPercentage-inner" style="font-size: 12px; font-family: arial; fill: rgb(255, 255, 255);">0%</text></g></g><g class="p3_labels-outer"><g id="p3_labelGroup0-outer" data-index="0" class="p3_labelGroup-outer" transform="translate(158.5371554231368,193.17545659509153)" style="opacity: 1;"><text id="p3_segmentMainLabel0-outer" class="p3_segmentMainLabel-outer" style="font-size: 12px; font-family: arial; fill: rgb(51, 51, 51);">Alive</text></g><g id="p3_labelGroup1-outer" data-index="1" class="p3_labelGroup-outer" transform="translate(129.23595725230246,61.84752308018136)" style="opacity: 1;"><text id="p3_segmentMainLabel1-outer" class="p3_segmentMainLabel-outer" style="font-size: 12px; font-family: arial; fill: rgb(51, 51, 51);">Mortality-Other</text></g><g id="p3_labelGroup2-outer" data-index="2" class="p3_labelGroup-outer" transform="translate(135.7719522675,61.50039398426911)" style="opacity: 1;"><text id="p3_segmentMainLabel2-outer" class="p3_segmentMainLabel-outer" style="font-size: 12px; font-family: arial; fill: rgb(51, 51, 51);">Mortality-Prostate</text></g></g></svg></div>
+    <div class="risk2" id="risk5yr2"><svg width="288" height="250"><g class="p4_lineGroups" style="opacity: 1;"><g class="p4_lineGroup"><path d="M178.15948008266332,169.3226005944409L178.8091048982435,169.7098468962413C179.45872971382374,170.09709319804165,180.75797934498416,170.87158580164242,182.35647860730504,172.42057100884392C183.9549778696259,173.96955621604542,185.85272676310723,176.2930340268477,186.80160120984786,177.45477293224883L187.75047565658852,178.61651183764997" stroke="#66c2a5" stroke-width="1" fill="none" style="opacity: 1;"></path></g><g class="p4_lineGroup"><path d="M105.48145189008281,89.65397707150731L104.16149222036287,88.60269865682696C102.84153255064295,87.5514202421466,100.20161321120311,85.4488634127859,98.44166698490989,84.04715885987878C96.68172075861665,82.64545430697163,95.80174764547004,81.94460203051807,95.36176108889673,81.59417589229128L94.92177453232343,81.2437497540645" stroke="#fc8d62" stroke-width="1" fill="none" style="opacity: 1;"></path></g><g class="p4_lineGroup"><path d="M138.10841876583413,73.8223578148106L137.69476373155175,72.33131219855534C137.28110869726936,70.84026658230007,136.4537986287046,67.85817534978955,135.90225858299473,65.87011452811588C135.35071853728488,63.88205370644219,135.07494851442996,62.88802329560535,134.9370635030025,62.39100809018692L134.79917849157505,61.89399288476851" stroke="#8da0cb" stroke-width="1" fill="none" style="opacity: 1;"></path></g></g><g transform="translate(144,127.5)" class="p4_pieChart"><g class="p4_arc" transform="rotate(0)"><path id="p4_segment0" fill="#66c2a5" d="M3.3065463576978537e-15,-54A54,54 0 1,1 -52.912529333740245,-10.78258964748625L0,0Z" data-index="0" style="stroke: rgb(255, 255, 255); stroke-width: 1;"></path></g><g class="p4_arc" transform="rotate(281.5181057820762)"><path id="p4_segment1" fill="#fc8d62" d="M3.3065463576978537e-15,-54A54,54 0 0,1 49.3140482792645,-22.00283259742642L0,0Z" data-index="1" style="stroke: rgb(255, 255, 255); stroke-width: 1;"></path></g><g class="p4_arc" transform="rotate(347.47273885066494)"><path id="p4_segment2" fill="#8da0cb" d="M3.3065463576978537e-15,-54A54,54 0 0,1 11.712821829353093,-52.71441742819349L0,0Z" data-index="2" style="stroke: rgb(255, 255, 255); stroke-width: 1;"></path></g></g><text id="p4_title" class="p4_title" x="146.5" y="5" text-anchor="middle" fill="#333333" style="font-size: 18px; font-family: arial;">5 years (75 years old)</text><text x="144" y="245" id="p4_footer" class="p4_footer" text-anchor="left" fill="#666666" style="font-size: 14px; font-family: arial;"></text><g class="p4_labels-inner"><g id="p4_labelGroup0-inner" data-index="0" class="p4_labelGroup-inner" transform="translate(162.97748893481295,150.7347781080227)" style="opacity: 1;"><text id="p4_segmentPercentage0-inner" class="p4_segmentPercentage-inner" style="font-size: 12px; font-family: arial; fill: rgb(255, 255, 255);">78%</text></g><g id="p4_labelGroup1-inner" data-index="1" class="p4_labelGroup-inner" transform="translate(122.60080660560156,106.47443170639295)" style="opacity: 1;"><text id="p4_segmentPercentage1-inner" class="p4_segmentPercentage-inner" style="font-size: 12px; font-family: arial; fill: rgb(255, 255, 255);">18%</text></g><g id="p4_labelGroup2-inner" data-index="2" class="p4_labelGroup-inner" transform="translate(140.7268993143523,97.67908767489479)" style="opacity: 0;"><text id="p4_segmentPercentage2-inner" class="p4_segmentPercentage-inner" style="font-size: 12px; font-family: arial; fill: rgb(255, 255, 255);">3%</text></g></g><g class="p4_labels-outer"><g id="p4_labelGroup0-outer" data-index="0" class="p4_labelGroup-outer" transform="translate(193.75047565658852,178.61651183764997)" style="opacity: 1;"><text id="p4_segmentMainLabel0-outer" class="p4_segmentMainLabel-outer" style="font-size: 12px; font-family: arial; fill: rgb(51, 51, 51);">Alive</text></g><g id="p4_labelGroup1-outer" data-index="1" class="p4_labelGroup-outer" transform="translate(88.92177453232343,81.2437497540645)" style="opacity: 1;"><text id="p4_segmentMainLabel1-outer" class="p4_segmentMainLabel-outer" style="font-size: 12px; font-family: arial; fill: rgb(51, 51, 51);">Mortality-Other</text></g><g id="p4_labelGroup2-outer" data-index="2" class="p4_labelGroup-outer" transform="translate(128.79917849157505,61.89399288476851)" style="opacity: 1;"><text id="p4_segmentMainLabel2-outer" class="p4_segmentMainLabel-outer" style="font-size: 12px; font-family: arial; fill: rgb(51, 51, 51);">Mortality-Prostate</text></g></g></svg></div>
+    <div class="risk2" id="risk10yr2"><svg width="288" height="250"><g class="p5_lineGroups" style="opacity: 1;"><g class="p5_lineGroup"><path d="M197.97749228666115,125.94104956992298L199.14374214382156,125.89774539130973C200.30999200098194,125.85444121269647,202.64249171530273,125.76783285546998,204.97499142962351,125.71009395065231C207.30749114394428,125.65235504583464,209.63999085826507,125.6234855934258,210.80624071542545,125.60905086722138L211.97249057258585,125.59461614101697" stroke="#66c2a5" stroke-width="1" fill="none" style="opacity: 1;"></path></g><g class="p5_lineGroup"><path d="M92.9773547186087,145.1830333509078L92.42158948452173,145.34676514119397C91.86582425043477,145.51049693148016,90.75429378226086,145.83796051205252,88.53123284591304,146.49288767319726C86.3081719095652,147.147814834342,82.97358050504347,148.1302055760591,81.30628480278261,148.62140094691765L79.63898910052174,149.1125963177762" stroke="#fc8d62" stroke-width="1" fill="none" style="opacity: 1;"></path></g><g class="p5_lineGroup"><path d="M127.79733293521657,75.98812195242944L127.09725885008369,74.55723645110804C126.39718476495082,73.12635094978663,124.99703659468508,70.26457994714383,124.0636044811746,68.35673261204862C123.1301723676641,66.4488852769534,122.66345631090884,65.4949616094058,122.43009828253122,65.017999775632L122.1967402541536,64.5410379418582" stroke="#8da0cb" stroke-width="1" fill="none" style="opacity: 1;"></path></g></g><g transform="translate(144,127.5)" class="p5_pieChart"><g class="p5_arc" transform="rotate(0)"><path id="p5_segment0" fill="#66c2a5" d="M3.3065463576978537e-15,-54A54,54 0 0,1 3.116601289435876,53.90998790950233L0,0Z" data-index="0" style="stroke: rgb(255, 255, 255); stroke-width: 1;"></path></g><g class="p5_arc" transform="rotate(176.691344734476)"><path id="p5_segment1" fill="#fc8d62" d="M3.3065463576978537e-15,-54A54,54 0 0,1 28.30525957408476,45.987088192705606L0,0Z" data-index="1" style="stroke: rgb(255, 255, 255); stroke-width: 1;"></path></g><g class="p5_arc" transform="rotate(325.07886073992495)"><path id="p5_segment2" fill="#8da0cb" d="M3.3065463576978537e-15,-54A54,54 0 0,1 30.912215180981892,-44.27679925880678L0,0Z" data-index="2" style="stroke: rgb(255, 255, 255); stroke-width: 1;"></path></g></g><text id="p5_title" class="p5_title" x="146.5" y="5" text-anchor="middle" fill="#333333" style="font-size: 18px; font-family: arial;">10 Years (80 years old)</text><text x="144" y="245" id="p5_footer" class="p5_footer" text-anchor="left" fill="#666666" style="font-size: 14px; font-family: arial;"></text><g class="p5_labels-inner"><g id="p5_labelGroup0-inner" data-index="0" class="p5_labelGroup-inner" transform="translate(173.98749571481176,126.63391642773499)" style="opacity: 1;"><text id="p5_segmentPercentage0-inner" class="p5_segmentPercentage-inner" style="font-size: 12px; font-family: arial; fill: rgb(255, 255, 255);">49%</text></g><g id="p5_labelGroup1-inner" data-index="1" class="p5_labelGroup-inner" transform="translate(115.6540859547826,137.323907417171)" style="opacity: 1;"><text id="p5_segmentPercentage1-inner" class="p5_segmentPercentage-inner" style="font-size: 12px; font-family: arial; fill: rgb(255, 255, 255);">41%</text></g><g id="p5_labelGroup2-inner" data-index="2" class="p5_labelGroup-inner" transform="translate(134.99851829734254,98.88228997357191)" style="opacity: 1;"><text id="p5_segmentPercentage2-inner" class="p5_segmentPercentage-inner" style="font-size: 12px; font-family: arial; fill: rgb(255, 255, 255);">10%</text></g></g><g class="p5_labels-outer"><g id="p5_labelGroup0-outer" data-index="0" class="p5_labelGroup-outer" transform="translate(217.97249057258585,125.59461614101697)" style="opacity: 1;"><text id="p5_segmentMainLabel0-outer" class="p5_segmentMainLabel-outer" style="font-size: 12px; font-family: arial; fill: rgb(51, 51, 51);">Alive</text></g><g id="p5_labelGroup1-outer" data-index="1" class="p5_labelGroup-outer" transform="translate(73.63898910052174,149.1125963177762)" style="opacity: 1;"><text id="p5_segmentMainLabel1-outer" class="p5_segmentMainLabel-outer" style="font-size: 12px; font-family: arial; fill: rgb(51, 51, 51);">Mortality-Other</text></g><g id="p5_labelGroup2-outer" data-index="2" class="p5_labelGroup-outer" transform="translate(116.1967402541536,64.5410379418582)" style="opacity: 1;"><text id="p5_segmentMainLabel2-outer" class="p5_segmentMainLabel-outer" style="font-size: 12px; font-family: arial; fill: rgb(51, 51, 51);">Mortality-Prostate</text></g></g></svg></div>
+  </div>
+
+  <div id="treatmentText">
+    <h3>What are the possible treatments for me?</h3>
+    <table>
+      <colgroup><col width="55%">
+        <col width="44%">
+
+          </colgroup><tbody><tr>
+            <td>
+              <ul>
+                <li>Surgery</li>
+              </ul>
+            </td>
+            <td>
+              <span id="radRisk10yr">1%</span> risk of dying from prostate cancer in the next 10 years. </td>
+          </tr>
+          <tr>
+            <td>
+              <ul>
+                <li>Conservative management</li>
+              </ul>
+            </td>
+            <td>
+              <span id="consRisk10yr">9%</span> risk of dying from prostate cancer in the next 10 years. </td>
+          </tr>
+          <tr>
+            <td>
+              <ul>
+                <li>Radiation</li>
+              </ul>
+            </td>
+            <td> PROACT does not include this information. (<a href="http://tuftsvalt.github.io/proact/demo/pilot2/#openModal">Why?</a>) </td>
+          </tr>
+          <tr>
+            <td>
+              <ul>
+                <li>Other treatments</li>
+              </ul>
+            </td>
+            <td> PROACT does not include this information. (<a href="http://tuftsvalt.github.io/proact/demo/pilot2/#openModal">Why?</a>) </td>
+          </tr>
+    </tbody></table>
+    <br>
+  </div>
+
+  <div id="treatmentWrapper2">
+    <div class="treatment" id="treatment1yr2"><svg class="barchart" width="200" height="250"><g transform="translate(16,44)"><rect x="0" y="25" width="70" height="161" style="fill: rgb(128, 125, 186);"></rect><rect x="80" y="25" width="70" height="161" style="fill: rgb(188, 189, 220);"></rect><text class="bartitle" text-anchor="middle" y="-20" x="84" style="color: rgb(0, 0, 0); font-size: 14px;">Surviving your Prostate Cancer</text><text class="barSubTitle" text-anchor="middle" y="0" x="84" style="color: rgb(0, 0, 0); font-size: 14px;">after 1 year (71 years old)</text><text class="barpercent" text-anchor="middle" x="40" y="21" style="font-size: 14px; fill: rgb(0, 0, 0);">100%</text><text class="barpercent" text-anchor="middle" x="120" y="21" style="font-size: 14px; fill: rgb(0, 0, 0);">100%</text><text class="barlabel" text-anchor="middle" x="35" y="201" style="font-size: 12px; fill: rgb(0, 0, 0);">surgery</text><text class="barlabel" text-anchor="middle" x="115" y="201" style="font-size: 12px; fill: rgb(0, 0, 0);">conservative</text></g></svg></div>
+    <div class="treatment" id="treatment5yr2"><svg class="barchart" width="200" height="250"><g transform="translate(16,44)"><rect x="0" y="25" width="70" height="161" style="fill: rgb(128, 125, 186);"></rect><rect x="80" y="29.53" width="70" height="156.47" style="fill: rgb(188, 189, 220);"></rect><text class="bartitle" text-anchor="middle" y="-20" x="84" style="color: rgb(0, 0, 0); font-size: 14px;">Surviving your Prostate Cancer</text><text class="barSubTitle" text-anchor="middle" y="0" x="84" style="color: rgb(0, 0, 0); font-size: 14px;">after 5 year (75 years old)</text><text class="barpercent" text-anchor="middle" x="40" y="21" style="font-size: 14px; fill: rgb(0, 0, 0);">100%</text><text class="barpercent" text-anchor="middle" x="120" y="25.53" style="font-size: 14px; fill: rgb(0, 0, 0);">97%</text><text class="barlabel" text-anchor="middle" x="35" y="201" style="font-size: 12px; fill: rgb(0, 0, 0);">surgery</text><text class="barlabel" text-anchor="middle" x="115" y="201" style="font-size: 12px; fill: rgb(0, 0, 0);">conservative</text></g></svg></div>
+    <div class="treatment" id="treatment10yr2"><svg class="barchart" width="200" height="250"><g transform="translate(16,44)"><rect x="0" y="26.51000000000002" width="70" height="159.48999999999998" style="fill: rgb(128, 125, 186);"></rect><rect x="80" y="38.59" width="70" height="147.41" style="fill: rgb(188, 189, 220);"></rect><text class="bartitle" text-anchor="middle" y="-20" x="84" style="color: rgb(0, 0, 0); font-size: 14px;">Surviving your Prostate Cancer</text><text class="barSubTitle" text-anchor="middle" y="0" x="84" style="color: rgb(0, 0, 0); font-size: 14px;">after 10 year (80 years old)</text><text class="barpercent" text-anchor="middle" x="40" y="22.51000000000002" style="font-size: 14px; fill: rgb(0, 0, 0);">99%</text><text class="barpercent" text-anchor="middle" x="120" y="34.59" style="font-size: 14px; fill: rgb(0, 0, 0);">91%</text><text class="barlabel" text-anchor="middle" x="35" y="201" style="font-size: 12px; fill: rgb(0, 0, 0);">surgery</text><text class="barlabel" text-anchor="middle" x="115" y="201" style="font-size: 12px; fill: rgb(0, 0, 0);">conservative</text></g></svg></div>
+  </div>
+
+</div>
+
+<!-- *********************************** -->
+<!-- *** PAGE 10 : (END) BEFORE YOU GO * -->
+<!-- *********************************** -->
+<div class="section inactive" id="end">
+
+  <div id="conditional-title">
+    <h2> What else do I need to know to decide what is right for me? </h2>
+    <br>
+  </div>
+
+  <div class="section-text">
+
+    <div id="conditional-text">
+      <p>
+        This tool does not cover some other important things you need to know:
+        </p><ul>
+          <li> How much
+            <strong>radiation therapy</strong> would lower your risk of dying from prostate cancer </li>
+          <li> The possible
+            <strong>side effects </strong> and
+            <strong> risks </strong> you might face from surgery or radiation therapy:
+            <ul>
+              <li> Erectile dysfunction </li>
+              <li> Urinary incontinence </li>
+            </ul>
+          </li>
+        </ul>
+        Right now, it is not possible to calculate these risks for an
+        <strong>individual</strong> man, like you. However, you can get more information about the
+        <strong>average</strong> risks (for
+        <strong>groups</strong> of men) from other sources.
+      <p></p>
+    </div>
+
+    <br>
+    <h2> How do I get more information? </h2>
+    <br>
+
+    <ul>
+      <!-- <li> <a href="http://www.cancer.gov/cancertopics/pdq/treatment/prostate/Patient/page1"> NCI  Prostate cancer information</a> </li> -->
+      <li> <a href="http://www.cancer.gov/cancertopics/types/prostate"> NCI  Prostate cancer information</a> </li>
+      <li> <a href="http://www.cancer.gov/publications/patient-education/prostate.pdf"> NCI Prostate Cancer Booklet</a></li>
+      <li> <a href="http://www.cancer.gov/cancertopics/pdq/treatment/prostate/Patient/page4"> Side effects of treatment options</a></li>
+      <li> <a href="http://www.cancer.gov/publications/patient-education#coping-and-support"> Patient Education Publications </a></li>
+      <li> <a href="http://www.google.com/"> Patient Support Group Resources </a> </li>
+      <li> Models used by PROACT</li>
+      <ul>
+        <li> <a href="http://www.ncbi.nlm.nih.gov/pubmed/19755699"> Lu Yao </a> </li>
+        <li> <a href="http://www.ncbi.nlm.nih.gov/pubmed/19636023"> Kattan </a> </li>
+      </ul>
+      <li> <a href="http://tuftsvalt.github.io/proact/demo/pilot2/#"> Share your profile </a></li>
+    </ul>
+
+  </div>
+</div>
+
+
+<div class="footer" style="visibility: hidden;">
+  <p> **The PROACT tool does not include these information (<a href="http://tuftsvalt.github.io/proact/demo/pilot2/#openModal">Why?</a>)</p>
+</div>
+
+
+<div id="openModal" class="modalDialog">
+
+  <div> <a href="http://tuftsvalt.github.io/proact/demo/pilot2/#close" title="Close" class="close">X</a>
+
+    <h3>Why don't we have this information?</h3>
+
+    <p>
+      This tool uses the best available scientific evidence to help prostate cancer patients and physicians understand the benefits of different treatments, and to decide which treatment is best for an individual patient. Unlike other available tools,
+      <strong>we provide only personalized statistics</strong>.
+    </p>
+    <p>
+      However, due to scientific limitations, we are currently limited to providing
+      <strong>only</strong>:
+      </p><ul>
+        <li> your personalized prostate cancer risks </li>
+        <li> your personalized co-morbidity risks </li>
+        <li> your expected benefits of surgery </li>
+        <li> your expected benefits from conservative management </li>
+      </ul>
+    <p></p>
+    <p>We will update PROACT as more data becomes available.</p>
+  </div>
+
+</div>
+
+</div>
+
+<div id="rightButton">
+  <button id="sectionButton" class="btn btn-primary btn-lg" name="sectionButton" style="visibility: visible;">&gt;</button>
+</div>
+
+
+<!-- *********************************** -->
+<!-- *** SCRIPTS *********************** -->
+<!-- *********************************** -->
+
+<!-- library code -->
+<script src="./PROACT Pilot_files/d3.v3.min.js.download" charset="utf-8"></script>
+<script src="./PROACT Pilot_files/d3.slider.js.download"></script>
+
+<!-- vis code -->
+<script src="./PROACT Pilot_files/pies.js.download"></script>
+<script src="./PROACT Pilot_files/survivalcurve.js.download"></script>
+<script src="./PROACT Pilot_files/iconarray.js.download"></script>
+<script src="./PROACT Pilot_files/bar.js.download"></script>
+<script src="./PROACT Pilot_files/stackedbar.js.download"></script>
+<script src="./PROACT Pilot_files/clusteredbar.js.download"></script>
+<script src="./PROACT Pilot_files/colorscheme.js.download"></script>
+
+<!-- section code -->
+<script src="./PROACT Pilot_files/sections.js.download"></script>
+<script src="./PROACT Pilot_files/scenarios.js.download"></script>
+
+<script src="./PROACT Pilot_files/d3pie.js.download"></script>
+<script src="./PROACT Pilot_files/legend.js.download"></script>
+
+<!-- control code -->
+<script src="./PROACT Pilot_files/input.js.download"></script>
+
+<!-- data code -->
+<script src="./PROACT Pilot_files/luyao-web.js.download"></script>
+<script src="./PROACT Pilot_files/kattan-web.js.download"></script>
+<script src="./PROACT Pilot_files/update.js.download"></script>
+<script src="./PROACT Pilot_files/setup.js.download"></script>
+</body></html>

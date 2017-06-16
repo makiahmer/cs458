@@ -1,0 +1,160 @@
+(function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
+kattan = require('./kattan.js')
+
+},{"./kattan.js":2}],2:[function(require,module,exports){
+/*
+ * The "improved" model for the predictions:
+ * 1.0034901 * (G1 = "> 3") + 0.82784363 * (G2 = "> 3") + 0.022147732 * PSA + 0.5520105 * (CLIN.STG = "T1C") - 0.05961104 * (CLIN.STG = "T2A") + 0.80599007 * (CLIN.STG = "T2B") + 1.05441 * (CLIN.STG = "T2C") + 1.8360111 * (CLIN.STG = "T3") - 0.00069928007 * AGE - 0.16939096 * (0) - 0.00010641441 * max((0) - 8, 0)**3 + 0.00027667748 * max((0) - 16, 0)**3 - 0.00017026306 * max((0) - 21, 0)**3
+ */
+
+/*
+ The transformation is
+
+ 1 - 0.9989969^(exp("result from algorithm"))
+
+ So if the algorithm gives you a predicted log hazard of -0.2658, then
+
+ 1 - 0.9989969^(exp(-0.2658)) ->
+ 1 - 0.9989969^(0.7665924) ->
+ 1 - 0.9992309    = 0.0007691 -> 0.1%
+ */
+
+module.exports = {
+
+    p: {
+    },
+
+    baselines: {
+        "y0": 1.0000000,
+        "y1": 1.0000000,
+        "y2": 1.0000000,
+        "y3": 0.9999312,
+        "y4": 0.9998357,
+        "y5": 0.9997442,
+        "y6": 0.9996306,
+        "y7": 0.9994912,
+        "y8": 0.9993158,
+        "y9": 0.9991685,
+        "y10": 0.9989969
+    },
+
+    risk: function(d, y) {
+      if( y < 0 || y > 10 ) return console.error('Year out of range', y);
+      // Check if baseline exists, else interpolate between two nearest
+      if( this.baselines['y'+y] ) {
+        return 1 - Math.pow( this.baselines['y'+y], Math.pow(2.718282, d) )
+      } else {
+        var l = Math.floor(y)
+          , r = Math.ceil(y)
+
+        var lp = 1 - Math.pow( this.baselines['y'+l], Math.pow(2.718282, d) ) 
+          , rp = 1 - Math.pow( this.baselines['y'+r], Math.pow(2.718282, d) ) 
+
+        return (lp + rp) * 0.5
+      }
+    },
+
+    year: function(y) {
+      var r = this.risk( this.kattanFull( this.patient() ), y)
+
+      r = 1.0 - r;
+
+      return {
+        surgery: Math.round(1000*r)/1000,
+        surgerySurv: (1.0 - Math.round(1000*r)/1000),
+        surgery100: Math.round(100*r),
+        surgery100Surv: (100 - Math.round(100*r))
+      }
+    },
+
+    patient: function(value) {
+      if (!arguments.length) return p;
+      p = value;
+      return this;
+    },
+
+    kattan:  function(d) {
+        if(! d.psa || ! d.age )
+            return console.log('error in parameters')
+        if(! (d.psa > 0.4 && d.psa < 61) && (d.age > 32 && d.age < 88) )
+            return console.log('not applicable')
+
+        var allgleason = ""+d.gleason1+"+"+d.gleason2
+            , age = d.age
+            , stage = d.stage.toLowerCase()
+            , prepsa = d.psa
+
+        return 1.0034901 * (d.gleason1 === "> 3")
+            + 0.82784363 * (d.gleason2 === "> 3")
+            + 0.022147732 * d.prepsa
+            + 0.5520105 * (d.stage === "t1c")
+            - 0.05961104 * (d.stage === "t2a")
+            + 0.80599007 * (d.stage === "t2b")
+            + 1.05441 * (d.stage === "t2c")
+            + 1.8360111 * (d.stage === "t3")
+            - 0.00069928007 * d.age
+            - 0.16939096 * (0)
+            - 0.00010641441 * Math.pow( Math.max((0) - 8, 0), 3)
+            + 0.00027667748 * Math.pow( Math.max((0) - 16, 0), 3)
+            - 0.00017026306 * Math.pow( Math.max((0) - 21, 0), 3)
+    },
+
+    kattanFull:  function(d) {
+        if (!d.psa || !d.age)
+            return console.log('error in parameters')
+        if (!(d.psa > 0.4 && d.psa < 61) && (d.age > 32 && d.age < 88))
+            return console.log('not applicable')
+
+        var g1 = +d.gleason1
+          , g2 = +d.gleason2
+          , age = +d.age
+          , stage = d.stage.toLowerCase()
+          , prepsa = +d.psa
+          , pred = 0.0
+
+        var ppsa = 0.0
+          , pg1 = 0.0
+          , pg2 = 0.0
+          , pstg = 0.0
+          , page = 0.0
+
+        // PSA
+        ppsa = 0.022147732 * prepsa
+
+        // Gleason
+        if ( g1 > 3 ) { 
+          pg1 = 1.0034901
+        }
+
+        if ( g2 > 3 ) { 
+          pg2 = 0.82784363
+        }
+
+        // Stage
+        if(stage == "t1a" || stage == "t1b")
+          pstg = 0.0
+        if(stage == "t1c")
+          pstg = 0.5520105
+        if(stage == "t2a")
+          pstg = -0.05961104
+        if(stage == "t2b")
+          pstg = 0.80599007
+        if(stage == "t2c")
+          pstg = 1.05441
+        if(stage == "t3a" || stage == "t3b" || stage == "t3c" || stage == "t4" || stage == "t3")
+          pstg = 1.8360111
+
+        // Age
+        page = -(0.00069928007 * age)
+
+        // Combine
+        pred = ppsa + pg1 + pg2 + pstg + page
+
+        return pred 
+    }
+}
+  
+
+
+
+},{}]},{},[1]);

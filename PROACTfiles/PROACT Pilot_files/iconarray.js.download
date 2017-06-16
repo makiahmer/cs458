@@ -1,0 +1,107 @@
+function iconarray(selection) {
+
+  var margin = {top: 10, right: 32, bottom: 30, left: 32}
+    , w = 480 - margin.left - margin.right
+    , h = 300 - margin.top - margin.bottom
+    , pcnt = d3.format(".0%")
+    , type;
+
+  function chart(selection) {
+  selection.each(function(d, i) {
+    // Chart Container
+    var div = d3.select(this).selectAll('.iconarray')
+      .data([d]);
+
+    div.enter().append('div')
+      .classed('iconarray', true);
+
+    div
+     .style('width', w)
+     .style('height', h);
+
+    _data = [];
+
+    d.pbs.forEach(function(p, i) {
+      var cls = d.levels[i];
+      for(var j = 0; j < p; j++) {
+        if(j === 0)
+          _data.push(cls + ' first');
+        else
+          _data.push(cls);
+      }
+    });
+
+    // Icons
+    var ico = div.selectAll('.fa')
+      .data(_data);
+
+    ico.enter().append('i')
+      .classed('fa fa-male fa-2x icon', true);
+
+    ico.style('color', function(d) {
+      return c3[d.split(' ')[0]];
+    })
+    .style('padding-left', function(d) { 
+      if( d.indexOf('first') != -1 )
+      return '0px'; // add 28px to "nest" by one icon
+      else
+      return '0px';
+    });
+
+
+    ico.style('font-size', '1.6em');
+
+    // Interaction
+    var that = this;
+    d.dispatch.on('move.'+type, function(e) {
+      // listen for curves of the same type
+      if( type.split(' ')[0].indexOf(e.type.split(' ')[0]) == -1 ) 
+        return;
+
+     var pbs = [
+        (kattan.year(e.year).surgery100Surv), 
+        (luyao.year(e.year).conservative100Surv), 
+        (luyao.year(e.year).all100Surv),
+        (100 - kattan.year(e.year).surgery100Surv
+          - luyao.year(e.year).conservative100Surv
+          - luyao.year(e.year).all100Surv)
+      ];
+
+      d3.select(that)
+       .datum({
+       'pbs': pbs,
+       'levels': ['surgery', 'conservative', 'all', 'alive'],
+       'dispatch': d.dispatch
+      })
+      .call(chart);
+    });
+
+  })
+  }
+
+  chart.width = function(value) {
+    if (!arguments.length) return w;
+    w = value - margin.left - margin.right;
+    return chart;
+  };
+
+  chart.height = function(value) {
+    if (!arguments.length) return h;
+    h = value - margin.top - margin.bottom;
+    return chart;
+  };
+  
+  chart.margin = function(value) {
+    if (!arguments.length) return margin;
+    margin = value;
+    return chart;
+  };
+
+  chart.type = function(value) {
+    if (!arguments.length) return type;
+    type = value;
+    return chart;
+  };
+  
+  return chart;
+}

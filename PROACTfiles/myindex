@@ -1,0 +1,870 @@
+<title>PROACT Pilot</title>
+
+<style>
+  @import url(http://fonts.googleapis.com/css?family=Istok+Web);
+  @import url(http://fonts.googleapis.com/css?family=Oswald);
+  @import url(http://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css);
+  @import url(bootstrap/css/bootstrap.min.css);
+  @import url(style.css);
+  @import url(slider.css);
+  @import url(css/input-style.css);
+  @import url(css/intro-style.css);
+</style>
+
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+
+<div id="leftButton">
+  <button id="prevButton" class="btn btn-primary btn-lg" name="prevButton">&lt;</button>
+</div>
+
+<div id="content">
+
+<h1 style="margin-bottom: -32px; text-align:right; font-family: 'Oswald', serif"> PROACT </h1>
+
+<!-- Navigation buttons -->
+<div class="step-btn">
+  <button type="button" class="btn btn-default nav-btn" id="faq-btn" value="input">Introduction</button>
+
+  <button type="button" class="btn btn-default nav-btn" id="cancerRisk-btn" value="cancerRisk" onclick="changePies();">Prostate Cancer Threat</button>
+
+  <button type="button" class="btn btn-default nav-btn" id="table-btn" value="table">Treatment Options</button>
+
+  <button type="button" class="btn btn-default nav-btn" id="table-btn" value="table">Treatment Options</button>
+
+  <button type="button" class="btn btn-default nav-btn" id="end-btn" value="end">More Information</button>
+</div>
+
+
+<!-- *********************************** -->
+<!-- *** PAGE 1 : WELCOME ************** -->
+<!-- *********************************** -->
+<div class="section" id="disclaimer">
+
+  <h2 class="title">Welcome</h2>
+  <br>
+  <p>
+    Welcome to the Prognosis Assessment for Active and Conservative Treatment (PROACT) Tool. This tool uses the best available scientific evidence to help prostate cancer patients and physicians understand the benefits of different treatments, and to decide
+    which treatment is best for an individual patient.
+  </p>
+  <p>
+    The PROACT calculates the expected benefits of surgical vs. non-surgical (conservative) treatment for individual patients with prostate cancer, based on each patient's own unique features -- such as his age, medical history, and the stage of his cancer.
+    To learn more about how the PROACT works, click here.
+  </p>
+
+  <h3>Terms of Use</h3>
+  <!-- taken from http://www.mskcc.org/nomograms/disclaimer?destination=nomograms%2Fprostate -->
+  <div id="terms">
+    <p>
+      The prediction tools, also known as prognostic nomograms, located on the NCI Web site are for general health information only. The prediction tools are not to be used as a substitute for medical advice, diagnosis, or treatment of any health condition
+      or problem.
+    </p>
+    <p>
+      Users of the prediction tools should not rely on information provided by the prediction tools for their own health problems. Questions should be addressed to your own physician or other healthcare provider.
+    </p>
+    <p>
+      NCI makes no warranties, nor express or implied representations whatsoever, regarding the accuracy, completeness, timeliness, comparative or controversial nature, or usefulness of any information contained or referenced in the prediction tools. NCI does
+      not assume any risk whatsoever for your use of the prediction tools or the information contained herein. Health related information changes frequently and therefore information contained in the prediction tools may be outdated, incomplete or incorrect.
+    </p>
+    <p>
+      Use of the prediction tools does not create an express or implied physician-patient relationship. NCI does not endorse or claim validity for the prediction tools found on the NCI Web site. The activities and products of NCI and its developers and agents
+      (collectively NCI) are not endorsed by our past, present, or future employers. NCI does not record specific prediction tool user information and does not contact users of the prediction tools.
+    </p>
+    <p>
+      You are hereby advised to consult with a physician or other professional healthcare provider prior to making any decisions, or undertaking any actions or not undertaking any actions related to any healthcare problem or issue you might have at any time,
+      now or in the future. In using the prediction tools, you agree that neither NCI nor any other party is or will be liable or otherwise responsible for any decision made or any action taken or any action not taken due to your use of any information
+      presented in the prediction tools.
+    </p>
+  </div>
+
+  <div id="term-agree">
+    <label>
+      <input type="checkbox" value="agree" id="agreebox">
+        &nbsp; I accept all of the above terms or by any further use of this service.
+      </input>
+    </label>
+  </div>
+
+</div>
+
+
+<!-- *********************************** -->
+<!-- *** PAGE 2 : FAQ ****************** -->
+<!-- *********************************** -->
+<div class="section" id="faq">
+
+  <h2 class="title">Prostate Cancer Treatment Shared Decision Making: FAQ</h2>
+  <br>
+
+  <div class="section-text">
+
+    <h3>How big of a threat is my prostate cancer? </h3>
+
+    <ul>
+      <li>What are my chances of surviving?</li>
+      <li>How much time do I have to decide?</li>
+    </ul>
+
+    <h3>Is treatment an option? </h3>
+
+    <ul>
+      <li>If not, what can I do?</li>
+    </ul>
+
+    <h3>What are the possible treatments for me?</h3>
+
+    <ul>
+      <li>
+        <strong> Surgery </strong> - This treatment approach involves removing the prostate gland, and surrounding tissues that may contain cancer, through an operation.</li>
+      <li>
+        <strong> Conservative management </strong> - This treatment approach includes two approaches, &quot;watchful waiting&quot; and &quot;active surveillance,&quot; aimed at monitoring for problems or signs that the cancer is spreading, and giving treatment
+        only if necessary</li>
+      <li>
+        <strong> Radiation therapy ** </strong> - This treatment approach involves using high-energy X-rays or other types of radiation to kill the cancer cells.</li>
+    </ul>
+
+    <h3>What are the side effects of different treatment options? ** </h3>
+
+    <h3>What do I do next?</h3>
+
+  </div>
+
+</div>
+
+<!-- *********************************** -->
+<!-- *** PAGE 3 : INPUT **************** -->
+<!-- *********************************** -->
+<div class="section" id="input">
+
+  <h2 class="title">Input</h2>
+
+  <div class="explanation">
+    <p>
+      To use the PROACT, you first need to tell us about yourself and your prostate cancer. Please do this by entering the information below.
+    </p>
+  </div>
+
+  <div id="basic-info">
+    <div class="container">
+
+      <div class="row">
+
+        <div class="col-md-3 col-md-offset-2" style="text-align:right">
+          <span class="glyphicon glyphicon-question-sign" aria-hidden="true" id="age-sign"></span>
+          Age:
+          <div class="more-info" id="age-sign-info" style="visibility:hidden; position:absolute;">
+            This tool does not include models for patients under 66 years old because of the relatively low mortality rates from comorbidities.
+          </div>
+        </div>
+
+        <div class="col-md-7">
+          <!-- defaults to 66 -->
+          <input type="text" placeholder="66 - 89" id="inAge" onchange="updatePatient()">
+          <span class="error-message" id="age-star" style="color:red"> </span>
+        </div>
+
+      </div>
+
+      <div class="row">
+
+        <div class="col-md-3 col-md-offset-2" style="text-align:right">
+          <span class="glyphicon glyphicon-question-sign" aria-hidden="true" id="psa-sign"></span>
+          PSA:
+          <div class="more-info" id="psa-sign-info" style="visibility:hidden; position:absolute;">
+            <!-- taken from http://www.cancer.gov/cancertopics/types/prostate/psa-fact-sheet -->
+            The PSA test measures the blood level of PSA, a protein that is produced by the prostate gland. The higher a man&#39;s PSA level, the more likely it is that he has prostate cancer.
+            <br> However, there are additional reasons for having an elevated PSA level, and some men who have prostate cancer do not have elevated PSA.
+          </div>
+        </div>
+
+        <div class="col-md-7">
+          <!-- should be in ng/ml -->
+          <!-- defaults to .5 -->
+          <input type="text" placeholder="0.5 - 60" id="inpsa" onchange="updatePatient()">
+          <span class="error-message" id="psa-star" style="color:red"> </span>
+        </div>
+
+      </div>
+
+      <div class="row">
+
+        <div class="col-md-3 col-md-offset-2" style="text-align:right">
+
+          <span class="glyphicon glyphicon-question-sign" id="stage-sign" aria-hidden="true"></span>
+          Stage:
+          <div class="more-info" id="stage-sign-info" style="visibility:hidden; position:absolute;">
+            <!-- taken from http://www.cancer.org/cancer/prostatecancer/detailedguide/prostate-cancer-staging -->
+            <strong>T1a</strong>: Cancer is found incidentally (by accident) during a transurethral resection of the prostate (TURP) that was done for benign prostatic hyperplasia (BPH). Cancer is in no more than 5% of the tissue removed.
+            <br>
+            <strong>T1b</strong>: Cancer is found during a TURP but is in more than 5% of the tissue removed.
+            <br>
+            <strong>T1c</strong>: Cancer is found by needle biopsy that was done because of an increased PSA.
+            <br>
+            <strong>T2a</strong>: The cancer is in one half or less of only one side (left or right) of your prostate.
+            <br>
+            <strong>T2b</strong>: The cancer is in more than half of only one side (left or right) of your prostate.
+            <br>
+            <strong>T2c</strong>: The cancer is in both sides of your prostate.
+          </div>
+
+        </div>
+
+        <div class="col-md-7">
+          <select id="inStage" onchange="updatePatient()">
+            <!-- defaults to T1a -->
+            <option value="T1a"> T1a </option>
+            <option value="T1b"> T1b </option>
+            <option value="T1c"> T1c </option>
+            <option value="T2a"> T2a </option>
+            <option value="T2b"> T2b </option>
+            <option value="T2c"> T2c </option>
+          </select>
+          <span class="error-message" id="stage-star" style="color:red"></span>
+        </div>
+
+      </div>
+
+      <div class="row">
+
+        <div class="col-md-3 col-md-offset-2" style="text-align:right">
+          <span class="glyphicon glyphicon-question-sign" id="g1-sign" aria-hidden="true"></span>
+          Gleason 1:
+          <div class="more-info" id="g1-sign-info" style="visibility:hidden; position:absolute;">
+            Gleason score is a system of grading prostate cancer tissue based on how it looks under a microscope. Scores range from 2 to 9 and indicate
+            <strong> how likely it is that a tumor will spread </strong>. A low Gleason score means the cancer tissue is similar to normal prostate tissue and the tumor is less likely to spread; a high Gleason score means the cancer tissue is very different from
+            normal and the tumor is more likely to spread.
+          </div>
+        </div>
+
+        <div class="col-md-7">
+          <!-- defaults to 2 -->
+          <input type="text" placeholder="1 - 5" id="inGleason1" onchange="updatePatient()">
+          <span class="error-message" id="g1-star" style="color:red"></span>
+        </div>
+
+      </div>
+
+      <div class="row">
+
+        <div class="col-md-3 col-md-offset-2" style="text-align:right">
+          <span class="glyphicon glyphicon-question-sign" id="g2-sign" aria-hidden="true"></span>
+          Gleason 2:
+          <div class="more-info" id="g2-sign-info" style="visibility:hidden; position:absolute;">
+            Gleason score is a system of grading prostate cancer tissue based on how it looks under a microscope. Scores range from 2 to 9 and indicate
+            <strong> how likely it is that a tumor will spread </strong>. A low Gleason score means the cancer tissue is similar to normal prostate tissue and the tumor is less likely to spread; a high Gleason score means the cancer tissue is very different from
+            normal and the tumor is more likely to spread.
+          </div>
+        </div>
+
+        <div class="col-md-7">
+          <!-- defaults to 2 -->
+          <input type="text" placeholder="1 - 5" id="inGleason2" onchange="updatePatient()">
+          <span class="error-message" id="g2-star" style="color:red"></span>
+        </div>
+
+      </div>
+
+      <div class="row">
+
+        <div class="col-md-3 col-md-offset-2" style="text-align:right">
+          <span class="glyphicon glyphicon-question-sign" id="diff-sign" aria-hidden="true"></span>
+          Differentiation:
+          <div class="more-info" id="diff-sign-info" style="visibility:hidden; position:absolute;">
+            Differentiation describes
+            <strong> how much or how little tumor tissue looks like the normal tissue </strong>it came from. Well-differentiated cancer cells look more like normal cells and tend to grow and spread more slowly than poorly differentiated or undifferentiated cancer
+            cells.
+          </div>
+        </div>
+
+        <div class="col-md-7">
+          <select id="inDifferentiation" onchange="updatePatient()">
+            <!-- defaults to moderate -->
+            <option value="moderate"> Moderate </option>
+            <option value="poor"> Poor </option>
+          </select>
+          <span class="error-message" id="diff-star" style="color:red"></span>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <hr>
+
+  <h4 style="margin-bottom: 10px"> Please indicate whether you have any of the medical conditions below, by checking the appropriate box(es). Please check all that apply.</h4>
+
+  <div class="container" id="coex-illness">
+
+    <!-- start row   -->
+    <div class="row">
+      <div class="col-md-5 col-md-offset-2 disease">
+        <label>
+          <input type="checkbox" value="AIDS"> &nbsp; AIDS</label>
+      </div>
+      <div class="col-md-5 disease">
+        <label>
+          <input type="checkbox" value="Rheumatologic Disease"> &nbsp; Rheumatologic Disease</label>
+      </div>
+    </div>
+    <!-- end row   -->
+
+    <!-- start row   -->
+    <div class="row">
+      <div class="col-md-5 col-md-offset-2 disease">
+        <label>
+          <input type="checkbox" value="Acute Myocardio Infarction"> &nbsp; Acute Myocardio Infarction</label>
+      </div>
+      <div class="col-md-5 disease">
+        <label>
+          <input type="checkbox" value="Ulcer Disease"> &nbsp; Ulcer Disease</label>
+      </div>
+    </div>
+    <!-- end row   -->
+
+    <!-- start row   -->
+    <div class="row">
+      <div class="col-md-5 col-md-offset-2 disease">
+        <label>
+          <input type="checkbox" value="Old Myocardio Infarction"> &nbsp; Old Myocardio Infarction</label>
+      </div>
+      <div class="col-md-5 disease">
+        <label>
+          <input type="checkbox" value="Mild Liver Disease"> &nbsp; Mild Liver Disease</label>
+      </div>
+    </div>
+    <!-- end row   -->
+
+    <!-- start row   -->
+    <div class="row">
+      <div class="col-md-5 col-md-offset-2 disease">
+        <label>
+          <input type="checkbox" value=" Congestive Heart Failure"> &nbsp; Congestive Heart Failure</label>
+      </div>
+      <div class="col-md-5 disease">
+        <label>
+          <input type="checkbox" value="Moderate-severe Liver Disease"> &nbsp; Moderate-severe Liver Disease</label>
+      </div>
+    </div>
+    <!-- end row   -->
+
+    <!-- start row   -->
+    <div class="row">
+      <div class="col-md-5 col-md-offset-2 disease">
+        <label>
+          <input type="checkbox" value="Cerebrovascular Disease"> &nbsp; Cerebrovascular Disease</label>
+      </div>
+      <div class="col-md-5 disease">
+        <label>
+          <input type="checkbox" value="Diabetes"> &nbsp; Diabetes</label>
+      </div>
+    </div>
+    <!-- end row   -->
+
+    <!-- start row   -->
+    <div class="row">
+      <div class="col-md-5 col-md-offset-2 disease">
+        <label>
+          <input type="checkbox" value="Peripheral Vascular Disease"> &nbsp; Peripheral Vascular Disease</label>
+      </div>
+      <div class="col-md-5 disease">
+        <label>
+          <input type="checkbox" value="Dementia"> &nbsp; Dementia</label>
+      </div>
+    </div>
+    <!-- end row   -->
+
+    <!-- start row   -->
+    <div class="row">
+      <div class="col-md-5 col-md-offset-2 disease">
+        <label>
+          <input type="checkbox" value="Chronic Obstructive Pulmonary Disease"> &nbsp; Chronic Obstructive Pulmonary Disease</label>
+      </div>
+      <div class="col-md-5 disease">
+        <label>
+          <input type="checkbox" value="Paralysis"> &nbsp; Paralysis</label>
+      </div>
+    </div>
+    <!-- end row   -->
+
+    <!-- start row   -->
+    <div class="row">
+      <div class="col-md-5 col-md-offset-2 disease">
+        <label>
+          <input type="checkbox" value="Renal Disease"> &nbsp; Renal Disease</label>
+      </div>
+      <div class="col-md-5">
+        <label>
+          <input type="checkbox" value="No Coexisting Illnesses" id="no-coex"> &nbsp; No Coexisting Illnesses</label>
+      </div>
+    </div>
+    <!-- end row   -->
+  </div>
+
+</div>
+
+<!-- *********************************** -->
+<!-- *** PAGE 4 : CALMING ************** -->
+<!-- *********************************** -->
+<div class="section" id="calming">
+
+  <h2 class="title">How big of a threat is my prostate cancer?</h2>
+  <br>
+
+  <div class="section-text" id="calmingText-part1">
+    <p>
+      In most cases, prostate cancer
+      <strong>progresses slowly</strong>, and is
+      <strong>not lethal</strong>.</p>
+    <p>
+      In all cases,
+      <strong>you have time to think carefully</strong> about what to do about your prostate cancer, before you decide.
+    </p>
+    <p>
+      For example, based on the data you provided
+      <strong>your risk of dying from prostate cancer after 1 year is
+        <span class="larger" id="calmingText"></span>
+      </strong>, illustrated in the following chart:
+    </p>
+  </div>
+
+  <div class="calming risk" id="calmingChart"></div>
+
+  <ul>
+    <li>Your chances of being
+      <strong>alive</strong>
+      <span class="alivePieColor">
+        <strong>(in GREEN)</strong>
+      </span>
+    </li>
+    <li>Your chances of dying from your
+      <strong>prostate cancer</strong>
+      <span class="prostatePieColor">
+        <strong>(in PURPLE)</strong>
+      </span>
+    </li>
+    <li>Your chances of dying from
+      <strong>other causes</strong>
+      <span class="otherPieColor">
+        <strong>(in ORANGE)</strong>
+      </span>
+    </li>
+  </ul>
+
+  <div class="section-text" id="calmingText-part2">
+    <p>
+      Before thinking about the benefits of specific treatments, it is helpful to first think about
+      <strong>how big of a threat</strong> your prostate cancer is to your future survival.
+    </p>
+  </div>
+
+</div>
+
+<!-- *********************************** -->
+<!-- *** PAGE 5 : PC THREAT ************ -->
+<!-- *********************************** -->
+<div class="section" id="cancerRisk">
+
+  <h2 class="title">How big of a threat is my prostate cancer?</h2>
+  <br>
+
+  <div class="section-text">
+
+    <p>
+      Before thinking about the benefits of specific treatments, it's helpful to first think about how big of threat your prostate cancer is to your future survival. The pie chart below shows the following:
+    </p>
+    <ul>
+      <li>Your chances of being
+        <strong>alive</strong>
+        <span class="alivePieColor">
+          <strong>(in GREEN)</strong>
+        </span>
+      </li>
+      <li>Your chances of dying from your
+        <strong>prostate cancer</strong>
+        <span class="prostatePieColor">
+          <strong>(in PURPLE)</strong>
+        </span>
+      </li>
+      <li>Your chances of dying from
+        <strong>other causes</strong>
+        <span class="otherPieColor">
+          <strong>(in ORANGE)</strong>
+        </span>
+      </li>
+    </ul>
+
+  </div>
+
+  <div class="treatment risk" id="risk1yr"></div>
+  <div class="treatment risk" id="risk5yr"></div>
+  <div class="treatment risk" id="risk10yr"></div>
+
+</div>
+
+<!-- *********************************** -->
+<!-- *** PAGE 7 : TREATMENT OPTIONS **** -->
+<!-- *********************************** -->
+<div class="section" id="treatmentOptions">
+
+  <h2 class="title">What are my treatment options?</h2>
+  <br>
+
+  <div id="treatmentList">
+    <div class="treatmentItem">
+      <h2> Surgery </h2>
+      <!-- This treatment approach involves removing the prostate gland, and surrounding tissues that may contain cancer, through an operation. -->
+    </div>
+    <div class="treatmentItem">
+      <h2> Conservative management</h2>
+      <!-- This treatment approach includes two approaches, &quot;watchful waiting&quot; and &quot;active surveillance,&quot; aimed at monitoring for problems or signs that the cancer is spreading, and giving treatment only if necessary -->
+    </div>
+    <div class="treatmentItem">
+      <h2> Radiation therapy **</h2>
+      <!-- This treatment approach involves using high-energy X-rays or other types of radiation to kill the cancer cells. -->
+    </div>
+  </div>
+
+  <br>
+  <br>
+
+  <div class="section-text" style="margin: auto;">
+    <p>
+      You can view your expected
+      <strong>benefits</strong> from <u>surgery</u> and <u>conservative management</u> on the
+      <em>next page</em>. The possible
+      <strong>harms</strong> of these treatments are not included in the PROACT tool but can be found at the <a href="http://www.cancer.gov/cancertopics/types/prostate"> NCI website</a>.
+    </p>
+  </div>
+
+</div>
+
+<!-- *********************************** -->
+<!-- *** PAGE 8 : SURGERY V. CONSERV *** -->
+<!-- *********************************** -->
+<div class="section" id="table">
+
+  <h2>How effective are different treatments for my prostate cancer?</h2>
+  <br>
+
+  <div class="section-text">
+    <p>
+      The expected benefits from
+      <strong>surgery </strong> and
+      <strong> conservative management </strong> are listed below.
+    </p>
+    <p>
+      These results show your estimated chances of either surviving or dying
+      <strong>from your prostate cancer</strong> at 1, 5, and 10 years, depending on whether you choose either surgery
+      <span style="color: #807dba">
+        <strong>(DARK PURPLE BAR)</strong>
+      </span> or conservative treatment
+      <span style="color: #bcbddc">
+        <strong>(LIGHT PURPLE BAR)</strong>
+      </span>.
+    </p>
+    <p>
+      You can view these risks in terms of either
+      <span id="tserve">survival</span> or
+      <span id="mserve">mortality</span>.
+    </p>
+    <br>
+    <br>
+  </div>
+
+  <div id="treatmentWrapper">
+    <div class="treatment" id="treatment1yr"></div>
+    <div class="treatment" id="treatment5yr"></div>
+    <div class="treatment" id="treatment10yr"></div>
+  </div>
+
+  <div id="toggleWrapper">
+    <button id="toggle" name="toggle">
+      Show in terms of
+      <span id="toggleSwitch">Mortality</span>
+    </button>
+  </div>
+
+</div>
+
+<!-- *********************************** -->
+<!-- *** PAGE - : EXPLORE ************** -->
+<!-- *********************************** -->
+<div class="section" id="curve">
+
+  <h2>Exploring your information further</h2>
+  <br>
+
+  <div class="explanation">
+    <p>
+      These interactive graphs give you a different way of seeing and thinking about the benefits of different treatments. Feel free to explore these graphs using your mouse.
+    </p>
+  </div>
+
+  <div id="vis">
+    After
+    <span id="vyear"></span> years:
+    <ul>
+      <li>
+        <span id="valive"></span>
+        of people will be alive,
+      </li>
+      <li>
+        <span id="vother"></span>
+        will die of something other than prostate cancer,
+      </li>
+      <li>
+        <span id="vcx"></span>
+        who followed conservative treatment will die of prostate cancer, and
+      </li>
+      <li>
+        <span id="vprostate"></span>
+        who had surgery will die of prostate cancer.
+      </li>
+    </ul>
+  </div>
+
+  <div id="icon">
+    In other words:
+    <ul>
+      <li>
+        <span id="ialive"></span>
+        out of 100 people will be alive,
+      </li>
+      <li>
+        <span id="iother"></span>
+        out of 100 will die of something other than prostate cancer,
+      </li>
+      <li>
+        <span id="icx"></span>
+        out of 100 who followed conservative treatment will die of prostate cancer, and
+      </li>
+      <li>
+        <span id="iprostate"></span>
+        out of 100 who had surgery will die of prostate cancer.
+      </li>
+    </ul>
+  </div>
+
+</div>
+
+<!-- *********************************** -->
+<!-- *** PAGE 9 : NEXT STEPS *********** -->
+<!-- *********************************** -->
+<div class="section" id="nextSteps">
+
+  <h2 class="title">What do I do next?</h2>
+  <br>
+
+  <h3 style="margin-top:0">What threats am I facing? </h3>
+  <table>
+    <col width="55%">
+      <col width="44%">
+        <tr>
+          <td>
+            <ul>
+              <li>Your risk of dying from prostate cancer:</li>
+            </ul>
+          </td>
+          <td>
+            <span id="pcRisk1yr">X</span> in the next year, and
+            <span id="pcRisk10yr">X</span> in the next 10 years. </td>
+        </tr>
+        <col width="55%">
+          <col width="44%">
+            <tr>
+              <td>
+                <ul>
+                  <li>Your risk of dying from other causes:</li>
+                </ul>
+              </td>
+              <td>
+                <span id="allRisk1yr">X</span> in the next year, and
+                <span id="allRisk10yr">X</span> in the next 10 years. </td>
+            </tr>
+  </table>
+
+  <div id="risk2wrapper">
+    <div class="risk2" id="risk1yr2"></div>
+    <div class="risk2" id="risk5yr2"></div>
+    <div class="risk2" id="risk10yr2"></div>
+  </div>
+
+  <div id="treatmentText">
+    <h3>What are the possible treatments for me?</h3>
+    <table>
+      <col width="55%">
+        <col width="44%">
+
+          <tr>
+            <td>
+              <ul>
+                <li>Surgery</li>
+              </ul>
+            </td>
+            <td>
+              <span id="radRisk10yr">X</span> risk of dying from prostate cancer in the next 10 years. </td>
+          </tr>
+          <tr>
+            <td>
+              <ul>
+                <li>Conservative management</li>
+              </ul>
+            </td>
+            <td>
+              <span id="consRisk10yr">X</span> risk of dying from prostate cancer in the next 10 years. </td>
+          </tr>
+          <tr>
+            <td>
+              <ul>
+                <li>Radiation</li>
+              </ul>
+            </td>
+            <td> PROACT does not include this information. (<a href="#openModal">Why?</a>) </td>
+          </tr>
+          <tr>
+            <td>
+              <ul>
+                <li>Other treatments</li>
+              </ul>
+            </td>
+            <td> PROACT does not include this information. (<a href="#openModal">Why?</a>) </td>
+          </tr>
+    </table>
+    <br>
+  </div>
+
+  <div id="treatmentWrapper2">
+    <div class="treatment" id="treatment1yr2"></div>
+    <div class="treatment" id="treatment5yr2"></div>
+    <div class="treatment" id="treatment10yr2"></div>
+  </div>
+
+</div>
+
+<!-- *********************************** -->
+<!-- *** PAGE 10 : (END) BEFORE YOU GO * -->
+<!-- *********************************** -->
+<div class="section" id="end">
+
+  <div id="conditional-title">
+    <h2> What else do I need to know to decide what is right for me? </h2>
+    <br>
+  </div>
+
+  <div class="section-text">
+
+    <div id="conditional-text">
+      <p>
+        This tool does not cover some other important things you need to know:
+        <ul>
+          <li> How much
+            <strong>radiation therapy</strong> would lower your risk of dying from prostate cancer </li>
+          <li> The possible
+            <strong>side effects </strong> and
+            <strong> risks </strong> you might face from surgery or radiation therapy:
+            <ul>
+              <li> Erectile dysfunction </li>
+              <li> Urinary incontinence </li>
+            </ul>
+          </li>
+        </ul>
+        Right now, it is not possible to calculate these risks for an
+        <strong>individual</strong> man, like you. However, you can get more information about the
+        <strong>average</strong> risks (for
+        <strong>groups</strong> of men) from other sources.
+      </p>
+    </div>
+
+    <br>
+    <h2> How do I get more information? </h2>
+    <br>
+
+    <ul>
+      <!-- <li> <a href="http://www.cancer.gov/cancertopics/pdq/treatment/prostate/Patient/page1"> NCI  Prostate cancer information</a> </li> -->
+      <li> <a href="http://www.cancer.gov/cancertopics/types/prostate"> NCI  Prostate cancer information</a> </li>
+      <li> <a href="http://www.cancer.gov/publications/patient-education/prostate.pdf"> NCI Prostate Cancer Booklet</a></li>
+      <li> <a href="http://www.cancer.gov/cancertopics/pdq/treatment/prostate/Patient/page4"> Side effects of treatment options</a></li>
+      <li> <a href="http://www.cancer.gov/publications/patient-education#coping-and-support"> Patient Education Publications </a></li>
+      <li> <a href="http://www.google.com"> Patient Support Group Resources </a> </li>
+      <li> Models used by PROACT</li>
+      <ul>
+        <li> <a href="http://www.ncbi.nlm.nih.gov/pubmed/19755699"> Lu Yao </a> </li>
+        <li> <a href="http://www.ncbi.nlm.nih.gov/pubmed/19636023"> Kattan </a> </li>
+      </ul>
+      <li> <a href="#"> Share your profile </a></li>
+    </ul>
+
+  </div>
+</div>
+
+
+<div class="footer">
+  <p> **The PROACT tool does not include these information (<a href="#openModal">Why?</a>)</p>
+</div>
+
+
+<div id="openModal" class="modalDialog">
+
+  <div> <a href="#close" title="Close" class="close">X</a>
+
+    <h3>Why don't we have this information?</h3>
+
+    <p>
+      This tool uses the best available scientific evidence to help prostate cancer patients and physicians understand the benefits of different treatments, and to decide which treatment is best for an individual patient. Unlike other available tools,
+      <strong>we provide only personalized statistics</strong>.
+    </p>
+    <p>
+      However, due to scientific limitations, we are currently limited to providing
+      <strong>only</strong>:
+      <ul>
+        <li> your personalized prostate cancer risks </li>
+        <li> your personalized co-morbidity risks </li>
+        <li> your expected benefits of surgery </li>
+        <li> your expected benefits from conservative management </li>
+      </ul>
+    </p>
+    <p>We will update PROACT as more data becomes available.</p>
+  </div>
+
+</div>
+
+</div>
+
+<div id="rightButton">
+  <button id="sectionButton" class="btn btn-primary btn-lg" name="sectionButton">&gt;</button>
+</div>
+
+
+<!-- *********************************** -->
+<!-- *** SCRIPTS *********************** -->
+<!-- *********************************** -->
+
+<!-- library code -->
+<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+<script src="js/d3.slider.js"></script>
+
+<!-- vis code -->
+<script src="js/pies.js"></script>
+<script src="js/survivalcurve.js"></script>
+<script src="js/iconarray.js"></script>
+<script src="js/bar.js"></script>
+<script src="js/stackedbar.js"></script>
+<script src="js/clusteredbar.js"></script>
+<script src="js/colorscheme.js"></script>
+
+<!-- section code -->
+<script src="js/sections.js"></script>
+<script src="js/scenarios.js"></script>
+
+<script src="../../../proact/js/d3pie.js"></script>
+<script src="../../../proact/js/legend.js"></script>
+
+<!-- control code -->
+<script src="js/input.js"></script>
+
+<!-- data code -->
+<script src="../../../proact/luyao/luyao-web.js"></script>
+<script src="../../../proact/kattan/kattan-web.js"></script>
+<script src="js/update.js"></script>
+<script src="js/setup.js"></script>

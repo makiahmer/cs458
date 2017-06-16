@@ -1,0 +1,296 @@
+function createPies() {
+
+  for (var i = 0; i < 3; i++) {
+    var a, p, o, name;
+    if (i == 0) {
+      name = "risk1yr";
+      a = alive1;
+      p = prostate1;
+      o = other1;
+    }
+    else if (i == 1) {
+      name = "risk5yr";
+      a = alive5;
+      p = prostate5;
+      o = other5;
+    }
+    else {
+      name = "risk10yr";
+      a = alive10;
+      p = prostate10;
+      o = other10;
+    }
+
+    riskPie = new d3pie(name, {
+          "size": {
+            "canvasHeight": 400,
+            "canvasWidth": 864/3,
+            "pieOuterRadius": "50%"
+          },
+          "data": {
+            "content": [
+            {
+              "label": "Alive","value": a,"color": c3['alive']
+            },
+            {
+              "label": "Mortality-Prostate","value": p,"color": c3['all']
+            },
+            {
+              "label": "Mortality-Other","value": o,"color": c3['other']
+            }
+          ],
+          "sortOrder" : "label-asc"
+          },
+          "title": {
+            "fontSize": 32,
+          },
+          "labels": {
+            "outer": {
+              "format": "label",
+              "pieDistance": 12,
+            },
+            "inner": {
+              "hideWhenLessThanPercentage": 5
+            },
+            "mainLabel": {
+              "fontSize": 12
+            },
+            "percentage": {
+              "color": "#ffffff","decimalPlaces": 0,"fontSize": 12
+            },
+            "value": {
+              "color": "#adadad","fontSize": 12
+            },
+            "lines": {
+              "enabled": true
+            }
+          },
+    });
+    riskPies.push(riskPie);
+  }
+
+for (var i = 0; i < 3; i++) {
+    var a, p, o, name;
+    if (i == 0) {
+      name = "risk1yr2";
+      a = alive1;
+      p = prostate1;
+      o = other1;
+    }
+    else if (i == 1) {
+      name = "risk5yr2";
+      a = alive5;
+      p = prostate5;
+      o = other5;
+    }
+    else {
+      name = "risk10yr2";
+      a = alive10;
+      p = prostate10;
+      o = other10;
+    }
+
+    riskPie = new d3pie(name, {
+          "size": {
+            "canvasHeight": 250,
+            "canvasWidth": 864/3,
+            "pieOuterRadius": "50%"
+          },
+          "data": {
+            "content": [
+            {
+              "label": "Alive","value": a,"color": c3['alive']
+            },
+            {
+              "label": "Mortality-Prostate","value": p,"color": c3['all']
+            },
+            {
+              "label": "Mortality-Other","value": o,"color": c3['other']
+            }
+          ],
+          "sortOrder" : "label-asc"
+          },
+          "title": {
+            "fontSize": 32,
+          },
+          "labels": {
+            "outer": {
+              "format": "label",
+              "pieDistance": 12,
+            },
+            "inner": {
+              "hideWhenLessThanPercentage": 5
+            },
+            "mainLabel": {
+              "fontSize": 12
+            },
+            "percentage": {
+              "color": "#ffffff","decimalPlaces": 0,"fontSize": 12
+            },
+            "value": {
+              "color": "#adadad","fontSize": 12
+            },
+            "lines": {
+              "enabled": true
+            }
+          },
+    });
+    riskPies2.push(riskPie);
+  }
+
+
+  calmingPie = new d3pie('calmingChart', {
+          "size": {
+            "canvasHeight": 400,"canvasWidth": 864,
+          },
+          "data": {
+            "content": [
+            {
+              "label": "Alive","value": alive1,"color": c3['alive']
+            },
+            {
+              "label": "Death from Prostate Cancer","value": prostate1,"color": c3['all']
+            },
+            {
+              "label": "Death from other causes","value": other1,"color": c3['other']
+            }
+          ],
+          "sortOrder" : "label-asc"
+          },
+          "title": {
+            "fontSize": 32,
+          },
+          "labels": {
+            "outer": {
+             // "format": "none",
+              "pieDistance": 12, "fontSize": 8
+            },
+            "inner": {
+              "hideWhenLessThanPercentage": 5
+            },
+            "mainLabel": {
+              "fontSize": 14
+            },
+            "percentage": {
+              "color": "#ffffff","decimalPlaces": 0,"fontSize": 16
+            },
+            "value": {
+              "color": "#adadad","fontSize": 11
+            },
+            "lines": {
+              "enabled": true
+            }
+          },
+    });
+  span = document.getElementById("calmingText");
+  txt = document.createTextNode(prostate1.toFixed(2) + '%');
+  span.innerText = txt.textContent;
+}
+
+
+function changePies() {
+  for (var i = 0; i < 3; i++) {
+    var a, p, o, name;
+    if (i == 0) {
+      name = "risk1yr";
+      a = alive1;
+      p = prostate1;
+      o = other1;
+      yr1_age = parseInt(input.data.age) + 1;
+      title = "1 Year (" + yr1_age + " years old)";
+    }
+    else if (i == 1) {
+      name = "risk5yr";
+      a = alive5;
+      p = prostate5;
+      o = other5;
+      yr5_age = parseInt(input.data.age) + 5;
+      title = "5 years (" + yr5_age + " years old)";
+    }
+    else {
+      name = "risk10yr";
+      a = alive10;
+      p = prostate10;
+      o = other10;
+      yr10_age = parseInt(input.data.age) + 10;
+      title = "10 Years (" + yr10_age + " years old)";
+    }
+
+    pieData = [
+             {
+          "label": "Alive","value": a,"color": c3['alive']
+        },
+        {
+          "label": "Mortality-Prostate","value": p,"color": c3['all']
+        },
+        {
+          "label": "Mortality-Other","value": o,"color": c3['other']
+        }
+      ];
+    riskPies[i].updateProp("data.content", pieData);
+    riskPies[i].updateProp("header.title.text", title);
+  }
+
+  for (var i = 0; i < 3; i++) {
+    var a, p, o, name;
+    if (i == 0) {
+      name = "risk1yr2";
+      a = alive1;
+      p = prostate1;
+      o = other1;
+      yr1_age = parseInt(input.data.age) + 1;
+      title = "1 Year (" + yr1_age + " years old)";
+    }
+    else if (i == 1) {
+      name = "risk5yr2";
+      a = alive5;
+      p = prostate5;
+      o = other5;
+      yr5_age = parseInt(input.data.age) + 5;
+      title = "5 years (" + yr5_age + " years old)";
+    }
+    else {
+      name = "risk10yr2";
+      a = alive10;
+      p = prostate10;
+      o = other10;
+      yr10_age = parseInt(input.data.age) + 10;
+      title = "10 Years (" + yr10_age + " years old)";
+    }
+
+    pieData = [
+             {
+          "label": "Alive","value": a,"color": c3['alive']
+        },
+        {
+          "label": "Mortality-Prostate","value": p,"color": c3['all']
+        },
+        {
+          "label": "Mortality-Other","value": o,"color": c3['other']
+        }
+      ];
+    riskPies2[i].updateProp("data.content", pieData);
+    riskPies2[i].updateProp("header.title.text", title);
+  }
+
+  calmingData = [
+             {
+          "label": "Alive","value": alive1,"color": c3['alive']
+        },
+        {
+          "label": "Prostate Cancer mortality","value": prostate1,"color": c3['all']
+        },
+        {
+          "label": "Other cause mortality","value": other1,"color": c3['other']
+        }
+      ];
+
+  calmingPie.updateProp("data.content", calmingData);
+  calmingPie.updateProp("header.title.text", '1 Year')
+  span = document.getElementById("calmingText");
+  console.log(prostate1);
+  console.log(alive1);
+  console.log(other1);
+  txt = document.createTextNode(100 * prostate1.toFixed(2) + '%');
+  span.innerText = txt.textContent;
+}

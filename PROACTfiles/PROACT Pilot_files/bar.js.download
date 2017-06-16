@@ -1,0 +1,286 @@
+function bar(selection) {
+
+  var margin = {top: 44, right: 16, bottom: 20, left: 16}
+    , w = 200 - margin.left - margin.right
+    , h = 250 - margin.top - margin.bottom
+    , xlabel = "Years Following Diagnosis"
+    , ylabel = "Alive, %"
+    , xscale = d3.scale.linear()
+    , yscale = d3.scale.linear()
+    , type;
+
+  function chart(selection) {
+    selection.each(function(d, i) {
+
+      // Scales
+      xscale = d3.scale.ordinal()
+        .domain(['surgery', 'conservative']);
+  
+      yscale = d3.scale.linear()
+        .domain([0, 100])
+        .range([10, h-25]);
+        // change to 0
+
+      // Chart Container
+      var svg = d3.select(this).selectAll('svg')
+        .data([d]);
+      
+      // New Chart: 
+      // svg: container for the chart
+      // g: container for specifying margins
+      svg.enter()
+        .append('svg')
+          .classed('barchart', true)
+        .append('g')
+
+      svg.attr('width', w + margin.left + margin.right)
+        .attr('height', h + margin.top + margin.bottom);
+
+      var gEnter = svg.select('g')
+        .attr(
+          'transform', 
+          'translate(' + margin.left + ',' + margin.top + ')'
+        );
+      var xAxis = d3.svg.axis()
+        .scale(xscale)
+        .orient("bottom");
+
+      // Bars
+      var bars = gEnter.selectAll('rect')
+        .data(d.data);
+
+      bars.exit().remove();
+      
+      // New bars
+      var newbars = bars.enter().append('rect');
+      
+      // Update Bars
+      bars.transition().attr('height', function(d) { return yscale(d.value); })
+        .attr('width', 70)
+        .attr('y', function(d) { return h - yscale(d.value); } )
+        .attr('x', function(d, i) { return i*80; })
+        .style('fill', function(d, i) { 
+          return c3[ d.label ]; 
+        });
+
+      // Determine Title text
+      var titleText = "";
+      var subTitleText = "";
+
+      if (surv) {
+        titleText = "Surviving your Prostate Cancer"; 
+        if( debug ) console.log( 'Title Text', titleText );
+
+        subTitleText = "after " + d.year + " year (" + ( parseInt(input.data.age) + d.year ) + " years old)";
+        if( debug ) console.log( 'Sub Title Text', subTitleText );
+      }
+      else {
+        titleText = "Mortality from Prostate Cancer"; 
+        if( debug ) console.log( 'Title Text', titleText );
+
+        subTitleText = "after " + d.year + " years (" + ( parseInt(input.data.age) + d.year ) + " years old)";
+        if( debug ) console.log( 'Sub Title Text', subTitleText );
+      }
+
+    // Title Label
+      var title = gEnter.selectAll('.bartitle')
+        .data([{}]);
+
+      title.exit().remove();
+
+      // Enter
+      title.enter()
+        .append('text')
+        .classed('bartitle', true);
+
+      // Update
+      title.transition()
+        .attr("x", (w/2))
+        .attr("y", -20)
+        .attr("text-anchor", "middle")
+        .style("font-size", "14px")
+        .style("color", "black")
+        .text(titleText);
+
+    // Sub Title Label
+      var subTitle = gEnter.selectAll('.barSubTitle')
+        .data([{}]);
+
+      subTitle.exit().remove();
+
+      // Update
+      subTitle.enter()
+        .append('text')
+        .classed('barSubTitle', true);
+ 
+      // Update
+      subTitle.transition()
+        .attr("x", (w/2))
+        .attr("y", 0)
+        .attr("text-anchor", "middle")
+        .style("font-size", "14px")
+        .style("color", "black")
+        .text(subTitleText);
+
+      // Bar Percent Labels
+      var percentLabels = gEnter.selectAll('.barpercent')
+        .data(d.data);
+
+      percentLabels.exit().remove();
+
+      // New Title
+      var newPercentLabels = percentLabels.enter()
+        .append('text')
+        .classed('barpercent', true);
+      
+      // Title Update
+      percentLabels.transition()
+        .text(function(d) { return d.value+'%'; })
+        .attr('y', function(d) { return h - yscale(d.value) - 4; } ) 
+        .attr('x', function(d, i) { return i*80 + 80/2; })
+        .attr('text-anchor', 'middle')
+        .style('fill', 'black')
+        .style("font-weight", "normal")
+        .style("font-size", "14px");
+
+      // Bar Labels
+      var barLabels = gEnter.selectAll('.barlabel')
+        .data(d.data);
+
+      barLabels.exit().remove();
+
+      // New Bar Label
+      var newBarLabels = barLabels.enter()
+        .append('text')
+        .classed('barlabel', true);
+      
+      // Bar Label Update
+      barLabels.transition()
+        .text(function(d) {return d.label;})
+        .attr('y', h + 15)
+        .attr('x', function(d, i) { return i*80 + 35; })
+        .attr('text-anchor', 'middle')
+        .style('fill', 'black')
+        .style('font-weight', 'normal')
+        .style('font-size', '12px');
+      
+      // Axes
+      // Mouse interaction
+   });
+  }
+
+  chart.width = function(value) {
+    if (!arguments.length) return w;
+    w = value - margin.left - margin.right;
+    return chart;
+  };
+
+  chart.height = function(value) {
+    if (!arguments.length) return h;
+    h = value - margin.top - margin.bottom;
+    return chart;
+  };
+  
+  chart.margin = function(value) {
+    if (!arguments.length) return margin;
+    margin = value;
+    return chart;
+  };
+
+  chart.type = function(value) {
+    if (!arguments.length) return type;
+    type = value;
+    return chart;
+  };
+  
+  return chart;
+}
+
+
+function updateBar() {
+  d3.select('#toggleWrapper')
+    .style('display', 'inline');
+
+      d3.select("#treatment1yr")
+        .datum({
+          'data': (
+            surv === true ? [ 
+              {'value': 100 - Math.round(100*rp1), 'label': 'surgery'}, 
+              {'value': 100 - Math.round(100*cx1), 'label': 'conservative'}
+            ] : [ 
+              {'value': Math.round(100*rp1), 'label': 'surgery'}, 
+              {'value': Math.round(100*cx1), 'label': 'conservative'}
+          ]),
+          'year': 1
+        })
+        .call(bar);
+      d3.select("#treatment5yr")
+        .datum({
+          'data': (
+            surv === true ? [ 
+              {'value': 100 - Math.round(100*rp5), 'label': 'surgery'}, 
+              {'value': 100 - Math.round(100*cx5), 'label': 'conservative'}
+            ] : [ 
+              {'value': Math.round(100*rp5), 'label': 'surgery'}, 
+              {'value': Math.round(100*cx5), 'label': 'conservative'}
+          ]),
+            'year': 5
+        })
+        .call(bar);
+      d3.select("#treatment10yr")
+        .datum({
+          'data': (
+            surv === true ? [ 
+              {'value': 100 - Math.round(100*rp10), 'label': 'surgery'}, 
+              {'value': 100 - Math.round(100*cx10), 'label': 'conservative'}
+            ] : [ 
+              {'value': Math.round(100*rp10), 'label': 'surgery'}, 
+              {'value': Math.round(100*cx10), 'label': 'conservative'}
+          ]),
+            'year': 10
+        })
+        .call(bar);
+  }
+
+function updateBar2() {
+  surv = true;
+      d3.select("#treatment1yr2")
+        .datum({
+          'data': (
+            surv === true ? [ 
+              {'value': 100 - Math.round(100*rp1), 'label': 'surgery'}, 
+              {'value': 100 - Math.round(100*cx1), 'label': 'conservative'}
+            ] : [ 
+              {'value': Math.round(100*rp1), 'label': 'surgery'}, 
+              {'value': Math.round(100*cx1), 'label': 'conservative'}
+          ]),
+          'year': 1
+        })
+        .call(bar);
+      d3.select("#treatment5yr2")
+        .datum({
+          'data': (
+            surv === true ? [ 
+              {'value': 100 - Math.round(100*rp5), 'label': 'surgery'}, 
+              {'value': 100 - Math.round(100*cx5), 'label': 'conservative'}
+            ] : [ 
+              {'value': Math.round(100*rp5), 'label': 'surgery'}, 
+              {'value': Math.round(100*cx5), 'label': 'conservative'}
+          ]),
+            'year': 5
+        })
+        .call(bar);
+      d3.select("#treatment10yr2")
+        .datum({
+          'data': (
+            surv === true ? [ 
+              {'value': 100 - Math.round(100*rp10), 'label': 'surgery'}, 
+              {'value': 100 - Math.round(100*cx10), 'label': 'conservative'}
+            ] : [ 
+              {'value': Math.round(100*rp10), 'label': 'surgery'}, 
+              {'value': Math.round(100*cx10), 'label': 'conservative'}
+          ]),
+            'year': 10
+        })
+        .call(bar);
+  }
