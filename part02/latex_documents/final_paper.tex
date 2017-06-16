@@ -196,6 +196,12 @@
                 In addition to providing interactive comparisons, we propose the addition of \textit{Treatment Pathways}.
                 With these an individual would be able to walk through the expected cycle of a selected treatment.
                 During this walk, we would present information such as financing the treatment, possible side effects of the treatment, and resources for the treatment - including peer support groups and local organizations assisting in basic needs.
+                An example of what this page might look like is shown in Figure \ref{fig:path}. As seen in the figure, colors could be added to codify larger or scientific terms.
+                \begin{figure}[!ht]
+                    \includegraphics[width=\columnwidth]{pathway.png}
+                    \caption{A prototype of the Treatment Pathways page.}
+                    \label{fig:path}
+                \end{figure}
 
 
         \subsection{Side Effects}
@@ -206,7 +212,13 @@
 
                 The following sections outline side effects we found for the surgical, hormonal therapy, and radiation therapy treatment options.
                 Following side effects of individual treatment options, we have created a list of side effects common amongst multiple treatment options.
-                The latter list would be served to users on our ``Exploring Side Effects'' page.
+                The latter list would be served to users on our ``Exploring Side Effects'' page. We were able to implement a prototype of this page, shown in figure \ref{fig:side}.
+                As seen below, indicative colors could be added to the frequency of side effects to denote the probability.
+                \begin{figure}[!ht]
+                    \includegraphics[width=\columnwidth]{sideeffects.png}
+                    \caption{A prototype of the side effects page.}
+                    \label{fig:side}
+                \end{figure}
 
                 \subsubsection{Surgery}
                         Surgeries for prostate cancer include \textit{radical prostatectomy} (with sub-types of \textit{retropubic prostatectomy} and \textit{retropubic prostatectomy}), \textit{pelvic lymphadenectomy}, and \textit{transurethral resection of the prostate (TURP)} \cite{PDQProstateCancer:2016}.
@@ -347,27 +359,22 @@
                         With this users would hover over a term and a small dialog box would appear next to it.
                         In the dialog box we would present a high level definition of the term (for individuals with low literacy levels) as well as a link for more details - taking them to a resource appropriate for detailing the piece of medical information.
                         This would aid users who are viewing the PROACT tool without their doctor present.
+                        An early prototype of the tooltip implementation can be seen on the Treatment Pathways page. As shown in Figure \ref{fig:tool}, upon hovering, a brief description for Internal Radiation Therapy is given.
+                        \begin{figure}[!ht]
+                            \includegraphics[width=\columnwidth]{tooltip.png}
+                            \caption{An implementation of the tooltip feature.}
+                            \label{fig:tool}
+                        \end{figure}
 
                 \subsubsection{Narrative Structure}
-                \subsubsection{Minimization of Presented Data}
+                        In addition, the PROACT authors emphasized the importance of creating a narrative flow that would allow the patient to feel at ease.
+                        They found that creating a narrative structure that was conducive to a patient's psychological mindset was imperative for a good visualization tool.
+                        To keep this flow, our additions to the Treatment Pathway page is an effort to aid the patient in following along in a calming manner.
+                        We saw that the original, first-iteration implementation of PROACT by the researchers included some pages that disrupted this flow, and was removed in the second iteration.
+                        Our addition of the treatment pathways page is an attempt to improve the flow by avoid blunt statistics and adding colors, as well as slightly more interaction through the tooltips.
 
+                % \subsubsection{Minimization of Presented Data}
 
-\section{Results}
-
-Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
-nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat,
-sed diam voluptua. At vero eos et accusam et justo duo dolores et ea
-rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem
-ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur
-sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et
-dolore magna aliquyam erat, sed diam
-voluptua~\cite{Kitware:2003,Max:1995:OMF}. At vero eos et accusam et
-justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea
-takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit
-amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor
-invidunt ut labore et dolore magna aliquyam erat, sed diam
-voluptua. At vero eos et accusam et justo duo dolores et ea
-rebum. Stet clita kasd gubergren, no sea takimata sanctus est.
 
 \section{Future Work}
         As the PROACT team has already performed the user studies necessary to outline what tool's functionality and narrative structure, future work primarily looks at the expansion of its current capabilities.
@@ -390,7 +397,11 @@ rebum. Stet clita kasd gubergren, no sea takimata sanctus est.
                 From usability studies we also know that a primary concern for male individuals is the use of colors.
                 As such, the overhaul would also take a look at color palettes that could be implemented to allow the widest spectrum of users, without hassle.
 
-
+\section{Conclusion}
+        We have presented the work done by the PROACT team, and proposed a set of improvements to the visualization.
+        These include the implementation of tooltips, an extensive section on other treatment options, a walkthrough of treatment options, and a walkthrough of possible side effects.
+        While we were unable to effectively implement these due to a lack of resources and data, we were able to create an early prototype.
+        This prototype included a brief side effects section and an example of what a treatment pathway page might look like.
 %% if specified like this the section will be committed in review mode
 \acknowledgments{
         The authors wish to thank Eugene Zhang for the unique opportunities provided in this class. We appreciate the work you are doing!
@@ -404,4 +415,3 @@ rebum. Stet clita kasd gubergren, no sea takimata sanctus est.
 
 \bibliography{references}
 \end{document}
-
