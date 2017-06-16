@@ -13,11 +13,11 @@ function inputSection() {
     .classed('active', false)
     .classed('inactive', true);
   currentSection = 1;
-  
+
   d3.select('#input')
     .classed('active', true)
     .classed('inactive', false);
- 
+
 	showFooter();//shows footer for select pages
 	updateNavbar();
 }
@@ -30,30 +30,30 @@ function nextSection() {
   }else if (sections[currentSection] == 'input') {
     // checks inputs
     valid_fields();
-  } 
-  
+  }
+
   d3.select('#'+sections[currentSection])
     .classed('active', false)
     .classed('inactive', true);
-  
+
   if (currentSection < sections.length) {
     currentSection = currentSection + 1;
-    
+
     if (sections[currentSection] == 'end') {
       d3.select('#sectionButton').style("visibility", "hidden");
     }
-  }    
-  
+  }
+
   if (sections[currentSection] == 'cancerRisk' || sections[currentSection] == 'calming' || sections[currentSection] == 'nextSteps') changePies();
 
   checkTreatmentSection();
-  
+
   //showSideBar();
   //changeSidebar();
   d3.select('#'+sections[currentSection])
     .classed('active', true)
     .classed('inactive', false);
-    
+
   showFooter();//shows footer for select pages
   updateNavbar();
 }
@@ -75,9 +75,9 @@ function prevSection() {
 		if (sections[currentSection] == 'disclaimer' ) {
 			d3.select('#prevButton').style("visibility", "hidden");
 			d3.selectAll('.step-btn .btn').style("visibility", "hidden");
-		} 
+		}
 	}
-  
+
   checkTreatmentSection();
 
   d3.select('#'+sections[currentSection])
@@ -85,9 +85,9 @@ function prevSection() {
     .classed('inactive', false);
 
   if (sections[currentSection] == 'cancerRisk' || sections[currentSection] == 'calming' || sections[currentSection] == 'nextSteps')
-    changePies(); 
-  
-  showFooter();//shows footer for select pages 
+    changePies();
+
+  showFooter();//shows footer for select pages
   updateNavbar();
 }
 
@@ -117,6 +117,13 @@ function addSectionListeners() {
   d3.selectAll('#basic-info .glyphicon')
     .on('mouseover', show_tooltip)
     .on('mouseout', hide_tooltip);
+
+
+  d3.selectAll('.ttip')
+    .on('mouseover', show_tooltip)
+    .on('mouseout', hide_tooltip);
+
+
   d3.selectAll("#coex-illness input")
     .on('click', checkbox_click);
 }
@@ -125,13 +132,13 @@ function change_pages() {
   if (sections[currentSection] == 'input') {
     valid_fields();
   }
-  
+
   if (sections[currentSection] == 'disclaimer') {
     currentSection = currentSection + 1;
     updateNavbar();
     return;
   }
-  
+
   d3.select('#'+sections[currentSection])
     .classed('active', false)
     .classed('inactive', true);
@@ -143,7 +150,7 @@ function change_pages() {
     }
   }
 
-  
+
   //showSideBar();
   //changeSidebar();
   d3.select('#'+ this.value)
@@ -182,8 +189,8 @@ function selectTreatment(treat) {
   d3.select('#'+sections[currentSection])
     .classed('active', true)
     .classed('inactive', false);
-    
-  //highlight nav bar  
+
+  //highlight nav bar
 //   d3.select('#' + nav_map[ sections[currentSection] ])
 //     .style('background-color', '#a8ddb5');
 
@@ -212,12 +219,12 @@ function updateNavbar(){
     .style('border-color', 'transparent transparent rgb(77, 170, 75)');
 	// d3.select('#' + nav_map[ sections[currentSection] ])
  //    .style('background-color', '#a8ddb5');
-	
+
 }
 
 function showFooter(){
 	var footerPages = ['faq', 'treatmentOptions'];
-	
+
 	if (footerPages.indexOf( sections[currentSection]) == -1){
 		d3.select(".footer").style("visibility", "hidden");
 	}else{
